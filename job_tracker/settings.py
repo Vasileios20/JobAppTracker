@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'localhodst',
+    'localhost',
     '127.0.0.1',
     os.environ.get("ALLOWED_HOST")
 ]
@@ -63,8 +63,6 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 APPEND_SLASH = False
-
-CSRF_TRUSTED_ORIGINS = [os.environ.get("ALLOWED_HOST")]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 

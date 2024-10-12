@@ -33,7 +33,7 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     os.environ.get("ALLOWED_HOST"),
-    '8000-vasileios20-jobapptrack-llbcz1jmbfv.ws.codeinstitute-ide.net'
+    '8000-vasileios20-jobapptrack-llbcz1jmbfv.ws.codeinstitute-ide.net','8000-vasileios20-jobapptrack-3dw9ia5uex0.ws.codeinstitute-ide.net'
 ]
 
 

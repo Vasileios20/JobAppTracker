@@ -32,7 +32,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    os.environ.get("ALLOWED_HOST")
+    os.environ.get("ALLOWED_HOST"),
+    '8000-vasileios20-jobapptrack-llbcz1jmbfv.ws.codeinstitute-ide.net'
 ]
 
 

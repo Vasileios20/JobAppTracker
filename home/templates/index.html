@@ -1,14 +1,40 @@
 {% extends "base.html" %}
 
 {% block title %}
-Job Tracker
+Git Hired
 {% endblock %}
 
 {% block content %}
 
-<div>
-    <h1>Welcome to the Job Tracker</h1>
+<header class="header">
+    <h1 class="logo">Git Hired</h1>
+    <button class="join-button">Join Now</button>
+</header>
 
-</div>
+<main class="main-container">
+    <h1>Git Hired</h1>
+    <h2>Keep Track. Stay Organized. Get Hired.</h2>
+    <p>Our streamlined job application tracker helps you manage every step of your job search process, so you can focus on what really matters — landing your dream role.</p>
+    <button class="start-tracking">Start Tracking</button>
+</main>
+
+<section class="icon-section">
+    <article class="icon">
+        <img src="application tracking icon" alt="Track your applications">
+        <p>Track your applications</p>
+    </article>
+    <article class="icon">
+        <img src="calendar icon" alt="Stay on top of deadlines">
+        <p>Stay on top of deadlines</p>
+    </article>
+    <article class="icon">
+        <img src="interview icon" alt="Prep for Interviews">
+        <p>Prep for Interviews</p>
+    </article>
+    <article class="icon">
+        <img src="technical challenges icon" alt="Practice Technical Challenges">
+        <p>Practice Technical Challenges</p>
+    </article>
+</section>
 
 {% endblock %}

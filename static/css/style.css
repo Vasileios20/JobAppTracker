@@ -1,0 +1,57 @@
+body {
+    background-color: purple;
+    margin: 0;
+    padding: 0;
+}
+
+/* index.html */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.join-button {
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.main-container h2 {
+    margin-bottom: 10px;
+}
+
+.start-tracking {
+    padding: 15px 30px;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.icon-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px 20px;
+}
+
+.icon {
+    text-align: center;
+}

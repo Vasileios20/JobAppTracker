@@ -36,10 +36,6 @@ ALLOWED_HOSTS = [
     '8000-vasileios20-jobapptrack-llbcz1jmbfv.ws.codeinstitute-ide.net', '8000-trxdave-jobapptracker-txg6sp6ytqh.ws-eu116.gitpod.io', '8000-vasileios20-jobapptrack-6lu7eot9vyv.ws-eu116.gitpod.io', '8000-vasileios20-jobapptrack-jdhekqqlmug.ws.codeinstitute-ide.net'
 ]
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://8000-vasileios20-jobapptrack-jdhekqqlmug.ws.codeinstitute-ide.net'
-]
-
 
 # Application definition
 
@@ -64,6 +60,14 @@ INSTALLED_APPS = [
 SITE_ID = 1
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://www.8000-vasileios20-jobapptrack-llbcz1jmbfv.ws.codeinstitute-ide.net',
+    'https://www.8000-trxdave-jobapptracker-txg6sp6ytqh.ws-eu116.gitpod.io',
+    'https://www.8000-vasileios20-jobapptrack-6lu7eot9vyv.ws-eu116.gitpod.io',
+    os.environ.get("ORIGIN")
+]
+
 
 ACCOUNT_EMAIL_REQUIRED = True
 
@@ -96,7 +100,7 @@ EMAIL_USE_TLS = True
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-APPEND_SLASH = False
+APPEND_SLASH = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 

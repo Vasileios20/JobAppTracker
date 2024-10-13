@@ -7,6 +7,12 @@ Job Dashboard
 {% block content %}
 
 <div>
+    <form action="{% url 'filter' %}" method="GET" class="my-2 col-md-6 mx-auto">
+        <div class="d-flex">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" name="query">
+            <button class="btn button1 my-2 my-sm-0" type="submit">Search</button>
+        </div>
+    </form>
     <h1>Welcome to the Job Dashboard</h1>
 
 </div>

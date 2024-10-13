@@ -33,7 +33,7 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     os.environ.get("ALLOWED_HOST"),
-    '8000-vasileios20-jobapptrack-llbcz1jmbfv.ws.codeinstitute-ide.net'
+    '8000-vasileios20-jobapptrack-llbcz1jmbfv.ws.codeinstitute-ide.net', '8000-trxdave-jobapptracker-txg6sp6ytqh.ws-eu116.gitpod.io', '8000-vasileios20-jobapptrack-6lu7eot9vyv.ws-eu116.gitpod.io', '8000-vasileios20-jobapptrack-jdhekqqlmug.ws.codeinstitute-ide.net'
 ]
 
 
@@ -54,16 +54,53 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     'home',
+    'job_application',
 ]
 
 SITE_ID = 1
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://www.8000-vasileios20-jobapptrack-llbcz1jmbfv.ws.codeinstitute-ide.net',
+    'https://www.8000-trxdave-jobapptracker-txg6sp6ytqh.ws-eu116.gitpod.io',
+    'https://www.8000-vasileios20-jobapptrack-6lu7eot9vyv.ws-eu116.gitpod.io',
+    os.environ.get("ORIGIN")
+]
+
+
+ACCOUNT_EMAIL_REQUIRED = True
+
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+SITE_ID = 1
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+ACCOUNT_USERNAME_MIN_LENGTH = 4
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
+WSGI_APPLICATION = 'JobAppTracker.wsgi.application'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get("EMAIL_ADDRESS")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
+EMAIL_USE_TLS = True
+
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-APPEND_SLASH = False
+APPEND_SLASH = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 

@@ -33,7 +33,7 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     os.environ.get("ALLOWED_HOST"),
-    '8000-vasileios20-jobapptrack-llbcz1jmbfv.ws.codeinstitute-ide.net'
+    '8000-vasileios20-jobapptrack-llbcz1jmbfv.ws.codeinstitute-ide.net', '8000-trxdave-jobapptracker-txg6sp6ytqh.ws-eu116.gitpod.io', '8000-vasileios20-jobapptrack-6lu7eot9vyv.ws-eu116.gitpod.io'
 ]
 
 
@@ -54,11 +54,23 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     'home',
+    'job_application',
 ]
 
 SITE_ID = 1
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+ACCOUNT_EMAIL_REQUIRED = True
+
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get("EMAIL_ADDRESS")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
+EMAIL_USE_TLS = True
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'

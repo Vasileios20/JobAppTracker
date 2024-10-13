@@ -65,8 +65,12 @@ CSRF_TRUSTED_ORIGINS = [
     'https://www.8000-vasileios20-jobapptrack-llbcz1jmbfv.ws.codeinstitute-ide.net',
     'https://www.8000-trxdave-jobapptracker-txg6sp6ytqh.ws-eu116.gitpod.io',
     'https://www.8000-vasileios20-jobapptrack-6lu7eot9vyv.ws-eu116.gitpod.io',
-    os.environ.get("ORIGIN")
 ]
+
+# Add the environment variable if it is set
+origin_env = os.environ.get("ORIGIN")
+if origin_env:
+    CSRF_TRUSTED_ORIGINS.append(origin_env)
 
 
 ACCOUNT_EMAIL_REQUIRED = True
@@ -113,6 +117,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
+
 ]
 
 ROOT_URLCONF = 'job_tracker.urls'

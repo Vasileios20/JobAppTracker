@@ -16,19 +16,19 @@ body {
 }*/
 
 .logo-container {
-    text-align: center; /* Center text under the icon */
+    text-align: center;
 }
 
 .logo-icon {
     margin-top: -5px;
-    width: 30px; /* Set the desired size for the icon */
-    height: auto; /* Maintain aspect ratio */
+    width: 30px; 
+    height: auto; 
 }
 
 .logo-text {
-    font-size: 22px; /* Adjust font size as needed */
-    color: white; /* Change color as necessary */
-    margin-top: 2px; /* Space between icon and text */
+    font-size: 22px; 
+    color: white; 
+    margin-top: 2px; 
 }
 
 /* index.html --------------------------------------------- */

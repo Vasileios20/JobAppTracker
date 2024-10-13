@@ -112,6 +112,120 @@ body {
     text-align: center;
 }
 
+
+/* Team profiles */
+.card-container {
+    margin: 0 auto;
+    margin-top: -20px;
+
+  }
+
+.profile-card {
+    border-radius: 25px;
+    position: relative;
+    padding: 25px 15px;
+    background-size: cover;
+    border: 2px solid #00d1ce;
+    margin: 20px 10px;
+    height: 400px;
+    align-items: center;
+  }
+
+  .profile-card:hover{
+    transform: scale(1.05);
+    box-shadow: 0px 0px 30px 1px #7f48cb;
+  }
+
+  .card-1 {
+    background-image: url('../images/vas_pr.png');
+  }
+
+  .card-2 {
+    background-image: url('../images/erin_pr.png');
+  }
+
+  .card-3 {
+    background-image: url('../images/mar_pr.png');
+  }
+
+  .card-4 {
+    background-image: url('../images/david_pr.png');
+  }
+  
+  .card-5 {
+    background-image: url('../images/kim_pr.png');
+  }
+
+  .card-6 {
+    background-image: url('../images/cair_pr.png');
+  }
+
+  /* .top {
+    border-radius: 25px 25px 0 0;
+    height: 100px;
+    width: 100%;
+    background-color: #FFFF;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+  }
+   */
+
+  /* .name {
+    font-size: 2em;
+    text-align: center;
+    flex: 1;
+    margin:auto;
+    border-radius: 10px;
+    height: fit-content;
+    padding: 4px;
+  } */
+
+  .name-info {
+    font-weight: 400;
+    font-size:24px;
+    border-left: 3px solid #7f48cb;
+    padding:4px;
+  }
+
+  .linkedin-icon,
+  .github-icon {
+    background: linear-gradient(163deg, #00d1ce 0%, #7f48cb 100%);
+    color: #FFFFFF;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 20px;
+    margin:20px 10px;
+  }
+
+  .linkedin-icon:hover,
+  .github-icon:hover {
+    box-shadow: 0px 0px 30px 1px #7f48cb;
+  }
+
+  .bottom {
+    margin-top: 200px;
+    overflow-y: auto !important;
+    border-radius: 10px;
+    border-top:2px solid#FFFFFF;
+    background-color: #130e01;
+    opacity: 0.9;
+    height: 140px;
+  }
+  
+  .info {
+    margin: 20px auto;
+  }
+
+  .role {
+    margin: 20px 10px;
+    font-weight: 400;
+    font-size:x-large;
+    border-bottom:2px solid #00d1ce;
+    width: fit-content;
+  }
+
 /* Sign Up/ Login/ Password Change/ Password Reset forms */
 .signup input,
 .login input,
@@ -283,3 +397,4 @@ body {
 /* .btn3-pd {
     padding: 0.93rem;
 } */
+

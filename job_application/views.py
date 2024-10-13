@@ -9,14 +9,13 @@ def job_application(request):
 
 def filter_jobs(request):
     query = request.GET.get('query')
-    print(query)
     if query:
         jobs = Job.objects.filter(
-            Q(company_name__icontains=query) | Q(job_title__icontains=query)
+            Q(company__icontains=query) | Q(title__icontains=query) | Q(
+                category__icontains=query) | Q(location__icontains=query) |
+            Q(status__icontains=query)
         )
-        print(jobs)
     else:
         jobs = Job.objects.all()
-        print(jobs)
 
     return render(request, 'job_list.html', {'jobs': jobs})

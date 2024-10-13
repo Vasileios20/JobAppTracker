@@ -1,17 +1,17 @@
 body {
-    background-color: #838181;
+    background-color: #130e01;
     margin: 0;
     padding: 0;
-    color: #130e01;
+    color: white;
 }
 
 .logo {
     text-decoration: none;
-    color: #130e01
+    color: white;
 }
 
 .logo:hover {
-    color: #130e01
+    color: white;
 }
 
 /* index.html --------------------------------------------- */
@@ -66,7 +66,7 @@ body {
     align-items: center;
     text-align: center;
     padding: 50px 20px;
-    background-color: #838181;
+    background-color: #130e01;
     margin: 0; 
     border-radius: 25px;
     box-shadow: none; 

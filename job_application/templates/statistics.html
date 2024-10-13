@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+
+{% block title %}Job Application Statistics{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">Job Application Statistics</h1>
+
+    <div class="row mb-4">
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card2 main-container">
+                    <h5 class="card-title">Total Applications</h5>
+                    <p class="card-text display-4">{{ total_applications }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 mb-3">
+            <div class="card">
+                <div class="card2 main-container">
+                    <h5 class="card-title">Application Status Distribution</h5>
+                    <canvas id="statusChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card2 main-container">
+                    <h5 class="card-title">Application Trend (Last 30 Days)</h5>
+                    <canvas id="trendChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card2 main-container">
+                    <h5 class="card-title">Top 5 Companies Applied</h5>
+                    <ul class="list-group list-group-flush" id="topCompanies">
+                        {% for company in top_companies %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ company.company }}
+                            <span class="badge bg-primary rounded-pill">{{ company.count }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card2 main-container">
+                    <h5 class="card-title">Application Success Rate</h5>
+                    <div class="progress mt-3" style="height: 30px;">
+                        <div class="progress-bar" role="progressbar" style="width: {{ success_rate }}%;" 
+                             aria-valuenow="{{ success_rate }}" aria-valuemin="0" aria-valuemax="100">
+                            {{ success_rate }}%
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        background-image: linear-gradient(163deg, #00d1ce 0%, #7f48cb 100%);
+        border-radius: 15px;
+        transition: all 0.3s;
+        padding: 0;
+        margin-bottom: 20px;
+        overflow: hidden;
+    }
+
+    .card2 {
+        background-color: #130e01;
+        border-radius: 0;
+        transition: all 0.2s;
+    }
+
+    .card2:hover {
+        transform: scale(0.98);
+        border-radius: 20px;
+    }
+
+    .card:hover {
+        box-shadow: 0px 0px 30px 1px #7f48cb;
+    }
+
+    .main-container {
+        color: white;
+        padding: 20px;
+    }
+
+    .progress-bar {
+        background-image: linear-gradient(163deg, #00d1ce 0%, #7f48cb 100%);
+    }
+
+    .list-group-item {
+        background-color: #130e01;
+        color: white;
+        border-color: #7f48cb;
+    }
+
+    .badge {
+        background-image: linear-gradient(163deg, #00d1ce 0%, #7f48cb 100%);
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Status Distribution Chart
+    const statusCtx = document.getElementById('statusChart').getContext('2d');
+    new Chart(statusCtx, {
+        type: 'doughnut',
+        data: {
+            labels: [{% for status in status_counts %}'{{ status.status }}',{% endfor %}],
+            datasets: [{
+                data: [{% for status in status_counts %}{{ status.count }},{% endfor %}],
+                backgroundColor: [
+                    '#00d1ce',
+                    '#7f48cb',
+                    '#ff6b6b',
+                    '#feca57',
+                    '#48dbfb',
+                    '#ff9ff3'
+                ],
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'right',
+                    labels: {
+                        color: 'white'
+                    }
+                }
+            }
+        }
+    });
+
+    // Application Trend Chart
+    const trendCtx = document.getElementById('trendChart').getContext('2d');
+    new Chart(trendCtx, {
+        type: 'line',
+        data: {
+            labels: [{% for day in trend_data %}'{{ day.date_applied|date:"M d" }}',{% endfor %}],
+            datasets: [{
+                label: 'Applications',
+                data: [{% for day in trend_data %}{{ day.count }},{% endfor %}],
+                borderColor: '#00d1ce',
+                backgroundColor: 'rgba(0, 209, 206, 0.2)',
+                tension: 0.1,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1,
+                        color: 'white'
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)'
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: 'white'
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'white'
+                    }
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}

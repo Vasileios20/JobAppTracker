@@ -5,6 +5,7 @@ body {
     color: white;
 }
 
+/*
 .logo {
     text-decoration: none;
     color: white;
@@ -12,6 +13,22 @@ body {
 
 .logo:hover {
     color: white;
+}*/
+
+.logo-container {
+    text-align: center; /* Center text under the icon */
+}
+
+.logo-icon {
+    margin-top: -5px;
+    width: 30px; /* Set the desired size for the icon */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.logo-text {
+    font-size: 22px; /* Adjust font size as needed */
+    color: white; /* Change color as necessary */
+    margin-top: 2px; /* Space between icon and text */
 }
 
 /* index.html --------------------------------------------- */

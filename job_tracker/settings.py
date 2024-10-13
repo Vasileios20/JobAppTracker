@@ -33,7 +33,7 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     os.environ.get("ALLOWED_HOST"),
-    '8000-vasileios20-jobapptrack-llbcz1jmbfv.ws.codeinstitute-ide.net'
+    '8000-vasileios20-jobapptrack-llbcz1jmbfv.ws.codeinstitute-ide.net', '8000-trxdave-jobapptracker-5hwx1suqe4e.ws-eu116.gitpod.io'
 ]
 
 
@@ -160,3 +160,7 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Adzuna API configuration
+ADZUNA_APP_ID = os.getenv('ADZUNA_APP_ID')
+ADZUNA_API_KEY = os.getenv('ADZUNA_API_KEY')

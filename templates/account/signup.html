@@ -5,17 +5,46 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Sign Up" %}</h1>
+<div class="card_reg col-md-6 mx-auto mt-5">
+  <div class="card_reg2">
+    <form class="signup form field" id="signup_form" method="post" action="{% url 'account_signup' %}">
+      <div class="login-lable">{% trans "Sign Up" %}</div>
+      {% csrf_token %}
+      {{ form.non_field_errors | safe }}
+      <input type="hidden" name="remember" value="true">
 
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+      <div class="mb-3">
+        {{ form.username.errors | safe }}
+        {{ form.username }}
+      </div>
 
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-</form>
+      <div class="mb-3">
+        {{ form.email.errors | safe }}
+        {{ form.email }}
+      </div>
+
+      <div class="mb-3">
+        {{ form.password1.errors | safe }}
+        {{ form.password1 }}
+      </div>
+
+      <div class="mb-3">
+        {{ form.password2.errors | safe }}
+        {{ form.password2 }}
+      </div>
+
+      {% if redirect_field_value %}
+      <input type="hidden" class="form-control" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+
+      <div class="mb-2">
+        <button class="primaryAction button1" type="submit">{% trans "Sign Up" %}</button>
+        <a class="button3 ms-auto" href="{{ login_url }}">Login</a>
+      </div>
+
+    </form>
+  </div>
+
+</div>
 
 {% endblock %}

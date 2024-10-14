@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.conf import settings
 from django.db.models import Q, Count
 from django.utils import timezone
 from .models import Job
@@ -6,12 +7,22 @@ from .models import Job
 def job_application(request):
     return render(request, 'job_app.html')
 
+def dashboard(request):
+    # Use Job model instead of JobApplication
+    applications = Job.objects.all()
+    context = {
+        'applications': applications,
+        'adzuna_app_id': settings.ADZUNA_APP_ID,
+        'adzuna_api_key': settings.ADZUNA_API_KEY
+    }
+    return render(request, 'dashboard.html', context)
+
 def filter_jobs(request):
     query = request.GET.get('query')
     if query:
         jobs = Job.objects.filter(
-            Q(company__icontains=query) | Q(title__icontains=query) | Q(
-                category__icontains=query) | Q(location__icontains=query) |
+            Q(company__icontains=query) | Q(title__icontains=query) |
+            Q(category__icontains=query) | Q(location__icontains=query) |
             Q(status__icontains=query)
         )
     else:
@@ -48,3 +59,4 @@ def statistics_view(request):
     }
     
     return render(request, 'statistics.html', context)
+

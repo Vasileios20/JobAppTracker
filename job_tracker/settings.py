@@ -34,12 +34,15 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     os.environ.get("ALLOWED_HOST"),
 
+    '8000-vasileios20-jobapptrack-llbcz1jmbfv.ws.codeinstitute-ide.net', '8000-trxdave-jobapptracker-txg6sp6ytqh.ws-eu116.gitpod.io', '8000-vasileios20-jobapptrack-6lu7eot9vyv.ws-eu116.gitpod.io', 
+    '8000-vasileios20-jobapptrack-jdhekqqlmug.ws.codeinstitute-ide.net', '8000-vasileios20-jobapptrack-xsq6cepinzr.ws.codeinstitute-ide.net'
+
+
     '8000-vasileios20-jobapptrack-llbcz1jmbfv.ws.codeinstitute-ide.net', '8000-trxdave-jobapptracker-5hwx1suqe4e.ws-eu116.gitpod.io'
 
     '8000-vasileios20-jobapptrack-llbcz1jmbfv.ws.codeinstitute-ide.net', '8000-trxdave-jobapptracker-txg6sp6ytqh.ws-eu116.gitpod.io', '8000-vasileios20-jobapptrack-6lu7eot9vyv.ws-eu116.gitpod.io', '8000-vasileios20-jobapptrack-jdhekqqlmug.ws.codeinstitute-ide.net'
 
 ]
-
 
 # Application definition
 
@@ -69,6 +72,7 @@ CSRF_TRUSTED_ORIGINS = [
     'https://www.8000-vasileios20-jobapptrack-llbcz1jmbfv.ws.codeinstitute-ide.net',
     'https://www.8000-trxdave-jobapptracker-txg6sp6ytqh.ws-eu116.gitpod.io',
     'https://www.8000-vasileios20-jobapptrack-6lu7eot9vyv.ws-eu116.gitpod.io',
+    'https://8000-vasileios20-jobapptrack-xsq6cepinzr.ws.codeinstitute-ide.net',
 ]
 
 # Add the environment variable if it is set
@@ -87,16 +91,6 @@ AUTHENTICATION_BACKENDS = [
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
-SITE_ID = 1
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
-ACCOUNT_USERNAME_MIN_LENGTH = 4
-LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/'
-WSGI_APPLICATION = 'JobAppTracker.wsgi.application'
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -121,7 +115,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
 
 ]
 

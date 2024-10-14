@@ -8,7 +8,8 @@ Git Hired
 
 <header class="header">
     <div class="logo-container">
-        <img src="https://img.icons8.com/?size=100&id=2784&format=png&color=FFFFFF" alt="GitHired Icon" class="logo-icon">
+        <img src="https://img.icons8.com/?size=100&id=2784&format=png&color=FFFFFF" alt="GitHired Icon"
+            class="logo-icon">
         <h1 class="logo-text">GitHired</h1>
     </div>
     <button class="join-button">Join Now</button>
@@ -17,13 +18,14 @@ Git Hired
 <main>
     <div class="card">
         <div class="card2">
-    <div class="main-container">
-    <h1>GitHired</h1>
-    <h2>Keep Track. Stay Organized. Get Hired.</h2>
-    <p>Our streamlined job application tracker helps you manage every step of your job search process, so you can focus on what really matters — landing your dream role</p>
-    <button class="start-tracking">Start Tracking</button>
-</div>
-</div>
+            <div class="main-container">
+                <h1>GitHired</h1>
+                <h2>Keep Track. Stay Organized. Get Hired.</h2>
+                <p>Our streamlined job application tracker helps you manage every step of your job search process, so
+                    you can focus on what really matters — landing your dream role</p>
+                <button class="start-tracking">Start Tracking</button>
+            </div>
+        </div>
     </div>
 </main>
 
@@ -31,19 +33,30 @@ Git Hired
 
 <section class="icon-section">
     <article class="icon">
-        <img src="https://img.icons8.com/?size=100&id=KiQto0nK14vX&format=png&color=FFFFFF" alt="Track your applications">
+        <a href="{% url 'job_application' %}">
+            <img src="https://img.icons8.com/?size=100&id=KiQto0nK14vX&format=png&color=FFFFFF"
+                alt="Track your applications">
+        </a>
         <p>Track your applications</p>
     </article>
     <article class="icon">
-        <img src="https://img.icons8.com/?size=100&id=23&format=png&color=FFFFFF" alt="Stay on top of deadlines">
+        <a href="#">
+            <img src="https://img.icons8.com/?size=100&id=23&format=png&color=FFFFFF" alt="Stay on top of deadlines">
+        </a>
         <p>Stay on top of deadlines</p>
     </article>
     <article class="icon">
-        <img src="https://img.icons8.com/?size=100&id=11698&format=png&color=FFFFFF" alt="Prep for Interviews">
+        <a href="{% url 'practice_interview' %}">
+            <img src="https://img.icons8.com/?size=100&id=482&format=png&color=FFFFFF" alt="Prep for Interviews">
+        </a>
         <p>Prep for Interviews</p>
+
     </article>
     <article class="icon">
-        <img src="https://img.icons8.com/?size=100&id=1775&format=png&color=FFFFFF" alt="Practice Technical Challenges">
+        <a href="#">
+            <img src="https://img.icons8.com/?size=100&id=1775&format=png&color=FFFFFF"
+                alt="Practice Technical Challenges">
+        </a>
         <p>Practice Technical Challenges</p>
     </article>
 </section>
@@ -53,14 +66,17 @@ Git Hired
         <ul class="features-list feature-column">
             <li>
                 <strong>Your One-Stop Job Search Tool</strong><br>
-                From keeping track of your applications to preparing for interviews, GitHired provides everything you need to streamline your job search
+                From keeping track of your applications to preparing for interviews, GitHired provides everything you
+                need to streamline your job search
             </li>
         </ul>
-        <img src="static/images/hero_image.png" alt="A business professional sitting cross-legged with a laptop" class="hero">
+        <img src="static/images/hero_image.png" alt="A business professional sitting cross-legged with a laptop"
+            class="hero">
         <ul class="features-list feature-column">
             <li>
                 <strong>For Developers, By Developers</strong><br>
-                We understand the specific challenges developers face in the job market. GitHired is designed with features to help developers succeed
+                We understand the specific challenges developers face in the job market. GitHired is designed with
+                features to help developers succeed
             </li>
         </ul>
     </div>

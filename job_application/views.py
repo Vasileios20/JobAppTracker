@@ -1,10 +1,27 @@
 from django.shortcuts import render
+
+from .models import JobApplication
+from django.conf import settings
+
+
 from django.db.models import Q, Count
 from django.utils import timezone
 from .models import Job
 
+
 def job_application(request):
     return render(request, 'job_app.html')
+
+
+
+def dashboard(request):
+    applications = JobApplication.objects.all()
+    context = {
+        'applications': applications,
+        'adzuna_app_id': settings.ADZUNA_APP_ID,
+        'adzuna_api_key': settings.ADZUNA_API_KEY
+    }
+    return render(request, 'dashboard.html', context)
 
 def filter_jobs(request):
     query = request.GET.get('query')
@@ -48,3 +65,4 @@ def statistics_view(request):
     }
     
     return render(request, 'statistics.html', context)
+

@@ -5,7 +5,7 @@ from django.db.models import Q, Count
 from django.utils import timezone
 from .models import Job
 from django.views import View
-# from .adzuna_integration import get_job_titles
+from django.http import JsonResponse
 import os
 
 ADZUNA_APP_ID = os.getenv('ADZUNA_APP_ID')
@@ -23,69 +23,77 @@ def job_application(request):
     return render(request, 'job_app.html', context)
 
 
-class JobApplicationView(View):
+class JobFormView(View):
     def get(self, request):
+        # Fetch categories from Adzuna API
+        categories = self.fetch_categories()
 
-        # Fetch data from Adzuna API
-        job_data = self.fetch_job_data()
+        # Fetch job titles for the first category (default)
+        if categories:
+            # Use the first category as default
+            selected_category = categories[0]['tag']
+            job_data = self.fetch_job_titles(selected_category)
+        else:
+            selected_category = None
+            job_data = []
 
-        categories = ["Software Development", "Data Science",
-                      "Marketing", "Sales"]  # Example categories
-
-        # Render the form with fetched job data
         return render(request, 'job_form.html', {
-            'categories': categories,  # Pass predefined categories
-            'job_data': job_data,  # Pass the job titles and company names
+            'categories': categories,
+            'job_data': job_data,
+            'selected_category': selected_category,
         })
 
-    def fetch_job_data(self, ):
+    def post(self, request):
+        # Save the job application
+        job_title = request.POST.get('title')
+        company_name = request.POST.get('company')
+        category = request.POST.get('category')
+        date_applied = request.POST.get('date_applied')
+        status = request.POST.get('status')
 
-        # Prepare the API request URL for Adzuna
-        url = (
-            f"https://api.adzuna.com/v1/api/jobs/us/search/1"
-            f"?app_id={ADZUNA_APP_ID}&app_key={ADZUNA_APP_KEY}"
-            f"&results_per_page=10&what=developer"
+        # Save the job in the database
+        Job.objects.create(
+            title=job_title,
+            company=company_name,
+            category=category,
+            date_applied=date_applied,
+            status=status,
+            user=request.user
         )
+        return redirect('job_application')
 
+    def fetch_categories(self):
+        # Fetch job categories from Adzuna API
+        url = f"http://api.adzuna.com/v1/api/jobs/gb/categories?app_id={ADZUNA_APP_ID}&app_key={ADZUNA_APP_KEY}"
+        response = requests.get(url)
+        if response.status_code == 200:
+            categories_data = response.json().get('results', [])
+            # Each category has 'tag' (for API queries) and 'label' (for display)
+            categories = [{'tag': category['tag'], 'label': category['label']}
+                          for category in categories_data]
+            return categories
+        return []
+
+    def fetch_job_titles(self, category):
+        # Fetch job titles for a selected category from Adzuna API
+        url = (
+            f"https://api.adzuna.com/v1/api/jobs/gb/search/1"
+            f"?app_id={ADZUNA_APP_ID}&app_key={ADZUNA_APP_KEY}"
+            f"&category={category}&results_per_page=10"
+        )
         response = requests.get(url)
         if response.status_code == 200:
             job_data = response.json().get('results', [])
             return job_data
         return []
 
-    def save_application(request):
-        if request.method == 'POST':
-            job_title = request.POST.get('title')
-            status = request.POST.get('status')
-            company = request.POST.get('company')
-            location = request.POST.get('location')
-            category = request.POST.get('category')
-            date_applied = request.POST.get('date-applied')
 
-            # Save the job application logic
-            job = Job(
-                title=job_title,
-                status=status,
-                company=company,
-                location=location,
-                category=category,
-                date_applied=date_applied,
-                user=request.user
-            )
-            job.save()
-
-            return redirect('job_dashboard')
-
-
-# def dashboard(request):
-#     # Use Job model instead of JobApplication
-#     applications = Job.objects.all()
-#     context = {
-#         'applications': applications,
-#         'adzuna_app_id': settings.ADZUNA_APP_ID,
-#         'adzuna_api_key': settings.ADZUNA_API_KEY
-#     }
-#     return render(request, 'job_ap.html', context)
+def get_job_titles(request):
+    category = request.GET.get('category')
+    if category:
+        job_data = JobFormView().fetch_job_titles(category)
+        return JsonResponse(job_data, safe=False)
+    return JsonResponse([], safe=False)
 
 
 def filter_jobs(request):

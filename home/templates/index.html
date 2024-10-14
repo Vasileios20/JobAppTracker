@@ -23,7 +23,11 @@ Git Hired
                 <h2>Keep Track. Stay Organized. Get Hired.</h2>
                 <p>Our streamlined job application tracker helps you manage every step of your job search process, so
                     you can focus on what really matters — landing your dream role</p>
-                <button class="start-tracking">Start Tracking</button>
+                {% if user.is_authenticated %}
+                <a href="{% url 'job_form' %}" class="start-tracking">Add job</a>
+                {% else %}
+                <a href="{% url 'account_login' %}" class="start-tracking">Start Tracking</a>
+                {% endif %}
             </div>
         </div>
     </div>

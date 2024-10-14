@@ -5,6 +5,7 @@ from django.utils import timezone
 from .models import Job
 import datetime
 from django.db.models.functions import TruncDate
+from datetime import timedelta
 
 
 def job_application(request):
@@ -36,7 +37,17 @@ def filter_jobs(request):
 
 
 def statistics_view(request):
+    # Get the date range from the request, default to 30 days
+    days = int(request.GET.get('days', 30))
+    if days == 0:  # 'all time'
+        start_date = None
+    else:
+        start_date = timezone.now().date() - timezone.timedelta(days=days)
+
     all_applications = Job.objects.filter(user=request.user)
+    if start_date:
+        all_applications = all_applications.filter(date_applied__gte=start_date)
+
     total_applications = all_applications.count()
     
     # Success Rate
@@ -54,22 +65,36 @@ def statistics_view(request):
     
     status_counts = all_applications.values('status').annotate(count=Count('status'))
     
-    thirty_days_ago = timezone.now().date() - timezone.timedelta(days=30)
-    trend_data = all_applications.filter(
-        date_applied__gte=thirty_days_ago
-    ).annotate(
+    # Application Trend
+    trend_data = all_applications.annotate(
         date=TruncDate('date_applied')
     ).values('date').annotate(
         count=Count('id')
     ).order_by('date')
 
-    all_dates = {(thirty_days_ago + timezone.timedelta(days=i)).isoformat(): 0 for i in range(31)}
+    # Ensure all dates in the range have a data point
+    all_dates = {(start_date + timedelta(days=i)).isoformat(): 0 for i in range((timezone.now().date() - start_date).days + 1)}
     for item in trend_data:
         all_dates[item['date'].isoformat()] = item['count']
     trend_data = [{'date': date, 'count': count} for date, count in all_dates.items()]
     
     top_companies = all_applications.values('company').annotate(count=Count('company')).order_by('-count')[:5]
     
+    # Streak calculation
+    applications_by_date = all_applications.values('date_applied__date').annotate(count=Count('id')).order_by('date_applied__date')
+    current_streak = 0
+    longest_streak = 0
+    streak = 0
+    last_date = None
+    for app in applications_by_date:
+        if last_date and app['date_applied__date'] == last_date + timedelta(days=1):
+            streak += 1
+        else:
+            streak = 1
+        current_streak = streak if app['date_applied__date'] == timezone.now().date() else 0
+        longest_streak = max(longest_streak, streak)
+        last_date = app['date_applied__date']
+
     # Achievements (example)
     achievements = [
         {'name': 'First Application', 'points': 10},
@@ -88,6 +113,8 @@ def statistics_view(request):
         'trend_data': trend_data,
         'top_companies': top_companies,
         'achievements': achievements,
+        'current_streak': current_streak,
+        'longest_streak': longest_streak,
     }
     
     return render(request, 'statistics.html', context)

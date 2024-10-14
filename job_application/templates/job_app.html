@@ -6,6 +6,50 @@ Job Dashboard
 
 {% block content %}
 
+
+<div class="container my-5">
+    <div class="row">
+        <!-- Left Side: Add Application Form -->
+        <div class="col-md-6 mb-4">
+            <h3 class="mb-3">Add New Job Application</h3>
+            <form id="job-form" class="border p-4 bg-light rounded" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select class="form-control" id="category" name="category">
+                        <option value="development">Development</option>
+                        <option value="design">Design</option>
+                        <option value="marketing">Marketing</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="job-title">Job Title</label>
+                    <input type="text" class="form-control" id="job-title" name="job_title"
+                        placeholder="Type to search job titles...">
+                    <ul id="job-suggestions" class="list-group mt-2"></ul>
+                </div>
+                <div class="form-group">
+                    <label for="company-name">Company Name</label>
+                    <input type="text" class="form-control" id="company-name" name="company_name"
+                        placeholder="Enter company name" required>
+                </div>
+                <div class="form-group">
+                    <label for="date-applied">Date Applied</label>
+                    <input type="date" class="form-control" id="date-applied" name="date_applied" required>
+                </div>
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select class="form-control" id="status" name="status">
+                        <option>Applied</option>
+                        <option>Interview</option>
+                        <option>Offer</option>
+                        <option>Rejected</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success btn-block">Add Application</button>
+            </form>
+        </div>
+
 <div>
     <form action="{% url 'filter' %}" method="GET" class="my-2 col-md-6 mx-auto">
         <div class="d-flex">
@@ -15,6 +59,39 @@ Job Dashboard
     </form>
     <h1>Welcome to the Job Dashboard</h1>
 
+
+        <!-- Right Side: Application Dashboard -->
+        <div class="col-md-6">
+            <h3>Your Applications</h3>
+            <table class="table table-hover table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Date Applied</th>
+                        <th>Company</th>
+                        <th>Job Title</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="application-list">
+                    {% for application in applications %}
+                    <tr>
+                        <td>{{ application.date_applied }}</td>
+                        <td>{{ application.company }}</td>
+                        <td>{{ application.job_title }}</td>
+                        <td>{{ application.status }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center">No applications found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+
+<!-- Link the external JavaScript file -->
+<script src="{% static 'js/job-title-search.js' %}"></script>
 
 {% endblock %}

@@ -38,23 +38,27 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">About</a>
                     </li>
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact us</a>
+                        <a class="nav-link" href="{% url 'job_application' %}">Job Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Top 15 Movies</a>
+                        <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                    </li>
+                    <li class="nav-link text-white">Logged in as {{ user }}</li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_signup' %}">Sign up</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Gemini</a>
+                        <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                    </li>
+                    {% endif %}
                     </li>
 
                 </ul>
 
-                <form action="/search/" method="GET" class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
-                        name="query">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+
             </div>
         </nav>
     </header>

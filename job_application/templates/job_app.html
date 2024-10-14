@@ -6,6 +6,7 @@ Job Dashboard
 
 {% block content %}
 
+
 <div class="container my-5">
     <div class="row">
         <!-- Left Side: Add Application Form -->
@@ -48,6 +49,16 @@ Job Dashboard
                 <button type="submit" class="btn btn-success btn-block">Add Application</button>
             </form>
         </div>
+
+<div>
+    <form action="{% url 'filter' %}" method="GET" class="my-2 col-md-6 mx-auto">
+        <div class="d-flex">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" name="query">
+            <button class="btn button1 my-2 my-sm-0" type="submit">Search</button>
+        </div>
+    </form>
+    <h1>Welcome to the Job Dashboard</h1>
+
 
         <!-- Right Side: Application Dashboard -->
         <div class="col-md-6">

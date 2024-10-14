@@ -1,17 +1,8 @@
 body {
-    background-color: #838181;
+    background-color: #130e01;
     margin: 0;
     padding: 0;
-    color: #130e01;
-}
-
-.logo {
-    text-decoration: none;
-    color: #130e01
-}
-
-.logo:hover {
-    color: #130e01
+    color: white;
 }
 
 /* index.html --------------------------------------------- */
@@ -23,16 +14,29 @@ body {
     padding: 20px;
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: bold;
+.logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo-icon {
+    margin-top: -5px;
+    width: 30px; 
+    height: auto; 
+}
+
+.logo-text {
+    font-size: 22px; 
+    color: white; 
+    margin-top: 2px; 
 }
 
 .join-button {
+    margin-bottom: 20px;
     padding: 10px 20px;
     background-color: #00d1ce;
     color: white;
-    border-radius: 5px; 
+    border-radius: 5px;
     border: none;
 }
 
@@ -40,7 +44,7 @@ body {
     background-image: linear-gradient(163deg, #00d1ce 0%, #7f48cb 100%);
     border-radius: 15px;
     transition: all 0.3s;
-    padding: 0; 
+    padding: 0;
     margin: 0 15px;
     overflow: hidden;
     position: relative;
@@ -56,9 +60,11 @@ body {
     background-image: linear-gradient(163deg, #00d1ce 0%, #7f48cb 100%);
     z-index: 0;
     border-radius: inherit;
-    clip-path: polygon(0% 0%, 10% 0%, 0% 10%, 0% 0%, 90% 0%, 100% 0%, 100% 10%, 100% 0%, 100% 90%, 100% 100%, 90% 100%, 100% 100%, 0% 100%, 0% 90%, 10% 100%, 0% 100%); 
+    clip-path: polygon(0% 0%, 10% 0%, 0% 10%, 0% 0%, 90% 0%, 100% 0%, 100% 10%, 100% 0%, 100% 90%, 100% 100%, 90% 100%, 100% 100%, 0% 100%, 0% 90%, 10% 100%, 0% 100%);
     transition: all 0.3s;
 }
+
+/* Main Container */
 
 .main-container {
     display: flex;
@@ -66,28 +72,28 @@ body {
     align-items: center;
     text-align: center;
     padding: 50px 20px;
-    background-color: #838181;
-    margin: 0; 
+    background-color: #130e01;
+    margin: 0;
     border-radius: 25px;
-    box-shadow: none; 
+    box-shadow: none;
     position: relative;
     z-index: 1;
 }
 
 .card2 {
-    border-radius: 0; 
+    border-radius: 0;
     transition: all 0.2s;
 }
 
 .card2:hover {
     transform: scale(0.99);
-    border-radius: 20px; 
+    border-radius: 20px;
 }
 
 .card:hover {
     box-shadow: 0px 0px 30px 1px #7f48cb;
 }
- 
+
 .main-container h2 {
     margin-bottom: 10px;
 }
@@ -95,19 +101,243 @@ body {
 .start-tracking {
     padding: 10px 30px;
     background-color: #00d1ce;
-    border-radius: 5px; 
+    border-radius: 5px;
     color: white;
     border: none;
+    margin-top: 20px;
 }
 
 /* Icon Section */
 
+.subtitle {
+    text-align: center; 
+    color: white; 
+    margin-top: 60px; 
+}
+
 .icon-section {
     display: flex;
-    justify-content: space-around;
-    padding: 40px 20px;
+    justify-content: space-around; 
+    margin-top: 60px; 
 }
 
 .icon {
-    text-align: center;
+    text-align: center; 
 }
+
+/* Features section */
+
+.why-container {
+    text-align: center; 
+    margin: 40px 0; 
+}
+
+.flex-container {
+    display: flex;  
+    align-items: flex-start; 
+    justify-content: space-evenly;
+    padding: 40px 0;
+    border-top: 1px solid #7f48cb;
+    border-bottom: 1px solid #7f48cb;
+    margin: 20px 20px;
+}
+
+.features-list {
+    list-style-type: none; 
+    padding-left: 0; 
+    text-align: left; 
+}
+
+.features-container {
+    display: flex;
+    justify-content: space-around; 
+    padding: 20px; 
+    margin: 40px; 
+}
+
+.feature-column {
+    width: 26%; 
+}
+
+.features-list li {
+    color: white;
+    margin-bottom: 15px;
+}
+
+.hero {
+    height: 130px;
+    width: auto;
+    /*margin: 0 50px 0 30px;*/
+}
+
+/* Sign Up/ Login/ Password Change/ Password Reset forms */
+.signup input,
+.login input,
+.password_change input,
+.password_reset input,
+.password_reset_from_key input {
+    height: 3em;
+    padding: 1px 8px;
+    color: white;
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-weight: bold;
+    border-radius: 6px;
+    border: 2px solid #fff;
+    background: rgba(139, 255, 247, 0.486);
+    box-shadow: 0px 0px 1px 3px #9ee5e3 inset, 0px 4px 4px 0px #181a6040;
+    text-shadow: 0px 1px 4px rgb(243, 243, 243);
+}
+
+.login-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* #id_remember {
+    padding: 5px;
+    width: fit-content;
+} */
+
+/* .border-clr {
+    border: 1px solid #bbbbbb;
+    border-radius: 5px;
+} */
+
+/* From Uiverse.io by KhelVers */
+/* From Uiverse.io by yashasvi9199 */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-bottom: 0.4em;
+    background-color: #171717;
+    border-radius: 25px;
+    transition: 0.4s ease-in-out;
+}
+
+.card_reg {
+    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+    border-radius: 22px;
+    transition: all 0.3s;
+}
+
+.card_reg2 {
+    border-radius: 0;
+    transition: all 0.2s;
+}
+
+.card_reg2:hover {
+    transform: scale(0.98);
+    border-radius: 20px;
+}
+
+.card_reg:hover {
+    box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.3);
+}
+
+#heading {
+    text-align: center;
+    margin: 2em;
+    color: rgb(255, 255, 255);
+    font-size: 1.2em;
+}
+
+.field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    border-radius: 25px;
+    padding: 0.6em;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: #171717;
+    box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+}
+
+.input-icon {
+    height: 1.3em;
+    width: 1.3em;
+    fill: white;
+}
+
+.input-field {
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    color: #d3d3d3;
+}
+
+.form .btn {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 2.5em;
+}
+
+.button1 {
+    padding: 0.5em;
+    padding-left: 1.1em;
+    padding-right: 1.1em;
+    border-radius: 5px;
+    margin-right: 0.5em;
+    border: none;
+    outline: none;
+    transition: 0.4s ease-in-out;
+    background-color: #252525;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+
+.button1:hover {
+    background-color: black;
+    color: white;
+}
+
+.button2 {
+    padding: 0.5em;
+    padding-left: 2.3em;
+    padding-right: 2.3em;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    transition: 0.4s ease-in-out;
+    background-color: #252525;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+
+.button2:hover {
+    background-color: black;
+    color: white;
+}
+
+.button3 {
+    margin-bottom: 3em;
+    padding: 0.5em;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    transition: 0.4s ease-in-out;
+    background-color: #252525;
+    color: white;
+    text-decoration: none;
+}
+
+.button3:hover {
+    background-color: red;
+    color: white;
+}
+
+/* .btn3-pd {
+    padding: 0.93rem;
+} */

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}
+Job Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <!-- Left Side: Add Application Form -->
+        <div class="col-md-6 mb-4">
+            <form id="job-form" class="border p-4 bg-light rounded" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+
+                    <label for="category">Category</label>
+                    <select class="form-control" id="category" name="category">
+                        <!-- Dynamically render categories passed from the view -->
+                        {% for category in categories %}
+                        <option value="{{ category }}" {% if category == selected_category %}selected{% endif %}>
+                            {{ category }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="title">Job Title</label>
+                    <select class="form-control" id="title" name="title">
+                        <!-- Dynamically render job titles from Adzuna API -->
+                        {% for job in job_data %}
+                        <option value="{{ job.title }}">{{ job.title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="company">Company Name</label>
+                    <select class="form-control" id="company" name="company">
+                        <!-- Dynamically render company names from Adzuna API -->
+                        {% for job in job_data %}
+                        <option value="{{ job.company.display_name }}">{{ job.company.display_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date-applied">Date Applied</label>
+                    <input type="date" class="form-control" id="date-applied" name="date_applied" required>
+                </div>
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select class="form-control" id="status" name="status">
+                        <!-- Dynamically render status options passed from the view -->
+                        <option value="Applied">Applied</option>
+                        <option value="Interview">Interview</option>
+                        <option value="Offer">Offer</option>
+                        <option value="Rejected">Rejected</option>
+
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success btn-block">Add Application</button>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}
+Job Dashboard
+{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1>Practice Interview</h1>
+    <p>Enter the job title to generate questions</p>
+    <form method="post" action="{% url 'practice_interview' %}">
+        {% csrf_token %}
+        <label for="job_title">Job Title:</label>
+        <input class="w-50 bg-dark text-white" type="text" id="job_title" name="job_title" required>
+        <button type="submit">Generate Questions</button>
+    </form>
+</div>
+
+{% if questions %}
+<div class="p-2">
+    <h2 class="text-center">Questions</h2>
+
+    <form method="post" action="{% url 'evaluate_answers' %}">
+        {% csrf_token %}
+        {% for question in questions %}
+        <div class="m-3 d-flex flex-column">
+            <p>{{ question }}</p>
+            <input type="hidden" name="question_{{ forloop.counter }}" value="{{ question }}">
+            <label for="answer_{{ forloop.counter }}">Your Answer:</label>
+            <textarea class="w-50 bg-dark text-white" rows="5" cols="50" id="answer_{{ forloop.counter }}"
+                name="answers"></textarea>
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn button1 w-25 mt-2">Evaluate Answers</button>
+    </form>
+</div>
+{% endif %}
+
+{% if feedback %}
+<div class="mx-auto">
+    <h2 class="text-center">Feedback</h2>
+    {% for fb in feedback %}
+    <div class="mb-3 p-3">
+        <p>{{ fb }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

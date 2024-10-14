@@ -147,28 +147,30 @@
             <div class="card">
                 <div class="card2 main-container">
                     <h5 class="card-title">Goal Setting</h5>
-                    <form id="goalForm">
-                        <div class="mb-3">
+                    <form id="goalForm" class="modern-form">
+                        <div class="form-group">
                             <label for="goalType" class="form-label">Goal Type</label>
-                            <select id="goalType" class="form-select">
-                                <option value="applications">Total Applications</option>
-                                <option value="interviews">Interviews</option>
-                                <option value="offers">Offers</option>
-                            </select>
+                            <div class="select-wrapper">
+                                <select id="goalType" class="form-select">
+                                    <option value="applications">Total Applications</option>
+                                    <option value="interviews">Interviews</option>
+                                    <option value="offers">Offers</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="mb-3">
+                        <div class="form-group">
                             <label for="goalValue" class="form-label">Goal Value</label>
                             <input type="number" id="goalValue" class="form-control" min="1" required>
                         </div>
-                        <div class="mb-3">
+                        <div class="form-group">
                             <label for="goalDeadline" class="form-label">Deadline</label>
-                            <input type="date" id="goalDeadline" class="form-control" required>
+                            <input type="date" id="goalDeadline" class="form-control datepicker" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Set Goal</button>
+                        <button type="submit" class="btn btn-primary btn-block">Set Goal</button>
                     </form>
                     <div id="currentGoal" class="mt-3">
                         <h6>Current Goal:</h6>
-                        <p id="goalDescription"></p>
+                        <p id="goalDescription" class="goal-description"></p>
                         <div class="progress">
                             <div id="goalProgress" class="progress-bar" role="progressbar" style="width: 0%;" 
                                  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
@@ -181,79 +183,90 @@
 </div>
 
 <style>
-    .card {
-        background-image: linear-gradient(163deg, #00d1ce 0%, #7f48cb 100%);
-        border-radius: 15px;
-        transition: all 0.3s;
-        padding: 0;
-        margin-bottom: 20px;
-        overflow: hidden;
+    .modern-form .form-group {
+        margin-bottom: 1.5rem;
     }
-
-    .card2 {
-        background-color: #130e01;
-        border-radius: 0;
-        transition: all 0.2s;
+    
+    .modern-form .form-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #00d1ce;
+        font-weight: 600;
     }
-
-    .card2:hover {
-        transform: scale(0.98);
-        border-radius: 20px;
+    
+    .modern-form .form-control,
+    .modern-form .form-select {
+        background-color: #1e1e1e;
+        border: 2px solid #3a3a3a;
+        border-radius: 8px;
+        color: #ffffff;
+        padding: 0.75rem 1rem;
+        transition: all 0.3s ease;
     }
-
-    .card:hover {
-        box-shadow: 0px 0px 30px 1px #7f48cb;
+    
+    .modern-form .form-control:focus,
+    .modern-form .form-select:focus {
+        border-color: #00d1ce;
+        box-shadow: 0 0 0 2px rgba(0, 209, 206, 0.25);
     }
-
-    .main-container {
-        color: white;
-        padding: 20px;
+    
+    .modern-form .select-wrapper {
+        position: relative;
     }
-
-    .progress-bar {
-        background-image: linear-gradient(163deg, #00d1ce 0%, #7f48cb 100%);
+    
+    .modern-form .select-wrapper::after {
+        content: '\25BC';
+        position: absolute;
+        top: 50%;
+        right: 1rem;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: #00d1ce;
     }
-
-    .list-group-item {
-        background-color: #130e01;
-        color: white;
-        border-color: #7f48cb;
+    
+    .modern-form .form-select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
     }
-
-    .badge {
-        background-image: linear-gradient(163deg, #00d1ce 0%, #7f48cb 100%);
+    
+    .modern-form .btn-primary {
+        background-image: linear-gradient(to right, #00d1ce, #7f48cb);
+        border: none;
+        border-radius: 8px;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
     }
-
-    .streak-counter {
-        font-size: 3rem;
-        font-weight: bold;
-        background: linear-gradient(163deg, #00d1ce 0%, #7f48cb 100%);
+    
+    .modern-form .btn-primary:hover {
+        background-image: linear-gradient(to right, #00b3b0, #6a3eac);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .goal-description {
+        background: linear-gradient(to right, #00d1ce, #7f48cb);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        font-weight: 600;
+        font-size: 1.1rem;
     }
-
-    .form-select, .form-control {
-        background-color: #2a2a2a;
-        color: white;
-        border-color: #7f48cb;
+    
+    .progress {
+        height: 10px;
+        background-color: #1e1e1e;
+        border-radius: 5px;
+        overflow: hidden;
     }
-
-    .form-select:focus, .form-control:focus {
-        background-color: #2a2a2a;
-        color: white;
-        border-color: #00d1ce;
-        box-shadow: 0 0 0 0.25rem rgba(0, 209, 206, 0.25);
+    
+    .progress-bar {
+        background-image: linear-gradient(to right, #00d1ce, #7f48cb);
+        transition: width 0.5s ease;
     }
-
-    .btn-primary {
-        background-image: linear-gradient(163deg, #00d1ce 0%, #7f48cb 100%);
-        border: none;
-    }
-
-    .btn-primary:hover {
-        background-image: linear-gradient(163deg, #00b3b0 0%, #6a3eac 100%);
-    }
-</style>
+    </style>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>

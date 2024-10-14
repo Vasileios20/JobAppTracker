@@ -5,7 +5,7 @@ from django.db.models import Q, Count
 from django.utils import timezone
 from .models import Job
 from django.views import View
-from .adzuna_integration import get_job_titles
+# from .adzuna_integration import get_job_titles
 import os
 
 ADZUNA_APP_ID = os.getenv('ADZUNA_APP_ID')

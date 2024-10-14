@@ -23,4 +23,5 @@ urlpatterns = [
     path("", include("home.urls")),
     path("accounts/", include("allauth.urls")),
     path("job/", include("job_application.urls")),
+    path('statistics/', views.statistics_view, name='statistics'), 
 ]

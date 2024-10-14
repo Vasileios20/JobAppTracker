@@ -5,8 +5,6 @@ body {
     color: white;
 }
 
-/* index.html --------------------------------------------- */
-
 .header {
     display: flex;
     justify-content: space-between;
@@ -21,24 +19,30 @@ body {
 
 .logo-icon {
     margin-top: -5px;
-    width: 30px; 
-    height: auto; 
+    width: 30px;
+    height: auto;
 }
 
 .logo-text {
-    font-size: 22px; 
-    color: white; 
-    margin-top: 2px; 
+    font-size: 22px;
+    color: white;
+    margin-top: 2px;
 }
 
 .join-button {
     margin-bottom: 20px;
     padding: 10px 20px;
     background-color: #00d1ce;
-    color: white;
+    color: rgba(243, 243, 243, 1) !important;
     border-radius: 5px;
     border: none;
 }
+
+.join-button:hover {
+    background-color: #00a6a3;
+}
+
+/* index.html --------------------------------------------- */
 
 .card {
     background-image: linear-gradient(163deg, #00d1ce 0%, #7f48cb 100%);
@@ -110,31 +114,31 @@ body {
 /* Icon Section */
 
 .subtitle {
-    text-align: center; 
-    color: white; 
-    margin-top: 60px; 
+    text-align: center;
+    color: white;
+    margin-top: 60px;
 }
 
 .icon-section {
     display: flex;
-    justify-content: space-around; 
-    margin-top: 60px; 
+    justify-content: space-around;
+    margin-top: 60px;
 }
 
 .icon {
-    text-align: center; 
+    text-align: center;
 }
 
 /* Features section */
 
 .why-container {
-    text-align: center; 
-    margin: 40px 0; 
+    text-align: center;
+    margin: 40px 0;
 }
 
 .flex-container {
-    display: flex;  
-    align-items: flex-start; 
+    display: flex;
+    align-items: flex-start;
     justify-content: space-evenly;
     padding: 40px 0;
     border-top: 1px solid #7f48cb;
@@ -143,20 +147,20 @@ body {
 }
 
 .features-list {
-    list-style-type: none; 
-    padding-left: 0; 
-    text-align: left; 
+    list-style-type: none;
+    padding-left: 0;
+    text-align: left;
 }
 
 .features-container {
     display: flex;
-    justify-content: space-around; 
-    padding: 20px; 
-    margin: 40px; 
+    justify-content: space-around;
+    padding: 20px;
+    margin: 40px;
 }
 
 .feature-column {
-    width: 26%; 
+    width: 26%;
 }
 
 .features-list li {

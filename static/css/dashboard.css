@@ -1,0 +1,76 @@
+/* Body Styling */
+body {
+    background-color: #130e01;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main Container Styling */
+.container {
+    margin-top: 50px;
+}
+
+/* Form Styling */
+.form-group label {
+    font-weight: bold;
+    color: #00d1ce; /* Calming blue tone */
+}
+
+.form-control {
+    background-color: #171717;
+    color: white;
+    border: 1px solid #00d1ce;
+    border-radius: 8px;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 5px #00d1ce;
+    border-color: #00d1ce;
+}
+
+/* Button Styling */
+.btn-success {
+    background-color: #00d1ce;
+    border-color: #00d1ce;
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #007f8a;
+    border-color: #007f8a;
+}
+
+/* Table Styling */
+.table {
+    background-color: #171717;
+    color: white;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #252525;
+}
+
+.thead-dark {
+    background-color: #35393C;
+    color: white;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .table {
+        font-size: 14px;
+    }
+
+    .btn-success {
+        width: 100%;
+    }
+}

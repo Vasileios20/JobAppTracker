@@ -34,7 +34,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     os.environ.get("ALLOWED_HOST"),
 
-    '8000-vasileios20-jobapptrack-llbcz1jmbfv.ws.codeinstitute-ide.net', '8000-trxdave-jobapptracker-5hwx1suqe4e.ws-eu116.gitpod.io'
+    '8000-vasileios20-jobapptrack-llbcz1jmbfv.ws.codeinstitute-ide.net', '8000-vasileios20-jobapptrack-yj5hqxhwupt.ws-eu116.gitpod.io',
 
     '8000-vasileios20-jobapptrack-llbcz1jmbfv.ws.codeinstitute-ide.net', '8000-trxdave-jobapptracker-txg6sp6ytqh.ws-eu116.gitpod.io', '8000-vasileios20-jobapptrack-6lu7eot9vyv.ws-eu116.gitpod.io', '8000-vasileios20-jobapptrack-jdhekqqlmug.ws.codeinstitute-ide.net'
 
@@ -69,7 +69,7 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 CSRF_TRUSTED_ORIGINS = [
     'https://www.8000-vasileios20-jobapptrack-llbcz1jmbfv.ws.codeinstitute-ide.net',
     'https://www.8000-trxdave-jobapptracker-txg6sp6ytqh.ws-eu116.gitpod.io',
-    'https://www.8000-vasileios20-jobapptrack-6lu7eot9vyv.ws-eu116.gitpod.io',
+    'https://8000-vasileios20-jobapptrack-yj5hqxhwupt.ws-eu116.gitpod.io',
 ]
 
 # Add the environment variable if it is set
@@ -122,8 +122,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
-
 ]
 
 ROOT_URLCONF = 'job_tracker.urls'

@@ -7,7 +7,10 @@ Git Hired
 {% block content %}
 
 <header class="header">
-    <a href="/" class="logo">Git Hired</a>
+    <div class="logo-container">
+        <img src="https://img.icons8.com/?size=100&id=2784&format=png&color=FFFFFF" alt="GitHired Icon" class="logo-icon">
+        <h1 class="logo-text">GitHired</h1>
+    </div>
     <button class="join-button">Join Now</button>
 </header>
 
@@ -15,14 +18,16 @@ Git Hired
     <div class="card">
         <div class="card2">
     <div class="main-container">
-    <h1>Git Hired</h1>
+    <h1>GitHired</h1>
     <h2>Keep Track. Stay Organized. Get Hired.</h2>
-    <p>Our streamlined job application tracker helps you manage every step of your job search process, so you can focus on what really matters — landing your dream role.</p>
+    <p>Our streamlined job application tracker helps you manage every step of your job search process, so you can focus on what really matters — landing your dream role</p>
     <button class="start-tracking">Start Tracking</button>
 </div>
 </div>
     </div>
 </main>
+
+<h4 class="subtitle">The Ultimate Job Application Tracker for Developers</h4>
 
 <section class="icon-section">
     <article class="icon">
@@ -34,7 +39,7 @@ Git Hired
         <p>Stay on top of deadlines</p>
     </article>
     <article class="icon">
-        <img src="https://img.icons8.com/?size=100&id=482&format=png&color=FFFFFF" alt="Prep for Interviews">
+        <img src="https://img.icons8.com/?size=100&id=11698&format=png&color=FFFFFF" alt="Prep for Interviews">
         <p>Prep for Interviews</p>
     </article>
     <article class="icon">
@@ -42,5 +47,47 @@ Git Hired
         <p>Practice Technical Challenges</p>
     </article>
 </section>
+
+<div class="why-container">
+    <div class="flex-container">
+        <ul class="features-list feature-column">
+            <li>
+                <strong>Your One-Stop Job Search Tool</strong><br>
+                From keeping track of your applications to preparing for interviews, GitHired provides everything you need to streamline your job search
+            </li>
+        </ul>
+        <img src="static/images/hero_image.png" alt="A business professional sitting cross-legged with a laptop" class="hero">
+        <ul class="features-list feature-column">
+            <li>
+                <strong>For Developers, By Developers</strong><br>
+                We understand the specific challenges developers face in the job market. GitHired is designed with features to help developers succeed
+            </li>
+        </ul>
+    </div>
+</div>
+<!--
+<div class="features-container">
+    <ul class="features-list feature-column">
+        <li>
+            <strong>Utilize A Comprehensive Jobs Dashboard</strong><br>
+            Your job search, all in one view. Track progress, review notes, and get a clear picture of where you stand with every application
+        </li>
+    </ul>
+
+    <ul class="features-list feature-column">
+        <li>
+            <strong>Manage Your Applications</strong><br>
+            Record every job you've applied for, including the date of application, job title, and company. Monitor the status of each application — from submission, to interview, to offer
+        </li>
+    </ul>
+
+    <ul class="features-list feature-column">
+        <li>
+            <strong>Ace Your Interview</strong><br>
+            Get ready for your interviews with a curated library of coding interview questions designed for developers. Hone your problem-solving skills and ace technical interviews
+        </li>
+    </ul>
+</div>
+-->
 
 {% endblock %}

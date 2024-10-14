@@ -7,7 +7,7 @@ from .models import Job
 
 # Function to get categories from Adzuna API
 def get_adzuna_categories():
-    url = f"https://api.adzuna.com/v1/api/jobs/us/categories?app_id={settings.ADZUNA_APP_ID}&app_key={settings.ADZUNA_API_KEY}"
+    url = f"https://api.adzuna.com/v1/api/jobs/us/categories?app_id={settings.ADZUNA_APP_ID}&app_key={settings.ADZUNA_API_KEY}&what=software"
     response = requests.get(url)
     if response.status_code == 200:
         data = response.json()
@@ -17,9 +17,9 @@ def get_adzuna_categories():
         print(f"Failed to fetch categories: {response.status_code}")
         return []
 
-# Function to get job titles and companies from Adzuna API
+# Function to get software job titles and companies from Adzuna API
 def get_adzuna_job_data():
-    url = f"https://api.adzuna.com/v1/api/jobs/us/search/1?app_id={settings.ADZUNA_APP_ID}&app_key={settings.ADZUNA_API_KEY}&what=developer"
+    url = f"https://api.adzuna.com/v1/api/jobs/us/search/1?app_id={settings.ADZUNA_APP_ID}&app_key={settings.ADZUNA_API_KEY}&what=software"
     response = requests.get(url)
     if response.status_code == 200:
         data = response.json()
@@ -30,7 +30,7 @@ def get_adzuna_job_data():
         print(f"Failed to fetch job data: {response.status_code}")
         return []
 
-# View to render job application form with categories and job data from Adzuna API
+# View to render job application form with categories and software job data from Adzuna API
 def job_application(request):
     categories = get_adzuna_categories()
     job_data = get_adzuna_job_data()
@@ -38,7 +38,7 @@ def job_application(request):
     context = {
         'categories': categories,
         'job_data': job_data,
-        'applications': Job.objects.all()  # Fetch applications from your database
+        'applications': Job.objects.all()
     }
 
     return render(request, 'job_app.html', context)

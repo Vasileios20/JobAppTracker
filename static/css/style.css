@@ -140,6 +140,36 @@ body {
 
 /* Icon Section */
 
+/* .icon-section {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+} */
+.icon {
+    width: 120px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.icon:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.7),
+                0 0 30px rgba(0, 255, 255, 0.4),
+                0 0 45px rgba(0, 255, 255, 0.2);
+}
+.icon img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 0.5rem;
+}
+.icon p {
+    color: #ffffff;
+    margin: 0;
+    font-size: 0.9rem;
+}
 .subtitle {
     text-align: center; 
     color: white; 

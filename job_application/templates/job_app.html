@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block title %}
 Job Dashboard
 {% endblock %}
 
 {% block content %}
-
-
 <div class="container my-5">
     <div class="row">
         <!-- Left Side: Add Application Form -->
@@ -17,21 +17,31 @@ Job Dashboard
                 <div class="form-group">
                     <label for="category">Category</label>
                     <select class="form-control" id="category" name="category">
-                        <option value="development">Development</option>
-                        <option value="design">Design</option>
-                        <option value="marketing">Marketing</option>
+                        <!-- Dynamically render categories passed from the view -->
+                        {% for category in categories %}
+                        <option value="{{ category }}" {% if category == selected_category %}selected{% endif %}>
+                            {{ category }}
+                        </option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="job-title">Job Title</label>
-                    <input type="text" class="form-control" id="job-title" name="job_title"
-                        placeholder="Type to search job titles...">
-                    <ul id="job-suggestions" class="list-group mt-2"></ul>
+                    <select class="form-control" id="job-title" name="job_title">
+                        <!-- Dynamically render job titles from API -->
+                        {% for title, company in job_data %}
+                        <option value="{{ title }}">{{ title }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="company-name">Company Name</label>
-                    <input type="text" class="form-control" id="company-name" name="company_name"
-                        placeholder="Enter company name" required>
+                    <select class="form-control" id="company-name" name="company_name">
+                        <!-- Dynamically render company names from API -->
+                        {% for title, company in job_data %}
+                        <option value="{{ company }}">{{ company }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="date-applied">Date Applied</label>
@@ -40,25 +50,15 @@ Job Dashboard
                 <div class="form-group">
                     <label for="status">Status</label>
                     <select class="form-control" id="status" name="status">
-                        <option>Applied</option>
-                        <option>Interview</option>
-                        <option>Offer</option>
-                        <option>Rejected</option>
+                        <option value="Applied">Applied</option>
+                        <option value="Interview">Interview</option>
+                        <option value="Offer">Offer</option>
+                        <option value="Rejected">Rejected</option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-success btn-block">Add Application</button>
             </form>
         </div>
-
-<div>
-    <form action="{% url 'filter' %}" method="GET" class="my-2 col-md-6 mx-auto">
-        <div class="d-flex">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" name="query">
-            <button class="btn button1 my-2 my-sm-0" type="submit">Search</button>
-        </div>
-    </form>
-    <h1>Welcome to the Job Dashboard</h1>
-
 
         <!-- Right Side: Application Dashboard -->
         <div class="col-md-6">
@@ -91,7 +91,7 @@ Job Dashboard
     </div>
 </div>
 
-<!-- Link the external JavaScript file -->
+<!-- Link the external JavaScript file for job title search -->
 <script src="{% static 'js/job-title-search.js' %}"></script>
 
 {% endblock %}

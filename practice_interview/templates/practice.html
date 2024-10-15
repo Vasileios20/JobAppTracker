@@ -1,49 +1,62 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
 Job Dashboard
 {% endblock %}
 
 {% block content %}
-<div class="text-center">
+<div class="practice-interview-container text-center">
     <h1>Practice Interview</h1>
     <p>Enter the job title to generate questions</p>
     <form method="post" action="{% url 'practice_interview' %}">
         {% csrf_token %}
         <label for="job_title">Job Title:</label>
-        <input class="w-50 bg-dark text-white" type="text" id="job_title" name="job_title" required>
-        <button type="submit">Generate Questions</button>
+        <input class="form-input" type="text" id="job_title" name="job_title" required>
+        <button type="submit" class="btn btn-generate">Generate Questions</button>
     </form>
 </div>
 
-{% if questions %}
-<div class="p-2">
-    <h2 class="text-center">Questions</h2>
+{% if success_message %}
+<div class="alert alert-success">{{ success_message }}</div>
+{% endif %}
 
+{% if questions %}
+<div class="questions-container">
+    <h2>Generated Questions</h2>
     <form method="post" action="{% url 'evaluate_answers' %}">
         {% csrf_token %}
         {% for question in questions %}
-        <div class="m-3 d-flex flex-column">
-            <p>{{ question }}</p>
+        <div class="question-block">
+            <p><strong>Question {{ forloop.counter }}:</strong> {{ question }}</p>
+            <label>Your Answer:</label>
+            <textarea class="form-input" rows="4" name="answers">{{ answer }}</textarea>
             <input type="hidden" name="question_{{ forloop.counter }}" value="{{ question }}">
-            <label for="answer_{{ forloop.counter }}">Your Answer:</label>
-            <textarea class="w-50 bg-dark text-white" rows="5" cols="50" id="answer_{{ forloop.counter }}"
-                name="answers"></textarea>
         </div>
         {% endfor %}
-        <button type="submit" class="btn button1 w-25 mt-2">Evaluate Answers</button>
+        <button type="submit" class="btn btn-evaluate">Submit Answers</button>
     </form>
 </div>
 {% endif %}
 
-{% if feedback %}
-<div class="mx-auto">
-    <h2 class="text-center">Feedback</h2>
-    {% for fb in feedback %}
-    <div class="mb-3 p-3">
-        <p>{{ fb }}</p>
-    </div>
-    {% endfor %}
+{% if evaluation_data %}
+<div class="questions-container">
+    <h2>Evaluated Questions and Answers</h2>
+    <form method="post" action="{% url 'evaluate_answers' %}">
+        {% csrf_token %}
+        {% for question, answer, feedback in evaluation_data %}
+        <div class="question-block">
+            <p><strong>Question {{ forloop.counter }}:</strong> {{ question }}</p>
+            <label>Your Answer:</label>
+            <textarea class="form-input" rows="4" name="answers">{{ answer }}</textarea>
+            <div class="feedback">
+                <strong>AI Feedback:</strong>
+                <p>{{ feedback }}</p>
+            </div>
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-evaluate">Submit Answers</button>
+    </form>
 </div>
 {% endif %}
 {% endblock %}

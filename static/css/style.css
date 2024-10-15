@@ -470,6 +470,119 @@ body {
     width: fit-content;
   }
 
+  .practice-interview-container {
+    text-align: center;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 60%;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+p {
+    color: #495057;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Form Inputs */
+.form-label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #212529;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    font-size: 1rem;
+    color: #495057;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-generate {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.btn-evaluate {
+    background-color: #007bff;
+    color: #fff;
+    margin-top: 20px;
+    width: 50%;
+}
+
+/* Alert Message */
+.alert {
+    width: 60%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+/* Questions Section */
+.questions-container {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 20px;
+    width: 60%;
+    margin: 30px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.question-block {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.question-block p {
+    font-size: 1.2rem;
+    color: #000; /* Updated to black */
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #495057;
+}
+
+/* Feedback Section */
+.feedback {
+    margin-top: 10px;
+    color: #28a745;
+    font-weight: bold;
+}
+
+/* Center the submit button */
+.btn-evaluate {
+    display: block;
+    margin: 20px auto;
+}
+
+=======
   /* General styling for the container */
 .container {
     background-color: #8d3c3c;

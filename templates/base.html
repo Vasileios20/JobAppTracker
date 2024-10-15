@@ -2,40 +2,30 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="job tracker, job application, career, employment, GitHired">
     <meta name="description" content="GitHired - Your Personal Job Application Tracker">
+    <title>{% block title %}GitHired{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <!-- <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Uncomment and update paths as needed for favicon and app icons
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
     <link rel="icon" href="{% static 'images/android-chrome-192x192.png' %}">
     <link rel="icon" href="{% static 'images/android-chrome.png' %}">
-    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}"> -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>{% block title %}{% endblock %} </title>
+    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}">
+    -->
 </head>
-
 <body>
     <header class="header">
-        <nav class="navbar navbar-expand-lg navbar-dark w-100">
-            <div class="logo-container me-auto">
-                <a class="navbar-brand" href="{% url 'home' %}">
-                    <img src="https://img.icons8.com/?size=100&id=2784&format=png&color=FFFFFF" alt="GitHired Icon"
-                        class="logo-icon">
-                    <h1 class="logo-text">GitHired</h1>
-                </a>
-            </div>
-
-
-<<<<<<< HEAD
-    <header>
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'home' %}">GitHired</a>
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <img src="https://img.icons8.com/?size=100&id=2784&format=png&color=FFFFFF" alt="GitHired Icon" class="logo-icon">
+                    <span class="logo-text">GitHired</span>
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -74,45 +64,23 @@
                     </span>
                     {% endif %}
                 </div>
-=======
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse ms-auto" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'about' %}">About</a>
-                    </li>
-
-                    <li class="nav-item">
-                        {% if user.is_authenticated %}
-                        <a class="nav-link join-button" href="{% url 'account_logout' %}">Logout</a>
-                        {% else %}
-                        <a class="nav-link join-button" href="{% url 'account_signup' %}">Join Now</a>
-                    </li>
-                    {% endif %}
-                </ul>
->>>>>>> eaa30de1702a8af87175788458ec209e428ffb42
             </div>
         </nav>
     </header>
-    {% block content %}
 
-    {% endblock %}
-    <!-- footer -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
 
+    <footer>
+        <!-- Add your footer content here -->
+    </footer>
 
     <script src="https://kit.fontawesome.com/cdf0a3356f.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
     <script src="{% static 'js/fetchCategories.js' %}"></script>
-
 </body>
-
 </html>

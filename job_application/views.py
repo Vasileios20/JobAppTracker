@@ -10,6 +10,7 @@ from datetime import timedelta
 from django.views import View
 from django.http import JsonResponse
 import os
+os.environ["GENAI_API_KEY"] = "AIzaSyCa184BrMh2Wnm78uWkY-HRutDaRSJIJa0"
 
 ADZUNA_APP_ID = os.getenv('ADZUNA_APP_ID')
 ADZUNA_APP_KEY = os.getenv('ADZUNA_API_KEY')

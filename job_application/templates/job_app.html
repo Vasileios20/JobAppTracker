@@ -10,6 +10,37 @@ Job Dashboard
 <div class="container my-5">
     <div class="row">
         
+        <!-- Left Side: Job Search -->
+        <div class="col-md-6">
+            <h3>Search for Jobs</h3>
+            <form method="GET" action="">
+                <div class="form-group">
+                    <label for="job-title">Job Title</label>
+                    <input type="text" class="form-control" id="job-title" name="job_title" placeholder="Enter job title">
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" class="form-control" id="location" name="location" placeholder="Enter location">
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+
+            <!-- Job Search Results -->
+            {% if jobs %}
+            <h4>Job Results</h4>
+            <ul class="list-group">
+                {% for job in jobs %}
+                <li class="list-group-item">
+                    <h5>{{ job.title }} - {{ job.company }}</h5>
+                    <p>{{ job.location }}</p>
+                    <a href="{{ job.url }}" class="btn btn-success btn-sm">Apply Now</a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>No jobs found. Try searching for another job title or location.</p>
+            {% endif %}
+        </div>
 
         <!-- Right Side: Application Dashboard -->
         <div class="col-md-6">
@@ -43,6 +74,6 @@ Job Dashboard
 </div>
 
 <!-- Link the external JavaScript file for job title search -->
-
+<script src="{% static 'js/job_search.js' %}"></script>
 
 {% endblock %}

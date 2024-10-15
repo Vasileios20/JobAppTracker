@@ -1,32 +1,27 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}
-Git Hired
-{% endblock %}
+{% block title %}GitHired{% endblock %}
 
 {% block content %}
-
-
-
 <main>
     <div class="card">
         <div class="card2">
             <div class="main-container">
                 <h1>GitHired</h1>
                 <h2>Keep Track. Stay Organized. Get Hired.</h2>
-                <p>Our streamlined job application tracker helps you manage every step of your job search process, so
-                    you can focus on what really matters — landing your dream role</p>
+                <p>Our streamlined job application tracker helps you manage every step of your job search process, so you can focus on what really matters — landing your dream role</p>
                 {% if user.is_authenticated %}
-                <a href="{% url 'job_form' %}" class="start-tracking">Add job</a>
+                    <a href="{% url 'job_form' %}" class="start-tracking">Add job</a>
                 {% else %}
-                <a href="{% url 'account_login' %}" class="start-tracking">Start Tracking</a>
+                    <a href="{% url 'account_login' %}" class="start-tracking">Start Tracking</a>
                 {% endif %}
             </div>
         </div>
     </div>
 </main>
 
-<h4 class="subtitle">The Ultimate Job Application Tracker for Developers</h4>
+<h3 class="subtitle">The Ultimate Job Application Tracker for Developers</h3>
 
 <section class="icon-section">
     <article class="icon">
@@ -52,8 +47,19 @@ Git Hired
             <stop offset="1" stop-color="#4586CC"/>
             </linearGradient>
             </defs>
+        <a href="{% url 'job_application' %}">
+            <svg class="icon-svg" width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M80 20H20C15.5817 20 12 23.5817 12 28V72C12 76.4183 15.5817 80 20 80H80C84.4183 80 88 76.4183 88 72V28C88 23.5817 84.4183 20 80 20Z" stroke="url(#paint0_linear)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M32 40H68M32 55H68M32 70H52" stroke="url(#paint0_linear)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                <defs>
+                    <linearGradient id="paint0_linear" x1="12" y1="20" x2="88" y2="80" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#00D1CE"/>
+                        <stop offset="1" stop-color="#7F48CB"/>
+                    </linearGradient>
+                </defs>
             </svg>
-        <p>Track your applications</p>
+            <p>Track your applications</p>
+        </a>
     </article>
     
     <article class="icon">
@@ -73,8 +79,19 @@ Git Hired
                 </linearGradient>
                 </defs>
                 </svg>
+        <a href="#">
+            <svg class="icon-svg" width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="40" stroke="url(#paint1_linear)" stroke-width="4"/>
+                <path d="M50 30V50L65 65" stroke="url(#paint1_linear)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                <defs>
+                    <linearGradient id="paint1_linear" x1="10" y1="10" x2="90" y2="90" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#00D1CE"/>
+                        <stop offset="1" stop-color="#7F48CB"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+            <p>Stay on top of deadlines</p>
         </a>
-        <p>Stay on top of deadlines</p>
     </article>
 
     <article class="icon">
@@ -98,49 +115,67 @@ Git Hired
             </defs>
             </svg>
         <p>Prep for Interviews</p>
+        <a href="{% url 'practice_interview' %}">
+            <svg class="icon-svg" width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="20" y="20" width="60" height="60" rx="5" stroke="url(#paint2_linear)" stroke-width="4"/>
+                <path d="M35 40L30 50L35 60M65 40L70 50L65 60" stroke="url(#paint2_linear)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M45 65L55 35" stroke="url(#paint2_linear)" stroke-width="4" stroke-linecap="round"/>
+                <defs>
+                    <linearGradient id="paint2_linear" x1="20" y1="20" x2="80" y2="80" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#00D1CE"/>
+                        <stop offset="1" stop-color="#7F48CB"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+            <p>Prep for Interviews</p>
+        </a>
     </article>
     
     <article class="icon">
-        <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="100" height="100" fill="none"/>
-            <path d="M35.0029 95.0001C30.1706 94.9999 25.8334 94.882 21.5059 95.0363C17.9633 95.1627 15.6654 93.5047 15.0639 90.2616C13.9688 84.3569 12.958 78.3895 12.6165 72.4081C12.3793 68.2535 17.4098 66.792 21.7705 69.2781C24.8162 71.0145 27.8973 72.9355 31.2169 73.8848C35.7199 75.1726 39.3873 72.1863 40.4451 68.553C41.3031 65.6058 40.277 61.2283 38.4657 58.6039C36.0785 55.145 31.6722 55.0618 27.7657 56.7717C24.9407 58.0083 22.34 59.7494 19.5419 61.0571C15.4818 62.9546 12.8696 61.542 13.0834 57.1701C13.4763 49.1378 14.1699 41.1066 15.1226 33.1209C15.6013 29.1084 18.8361 27.9422 23.2101 28.5549C29.9289 29.4962 36.7294 29.854 45.02 30.5959C38.1705 20.8101 36.3423 12.0136 46.0732 4.55572C49.3441 2.04886 59.2121 2.32581 62.1402 4.69487C71.4661 12.2401 70.5265 20.7295 62.4005 30.6714C71.2415 29.8291 78.1334 29.328 84.9785 28.458C88.6716 27.9886 92.9249 30.5788 92.9466 34.2867C93.0548 52.7847 93.1097 71.2849 92.9046 89.7812C92.8604 93.763 89.8618 95.0651 85.998 95.0423C69.1666 94.9431 52.3342 95 35.0029 95.0001ZM22.4435 33.8751C21.6273 34.4639 20.1957 34.9597 20.0905 35.6559C19.1065 42.1717 18.3498 48.7218 17.3691 56.5196C26.9093 50.3243 35.4967 47.5201 43.3301 56.0149C47.4801 60.5152 47.3036 69.9409 43.0512 74.2699C35.0623 82.4026 26.6216 79.9818 17.5825 73C18.2328 78.7576 18.4327 83.173 19.3799 87.4218C19.6945 88.8329 21.917 90.8277 23.2864 90.843C43.0952 91.0649 62.9073 91.017 82.7185 90.9763C86.769 90.968 88.9544 88.7222 88.97 84.7161C89.0301 69.2336 89.0161 53.7506 88.9737 38.268C88.9659 35.4146 87.7967 33.6329 84.4839 33.9773C80.2351 34.419 75.9658 34.6633 71.706 35.0006C58.3738 36.0566 55.6821 32.3036 62.6534 20.7646C65.2567 16.4557 63.7774 12.9091 60.3528 9.9294C57.3376 7.3059 50.9525 7.24102 47.918 9.60962C44.6962 12.1244 43.53 17.3042 45.4536 20.9266C46.3664 22.6456 47.6541 24.1871 48.4129 25.9625C50.8623 31.6929 48.6773 35.1106 42.5422 34.9591C36.1145 34.8004 29.6947 34.3204 22.4435 33.8751Z" fill="url(#paint0_linear_2_2)"/>
-            <path d="M22.8575 33.9279C29.6947 34.3204 36.1145 34.8004 42.5421 34.9591C48.6773 35.1106 50.8623 31.6929 48.4129 25.9625C47.6541 24.1871 46.3664 22.6456 45.4536 20.9266C43.53 17.3042 44.6961 12.1244 47.918 9.60962C50.9525 7.24102 57.3376 7.3059 60.3528 9.9294C63.7774 12.9091 65.2567 16.4557 62.6534 20.7646C55.6821 32.3036 58.3738 36.0566 71.706 35.0006C75.9658 34.6633 80.2351 34.419 84.4839 33.9773C87.7967 33.6329 88.9659 35.4146 88.9737 38.268C89.0161 53.7506 89.0301 69.2336 88.97 84.7161C88.9544 88.7222 86.769 90.968 82.7185 90.9763C62.9073 91.017 43.0952 91.0649 23.2864 90.843C21.917 90.8277 19.6945 88.8329 19.3799 87.4218C18.4327 83.173 18.2328 78.7576 17.5825 73C26.6216 79.9818 35.0623 82.4026 43.0512 74.2699C47.3036 69.9409 47.4801 60.5152 43.3301 56.0149C35.4967 47.5201 26.9093 50.3243 17.3691 56.5196C18.3497 48.7218 19.1065 42.1717 20.0905 35.6559C20.1957 34.9597 21.6272 34.4639 22.8575 33.9279Z" fill="<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="100" height="100" fill="none"/>
-                <g clip-path="url(#clip0_2_2)">
-                  <path d="M1 94C1 69.6458 1 45.2915 1.35902 20.7493C3.55448 20.0409 5.38378 19.1026 7.22856 19.0711C16.3364 18.9157 25.4484 19.0004 35.0025 19.0004C35.0025 16.2513 34.4219 13.7489 35.1723 11.7449C35.8677 9.88763 37.9087 7.31395 39.4908 7.21616C47.1179 6.74471 54.8059 6.74649 62.4338 7.21139C64.0381 7.30916 66.1634 9.8159 66.8193 11.6518C67.5836 13.7911 66.9977 16.4129 66.9977 19C70.2357 19 72.7234 18.927 75.2056 19.0133C83.8048 19.3123 92.402 19.6667 101 20C101 44.3542 101 68.7085 100.638 93.2551C98.2745 93.9648 96.2751 94.9256 94.2723 94.9328C66.6189 95.0319 38.965 95.0346 11.3116 94.9558C7.87351 94.946 4.43715 94.3333 1 94ZM97 42.4802C96.9999 37.8166 96.905 33.1504 97.0297 28.4902C97.1285 24.7975 95.7051 22.9669 91.8268 22.9741C64.6782 23.0245 37.5293 23.0297 10.3807 22.9671C6.61202 22.9584 4.92124 24.4719 4.97151 28.2823C5.07039 35.776 5.19268 43.2787 4.93127 50.7647C4.76183 55.6168 6.78173 57.0965 11.4287 57.068C35.4119 56.9214 59.3966 57.0137 83.3808 56.995C98.5789 56.9832 96.9689 58.6193 97 42.4802ZM38.5 61C27.4131 61 16.3263 61 5.00116 61C5.00116 69.828 5.02441 77.9724 4.98975 86.1165C4.97584 89.3851 6.45438 91.0093 9.78037 91.0073C37.2648 90.9911 64.7497 91.0631 92.2322 90.8316C93.8279 90.8182 96.708 88.465 96.7755 87.0917C97.1972 78.5146 96.9884 69.9065 96.9884 61C77.4235 61 58.4618 61 38.5 61ZM54.444 19C57.2341 19 60.0243 19 62.7748 19C63.2061 11.4608 62.7814 11.0084 55.7972 11.0006C52.4644 10.9969 49.1316 10.9932 45.7988 11.0014C39.242 11.0175 38.4609 11.9758 39.5915 19C44.1723 19 48.8158 19 54.444 19Z" fill="url(#paint0_linear_2_2)"/>
-                  <path d="M97 42.9741C96.9689 58.6193 98.5789 56.9832 83.3808 56.995C59.3966 57.0137 35.4119 56.9214 11.4287 57.068C6.78173 57.0965 4.76183 55.6168 4.93127 50.7647C5.19268 43.2787 5.07039 35.776 4.97151 28.2823C4.92124 24.4719 6.61202 22.9584 10.3807 22.9671C37.5293 23.0297 64.6782 23.0245 91.8268 22.9741C95.7051 22.9669 97.1285 24.7975 97.0297 28.4902C96.905 33.1504 96.9999 37.8166 97 42.9741ZM54.5433 46.0886C53.6708 45.7284 52.7323 44.9635 51.9396 45.0927C50.31 45.3582 47.9973 45.6678 47.3726 46.7622C46.6383 48.0488 46.7741 50.7044
-              "/>
-            <defs>
-            <linearGradient id="paint0_linear_2_2" x1="52.8258" y1="2.7935" x2="52.8258" y2="95.0431" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#00D1CE"/>
-            <stop offset="1" stop-color="#7F48CB"/>
-            </linearGradient>
-            </defs>
+        <a href="#">
+            <svg class="icon-svg" width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 20L20 35V65L50 80L80 65V35L50 20Z" stroke="url(#paint3_linear)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M20 35L50 50M50 50L80 35M50 50V80" stroke="url(#paint3_linear)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                <defs>
+                    <linearGradient id="paint3_linear" x1="20" y1="20" x2="80" y2="80" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#00D1CE"/>
+                        <stop offset="1" stop-color="#7F48CB"/>
+                    </linearGradient>
+                </defs>
             </svg>
-        <p>Practice Technical Challenges</p>
+            <p>Practice Technical Challenges</p>
+        </a>
     </article>
 </section>
 
-<div class="why-container">
+<section class="why-container">
     <div class="flex-container">
-        <ul class="features-list feature-column">
-            <li>
-                <strong>Your One-Stop Job Search Tool</strong><br>
-                From keeping track of your applications to preparing for interviews, GitHired provides everything you
-                need to streamline your job search
-            </li>
-        </ul>
-        <img src="static/images/hero_image.png" alt="A business professional sitting cross-legged with a laptop"
-            class="hero">
-        <ul class="features-list feature-column">
-            <li>
-                <strong>For Developers, By Developers</strong><br>
-                We understand the specific challenges developers face in the job market. GitHired is designed with
-                features to help developers succeed
-            </li>
-        </ul>
+        <div class="feature-column">
+            <h4>Your One-Stop Job Search Tool</h4>
+            <p>From keeping track of your applications to preparing for interviews, GitHired provides everything you need to streamline your job search</p>
+        </div>
+        <img src="{% static 'images/hero_image.png' %}" alt="A business professional sitting cross-legged with a laptop" class="hero">
+        <div class="feature-column">
+            <h4>For Developers, By Developers</h4>
+            <p>We understand the specific challenges developers face in the job market. GitHired is designed with features to help developers succeed</p>
+        </div>
     </div>
-</div>
+</section>
+
+<section class="features-container">
+    <div class="feature-column">
+        <h4>Utilize A Comprehensive Jobs Dashboard</h4>
+        <p>Your job search, all in one view. Track progress, review notes, and get a clear picture of where you stand with every application</p>
+    </div>
+    <div class="feature-column">
+        <h4>Manage Your Applications</h4>
+        <p>Record every job you've applied for, including the date of application, job title, and company. Monitor the status of each application — from submission, to interview, to offer</p>
+    </div>
+    <div class="feature-column">
+        <h4>Ace Your Interview</h4>
+        <p>Get ready for your interviews with a curated library of coding interview questions designed for developers. Hone your problem-solving skills and ace technical interviews</p>
+    </div>
+</section>
 <!--
 <div class="features-container">
     <ul class="features-list feature-column">

@@ -309,6 +309,30 @@ body {
     box-shadow: 0px 0px 30px 1px #7f48cb;
 }
 
+.card-1 {
+    background-image: url('../images/vas_pr.png');
+  }
+
+  .card-2 {
+    background-image: url('../images/erin_pr.png');
+  }
+
+  .card-3 {
+    background-image: url('../images/mar_pr.png');
+  }
+
+  .card-4 {
+    background-image: url('../images/david_pr.png');
+  }
+
+  .card-5 {
+    background-image: url('../images/kim_pr.png');
+  }
+
+  .card-6 {
+    background-image: url('../images/cair_pr.png');
+  }
+
 .name-info {
     font-weight: 400;
     font-size: 24px;

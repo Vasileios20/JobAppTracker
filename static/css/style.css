@@ -129,6 +129,15 @@ body {
     text-align: center;
 }
 
+.icon-svg {
+    transition: all 0.3s ease; /* Add smooth transition */
+}
+
+.icon-svg:hover {
+    fill: #7f48cb; /* Change fill color on hover */
+    transform: scale(1.1); /* Optional: Add scaling effect */
+}
+
 /* Features section */
 
 .why-container {

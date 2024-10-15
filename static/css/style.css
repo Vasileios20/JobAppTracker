@@ -1,5 +1,10 @@
 body {
-    background-color: #130e01;
+    /*background-color: #130e01;*/
+    background-color: #171717;
+    background-image: url('/static/images/background.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     margin: 0;
     padding: 0;
     color: white;
@@ -129,7 +134,8 @@ body {
     align-items: center;
     text-align: center;
     padding: 50px 20px;
-    background-color: #130e01;
+    /*background-color: #130e01;*/
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #333333 100%);
     margin: 0;
     border-radius: 25px;
     box-shadow: none;

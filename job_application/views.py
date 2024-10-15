@@ -4,6 +4,9 @@ from django.conf import settings
 from django.db.models import Q, Count
 from django.utils import timezone
 from .models import Job
+import datetime
+from django.db.models.functions import TruncDate
+from datetime import timedelta
 from django.views import View
 from django.http import JsonResponse
 import os

@@ -30,7 +30,7 @@ def job_application(request):
 
 
 class JobFormView(View):
-    @login_required
+
     def get(self, request):
         # Fetch categories from Adzuna API
         categories = self.fetch_categories()
@@ -50,7 +50,6 @@ class JobFormView(View):
             'selected_category': selected_category,
         })
 
-    @login_required
     def post(self, request):
         # Save the job application
         job_title = request.POST.get('title')
@@ -70,7 +69,6 @@ class JobFormView(View):
         )
         return redirect('job_application')
 
-    @login_required
     def fetch_categories(self):
         # Fetch job categories from Adzuna API
         url = f"http://api.adzuna.com/v1/api/jobs/gb/categories?app_id={ADZUNA_APP_ID}&app_key={ADZUNA_APP_KEY}"
@@ -83,7 +81,6 @@ class JobFormView(View):
             return categories
         return []
 
-    @login_required
     def fetch_job_titles(self, category):
         # Fetch job titles for a selected category from Adzuna API
         url = (
@@ -166,7 +163,8 @@ def statistics_view(request):
     ).order_by('date')
 
     # Ensure all dates in the range have a data point
-    all_dates = {(start_date + timedelta(days=i)).isoformat()                 : 0 for i in range((timezone.now().date() - start_date).days + 1)}
+    all_dates = {(start_date + timedelta(days=i)).isoformat()
+                  : 0 for i in range((timezone.now().date() - start_date).days + 1)}
     for item in trend_data:
         all_dates[item['date'].isoformat()] = item['count']
     trend_data = [{'date': date, 'count': count}
@@ -220,11 +218,16 @@ def statistics_view(request):
 
     # Enhanced Achievements
     all_achievements = [
-        {'name': 'First Application', 'icon': 'paper-plane', 'description': 'Submit your first job application', 'xp': 10, 'condition': total_applications >= 1},
-        {'name': 'Persistent Applier', 'icon': 'calendar-check', 'description': 'Apply to jobs for 7 days in a row', 'xp': 50, 'condition': longest_streak >= 7},
-        {'name': 'Interview Ready', 'icon': 'user-tie', 'description': 'Get invited to 5 interviews', 'xp': 30, 'condition': all_applications.filter(status='Interview').count() >= 5},
-        {'name': 'Offer Received', 'icon': 'award', 'description': 'Receive your first job offer', 'xp': 100, 'condition': success_count >= 1},
-        {'name': 'Application Master', 'icon': 'star', 'description': 'Submit 50 job applications', 'xp': 200, 'condition': total_applications >= 50},
+        {'name': 'First Application', 'icon': 'paper-plane',
+            'description': 'Submit your first job application', 'xp': 10, 'condition': total_applications >= 1},
+        {'name': 'Persistent Applier', 'icon': 'calendar-check',
+            'description': 'Apply to jobs for 7 days in a row', 'xp': 50, 'condition': longest_streak >= 7},
+        {'name': 'Interview Ready', 'icon': 'user-tie', 'description': 'Get invited to 5 interviews',
+            'xp': 30, 'condition': all_applications.filter(status='Interview').count() >= 5},
+        {'name': 'Offer Received', 'icon': 'award', 'description': 'Receive your first job offer',
+            'xp': 100, 'condition': success_count >= 1},
+        {'name': 'Application Master', 'icon': 'star', 'description': 'Submit 50 job applications',
+            'xp': 200, 'condition': total_applications >= 50},
     ]
 
     achievements = [
@@ -262,7 +265,9 @@ def statistics_view(request):
         total_applications * 10 +  # XP for applications
         success_count * 50 +       # XP for successful applications
         achievement_xp +           # XP from achievements
-        sum(quest['xp_reward'] for quest in active_quests if quest['progress'] == 100)  # XP from completed quests
+        # XP from completed quests
+        sum(quest['xp_reward']
+            for quest in active_quests if quest['progress'] == 100)
     )
 
     # Adjusted level calculation

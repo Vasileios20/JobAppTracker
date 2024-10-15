@@ -27,3 +27,7 @@ class Job(models.Model):
     class Meta:
         ordering = ['-date_applied']
         verbose_name_plural = 'Jobs'
+
+class Goal(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    goal_type = models.CharField(max_length=20)  #

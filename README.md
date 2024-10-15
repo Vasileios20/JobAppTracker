@@ -14,6 +14,25 @@ Welcome to Git Hired, your new best friend in the job application jungle. Born i
 - [The Dream Team](#the-dream-team)
 - [License](#license)
 
+# User Stories
+
+1. **As a job seeker**, I want to enter my job title so that I can generate relevant interview questions tailored to my role.
+
+2. **As a job seeker**, I want to view a list of generated interview questions after submitting my job title.
+
+3. **As a job seeker**, I want to provide my answers to the generated questions and submit them for evaluation.
+
+4. **As a user**, I want to see AI-generated feedback on my answers.
+
+5. **As a user**, I want to revisit previously generated questions and answers.
+
+6. **As an administrator**, I want to manage user submissions and feedback.
+
+7. **As a new user**, I want an intuitive interface that guides me through the process.
+
+8. **As a user**, I want to receive success messages after successfully generating questions or submitting answers.
+
+
 ## Features
 
 - **Application Tracking**: Keep tabs on your job applications like a pro stalker (but legal and for your own stuff).
@@ -103,3 +122,75 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ---
 
 Remember, in the world of job hunting, it's not about the destination, it's about the journey. And with Git Hired, at least that journey will be well-documented! Happy job hunting! 🎉
+
+## Entity-Relationship Diagram (ERD) Design
+
+### Wireframes
+
+* We used [Balsamiq](https://balsamiq.com/wireframes) to design the wireframes for us website.
+
+#### Desktop:
+<details>
+
+![Desktop Home page]()
+
+![Desktop About page]()
+
+![Desktop Job Application page]()
+
+![Desktop Practice Interview page]()
+
+## Performance
+
+The Git Hired website was assessed with Google Lighthouse via Google Chrome Developer Tools. Performance scores were evaluated for both desktop and mobile devices.
+
+### Desktop Performance
+- The average score for the pages was 90/100 and the majority of the pages getting an excellent performance of over 90/100
+
+| **Tested** | **Performance Score** | **View Result** | **Pass** |
+--- | --- | --- | :---:
+|index| 95 / 100 | <details><summary>Screenshot of result</summary>![Result]()</details> | :white_check_mark:
+|about| 85 / 100 | <details><summary>Screenshot of result</summary>![Result]()</details> | :white_check_mark:
+|Job Application| 99 / 100 | <details><summary>Screenshot of result</summary>![Result]()</details> | :white_check_mark:
+|Practice| 74 / 100 | <details><summary>Screenshot of result</summary>![Result]()</details> | :white_check_mark:
+
+
+### Mobile Performance
+- The average score for the pages was 80/100 and the majority of the pages getting an good performance of 70/100
+
+| **Tested** | **Performance Score** | **View Result** | **Pass** |
+--- | --- | --- | :---:
+|index| 95 / 100 | <details><summary>Screenshot of result</summary>![Result]()</details> | :white_check_mark:
+|about| 85 / 100 | <details><summary>Screenshot of result</summary>![Result]()</details> | :white_check_mark:
+|Job Application| 99 / 100 | <details><summary>Screenshot of result</summary>![Result]()</details> | :white_check_mark:
+|Practice| 74 / 100 | <details><summary>Screenshot of result</summary>![Result]()</details> | :white_check_mark:
+
+[Return to Table of Contents](#table-of-contents)
+
+## Code Validation
+
+### HTML Validation
+ll pages were validated, and the code was pasted in. A filter was applied to remove issues related to the Django templating system. 
+
+| **Tested** | **Result** | **View Result** | **Pass** |
+--- | --- | --- | :---:
+|base| No errors | <details><summary>Screenshot of result</summary>![Result]()</details>| :white_check_mark:
+|index| No errors | <details><summary>Screenshot of result</summary>![Result]()</details>| :white_check_mark:
+|about| No errors | <details><summary>Screenshot of result</summary>![Result]()</details>| :white_check_mark:
+|Job Application| No errors | <details><summary>Screenshot of result</summary>![Result]()</details>| :white_check_mark:
+|Practice| No errors | <details><summary>Screenshot of result</summary>![Result]()</details>| :white_check_mark:
+
+
+### CSS Validation
+
+| **Tested** | **Result** | **View Result** | **Pass** |
+--- | --- | --- | :---:
+|styles.css | No errors |<details><summary>Screenshot of result</summary>![Result]()</details>| :white_check_mark:
+
+## Acknowledgements
+
+[Ciaran Griffin](https://github.com/ciarangriffin93)<br>
+[David Cotter](https://github.com/trxdave)<br>
+[Erin Doyle](https://github.com/erinvdoyle)<br>
+[Kim Halon](https://github.com/kimatron)<br>
+[Vasilis](https://github.com/Vasileios20)

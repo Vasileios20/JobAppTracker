@@ -16,6 +16,8 @@ import os
 if os.path.isfile("env.py"):
     import env
 
+("GEMINI_API_KEY:", os.environ.get("GEMINI_API_KEY"))
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
@@ -34,7 +36,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     os.environ.get("ALLOWED_HOST"),
     '8000-vasileios20-jobapptrack-llbcz1jmbfv.ws.codeinstitute-ide.net',
-    '8000-trxdave-jobapptracker-txg6sp6ytqh.ws-eu116.gitpod.io',
+    '8000-vasileios20-jobapptrack-mj4cdfx0pfc.ws-eu116.gitpod.io',
     '8000-vasileios20-jobapptrack-6lu7eot9vyv.ws-eu116.gitpod.io',
     '8000-vasileios20-jobapptrack-jdhekqqlmug.ws.codeinstitute-ide.net',
     '8000-vasileios20-jobapptrack-xsq6cepinzr.ws.codeinstitute-ide.net',
@@ -77,6 +79,7 @@ CSRF_TRUSTED_ORIGINS = [
     'https://8000-vasileios20-jobapptrack-6lu7eot9vyv.ws-eu116.gitpod.io',
     'https://8000-vasileios20-jobapptrack-akj1o3fuxmu.ws-eu116.gitpod.io/',
     os.environ.get("ORIGIN")
+    'https://8000-vasileios20-jobapptrack-mj4cdfx0pfc.ws-eu116.gitpod.io'
 ]
 
 
@@ -203,3 +206,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Adzuna API configuration
 ADZUNA_APP_ID = os.getenv('ADZUNA_APP_ID')
 ADZUNA_API_KEY = os.getenv('ADZUNA_API_KEY')
+
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")

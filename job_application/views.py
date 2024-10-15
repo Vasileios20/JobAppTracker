@@ -9,6 +9,7 @@ from django.db.models.functions import TruncDate
 from datetime import timedelta
 from django.views import View
 from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 import os
 
 ADZUNA_APP_ID = os.getenv('ADZUNA_APP_ID')
@@ -16,8 +17,10 @@ ADZUNA_APP_KEY = os.getenv('ADZUNA_API_KEY')
 BASE_URL = 'https://api.adzuna.com/v1/api/jobs/us/search/1'
 
 
+@login_required
 def job_application(request):
-    applications = Job.objects.all()
+    user = request.user
+    applications = Job.objects.all().filter(user=user)
     context = {
         'applications': applications,
         'adzuna_app_id': settings.ADZUNA_APP_ID,
@@ -27,6 +30,7 @@ def job_application(request):
 
 
 class JobFormView(View):
+    @login_required
     def get(self, request):
         # Fetch categories from Adzuna API
         categories = self.fetch_categories()
@@ -46,6 +50,7 @@ class JobFormView(View):
             'selected_category': selected_category,
         })
 
+    @login_required
     def post(self, request):
         # Save the job application
         job_title = request.POST.get('title')
@@ -65,6 +70,7 @@ class JobFormView(View):
         )
         return redirect('job_application')
 
+    @login_required
     def fetch_categories(self):
         # Fetch job categories from Adzuna API
         url = f"http://api.adzuna.com/v1/api/jobs/gb/categories?app_id={ADZUNA_APP_ID}&app_key={ADZUNA_APP_KEY}"
@@ -77,6 +83,7 @@ class JobFormView(View):
             return categories
         return []
 
+    @login_required
     def fetch_job_titles(self, category):
         # Fetch job titles for a selected category from Adzuna API
         url = (
@@ -91,6 +98,7 @@ class JobFormView(View):
         return []
 
 
+@login_required
 def get_job_titles(request):
     category = request.GET.get('category')
     if category:
@@ -99,20 +107,24 @@ def get_job_titles(request):
     return JsonResponse([], safe=False)
 
 
+@login_required
 def filter_jobs(request):
+    user = request.user
     query = request.GET.get('query')
     if query:
-        jobs = Job.objects.filter(
+        applications = Job.objects.filter(
             Q(company__icontains=query) | Q(title__icontains=query) |
             Q(category__icontains=query) | Q(location__icontains=query) |
-            Q(status__icontains=query)
+            Q(status__icontains=query),
+            user=user
         )
     else:
-        jobs = Job.objects.all()
+        applications = Job.objects.filter(user=user)
 
-    return render(request, 'job_list.html', {'jobs': jobs})
+    return render(request, 'job_app.html', {'applications': applications})
 
 
+@login_required
 def statistics_view(request):
     # Get the date range from the request, default to 30 days
     days = int(request.GET.get('days', 30))
@@ -123,25 +135,29 @@ def statistics_view(request):
 
     all_applications = Job.objects.filter(user=request.user)
     if start_date:
-        all_applications = all_applications.filter(date_applied__gte=start_date)
+        all_applications = all_applications.filter(
+            date_applied__gte=start_date)
 
     total_applications = all_applications.count()
-    
+
     # Success Rate
     success_count = all_applications.filter(status='Offer').count()
-    success_rate = round((success_count / total_applications) * 100, 2) if total_applications > 0 else 0
-    
+    success_rate = round((success_count / total_applications)
+                         * 100, 2) if total_applications > 0 else 0
+
     # Response Rate
     response_count = all_applications.exclude(status='Applied').count()
-    response_rate = round((response_count / total_applications) * 100, 2) if total_applications > 0 else 0
-    
+    response_rate = round((response_count / total_applications)
+                          * 100, 2) if total_applications > 0 else 0
+
     # Job Seeker Level
     experience_points = total_applications * 10 + success_count * 50
     job_seeker_level = experience_points // 100 + 1
     next_level_points = job_seeker_level * 100
-    
-    status_counts = all_applications.values('status').annotate(count=Count('status'))
-    
+
+    status_counts = all_applications.values(
+        'status').annotate(count=Count('status'))
+
     # Application Trend
     trend_data = all_applications.annotate(
         date=TruncDate('date_applied')
@@ -150,15 +166,18 @@ def statistics_view(request):
     ).order_by('date')
 
     # Ensure all dates in the range have a data point
-    all_dates = {(start_date + timedelta(days=i)).isoformat(): 0 for i in range((timezone.now().date() - start_date).days + 1)}
+    all_dates = {(start_date + timedelta(days=i)).isoformat()                 : 0 for i in range((timezone.now().date() - start_date).days + 1)}
     for item in trend_data:
         all_dates[item['date'].isoformat()] = item['count']
-    trend_data = [{'date': date, 'count': count} for date, count in all_dates.items()]
-    
-    top_companies = all_applications.values('company').annotate(count=Count('company')).order_by('-count')[:5]
-    
+    trend_data = [{'date': date, 'count': count}
+                  for date, count in all_dates.items()]
+
+    top_companies = all_applications.values('company').annotate(
+        count=Count('company')).order_by('-count')[:5]
+
     # Streak calculation
-    applications_by_date = all_applications.values('date_applied__date').annotate(count=Count('id')).order_by('date_applied__date')
+    applications_by_date = all_applications.values('date_applied__date').annotate(
+        count=Count('id')).order_by('date_applied__date')
     current_streak = 0
     longest_streak = 0
     streak = 0
@@ -168,7 +187,8 @@ def statistics_view(request):
             streak += 1
         else:
             streak = 1
-        current_streak = streak if app['date_applied__date'] == timezone.now().date() else 0
+        current_streak = streak if app['date_applied__date'] == timezone.now(
+        ).date() else 0
         longest_streak = max(longest_streak, streak)
         last_date = app['date_applied__date']
 
@@ -178,7 +198,6 @@ def statistics_view(request):
         {'name': 'Interview Ace', 'points': 50},
         {'name': 'Offer Received', 'points': 100},
     ]
-    
 
     total_applications = all_applications.count()
 

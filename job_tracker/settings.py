@@ -80,7 +80,8 @@ CSRF_TRUSTED_ORIGINS = [
     'https://8000-vasileios20-jobapptrack-6lu7eot9vyv.ws-eu116.gitpod.io',
     'https://8000-vasileios20-jobapptrack-akj1o3fuxmu.ws-eu116.gitpod.io/',
     os.environ.get("ORIGIN"),
-    'https://8000-vasileios20-jobapptrack-mj4cdfx0pfc.ws-eu116.gitpod.io'
+    'https://8000-vasileios20-jobapptrack-mj4cdfx0pfc.ws-eu116.gitpod.io',
+    'https://8000-vasileios20-jobapptrack-akj1o3fuxmu.ws-eu116.gitpod.io',
 ]
 
 

@@ -1,5 +1,10 @@
 body {
-    background-color: #130e01;
+    /*background-color: #130e01;*/
+    background-color: #171717;
+    background-image: url('/static/images/background.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     margin: 0;
     padding: 0;
     color: white;
@@ -76,7 +81,8 @@ body {
     align-items: center;
     text-align: center;
     padding: 50px 20px;
-    background-color: #130e01;
+    /*background-color: #130e01;*/
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #333333 100%);
     margin: 0;
     border-radius: 25px;
     box-shadow: none;
@@ -576,3 +582,91 @@ textarea {
     margin: 20px auto;
 }
 
+=======
+  /* General styling for the container */
+.container {
+    background-color: #8d3c3c;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Titles */
+h3 {
+    color: #fefefe;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Styling for the job search form */
+#job-title, #location {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.btn-primary {
+    background-color: #2980b9;
+    border-color: #2980b9;
+    border-radius: 5px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #3498db;
+}
+
+/* Styling for job search results */
+.list-group-item {
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.list-group-item h5 {
+    color: #34495e;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.btn-success {
+    background-color: #27ae60;
+    border-color: #27ae60;
+}
+
+.btn-success:hover {
+    background-color: #2ecc71;
+}
+
+/* Table styling for application list */
+.table {
+    background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.thead-dark {
+    background-color: #2c3e50;
+    color: #fff;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f7f7f7;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+    }
+    
+    .col-md-6 {
+        margin-bottom: 20px;
+    }
+}

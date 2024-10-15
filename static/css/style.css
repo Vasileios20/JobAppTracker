@@ -196,6 +196,12 @@ body {
     transition: all 0.3s ease;
 }
 
+.icon a {
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
 .icon-svg {
     width: 80px;
     height: 80px;
@@ -221,6 +227,11 @@ body {
 }
 
 /* Modern tech-edge enhancements */
+.icon {
+    position: relative;
+    overflow: hidden;
+}
+
 .icon::before {
     content: '';
     position: absolute;

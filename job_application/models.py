@@ -34,12 +34,12 @@ class Goal(models.Model):
     goal_type = models.CharField(max_length=20)
 
 
-class JobNotes(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    job = models.ForeignKey(Job, on_delete=models.CASCADE)
+class Note(models.Model):
+    job = models.ForeignKey(
+        Job, on_delete=models.CASCADE, related_name='notes')
     notes = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.notes
+        return f"Note for {self.job.title} - {self.date_created.strftime('%Y-%m-%d')}"

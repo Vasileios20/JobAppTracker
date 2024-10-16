@@ -9,4 +9,7 @@ urlpatterns = [
     path('statistics/', views.statistics_view, name='statistics'),
     path('api/get-job-titles/', views.get_job_titles, name='get_job_titles'),
     path('job/<int:job_id>/', views.job_detail_view, name='job_detail'),
+    path('job/<int:job_id>/add_note/', views.add_note_view, name='add_note'),
+    path('note/<int:note_id>/update/',
+         views.update_note_view, name='update_note'),
 ]

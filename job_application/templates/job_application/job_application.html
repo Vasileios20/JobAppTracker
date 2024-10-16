@@ -22,12 +22,31 @@ Job Dashboard
             </div>
         </div>
     </div>
-    <div class="row text-center ">
+    <div class="row">
+
+        <h3>Notes</h3>
+        <ul>
+            {% for note in notes %}
+            <li>{{ note.notes }} <small>(Added on {{ note.date_created }})</small>
+
+                {% if note.date_updated != note.date_created %}
+                <small>(Updated on {{ note.date_updated}})</small>
+                {% endif %}
+            </li>
+            <a href="{% url 'update_note' note.id %}">Edit</a>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'add_note' job.id %}" class="btn btn-primary">Add Note</a>
+    </div>
+
+    <div class="row justify-content-center">
         <form method="post" class="">
             {% csrf_token %}
             <div class="form-group">
                 <label for="country">Country</label>
-                <input type="text" class="form-control" id="country" name="country" list="country-list" value="{{ job.country }}">
+                <input type="text" class="form-control" id="country" name="country" list="country-list"
+                    value="{{ job.country }}">
                 <datalist id="country-list">
                     <option value="United States">
                     <option value="United Kingdom">
@@ -39,7 +58,8 @@ Job Dashboard
             </div>
             <div class="form-group">
                 <label for="location">Location</label>
-                <input type="text" class="form-control" id="location" name="location" list="location-list" value="{{ job.location }}">
+                <input type="text" class="form-control" id="location" name="location" list="location-list"
+                    value="{{ job.location }}">
                 <datalist id="location-list">
                     <option value="New York">
                     <option value="San Francisco">
@@ -50,34 +70,38 @@ Job Dashboard
             </div>
             <div class="form-group">
                 <label for="category">Category</label>
-                <input type="text" class="form-control" id="category" name="category" list="category-list" value="{{ job.category }}">
+                <input type="text" class="form-control" id="category" name="category" list="category-list"
+                    value="{{ job.category }}">
                 <datalist id="category-list">
                     {% for category in categories %}
                     <option value="{{ category.label }}">
-                    {% endfor %}
+                        {% endfor %}
                 </datalist>
             </div>
             <div class="form-group">
                 <label for="title">Job Title</label>
-                <input type="text" class="form-control" id="title" name="title" list="title-list" value="{{ job.title }}">
+                <input type="text" class="form-control" id="title" name="title" list="title-list"
+                    value="{{ job.title }}">
                 <datalist id="title-list">
                     {% for job in job_data %}
                     <option value="{{ job.title }}">
-                    {% endfor %}
+                        {% endfor %}
                 </datalist>
             </div>
             <div class="form-group">
                 <label for="company">Company Name</label>
-                <input type="text" class="form-control" id="company" name="company" list="company-list" value="{{ job.company }}">
+                <input type="text" class="form-control" id="company" name="company" list="company-list"
+                    value="{{ job.company }}">
                 <datalist id="company-list">
                     {% for job in job_data %}
                     <option value="{{ job.company.display_name }}">
-                    {% endfor %}
+                        {% endfor %}
                 </datalist>
             </div>
             <div class="form-group">
                 <label for="date-applied">Date Applied</label>
-                <input type="date" class="form-control" id="date-applied" name="date_applied" value="{{ job.date_applied }}" required>
+                <input type="date" class="form-control" id="date-applied" name="date_applied"
+                    value="{{ job.date_applied }}" required>
             </div>
             <div class="form-group">
                 <label for="status">Status</label>
@@ -87,7 +111,7 @@ Job Dashboard
                     <option value="Offer" {% if job.status == "Offer" %}selected{% endif %}>Offer</option>
                     <option value="Rejected" {% if job.status == "Rejected" %}selected{% endif %}>Rejected</option>
                 </select>
-            </div>            
+            </div>
             <button type="submit" class="btn btn-success btn-block">Save Changes</button>
         </form>
 

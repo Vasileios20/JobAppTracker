@@ -3,8 +3,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
 from django.db.models import Q, Count
 from django.utils import timezone
-from .models import Job
-import datetime
+from .models import Job, Note
+from .forms import NoteForm
 from django.db.models.functions import TruncDate
 from datetime import timedelta
 from django.views import View
@@ -99,6 +99,7 @@ class JobFormView(View):
 def job_detail_view(request, job_id):
     # Fetch the specific job by its ID
     job = get_object_or_404(Job, id=job_id, user=request.user)
+    notes = job.notes.all()
 
     # If the request method is POST, it means we are trying to update the job
     if request.method == 'POST':
@@ -112,10 +113,45 @@ def job_detail_view(request, job_id):
         # Redirect back to the job list after saving
         return redirect('job_application')
 
-    # Render the job detail form with the existing job data
-    print(job.date_applied)
-    return render(request, 'job_application/job_application.html', {'job': job})
+    context = {
+        'job': job,
+        'notes': notes
+    }
 
+    # Render the job detail form with the existing job data
+    return render(request, 'job_application/job_application.html', context)
+
+
+@login_required
+def add_note_view(request, job_id):
+    job = get_object_or_404(Job, id=job_id, user=request.user)
+
+    if request.method == 'POST':
+        form = NoteForm(request.POST)
+        if form.is_valid():
+            note = form.save(commit=False)
+            note.job = job
+            note.save()
+            return redirect('job_detail', job_id=job.id)
+    else:
+        form = NoteForm()
+
+    return render(request, 'add_note.html', {'form': form, 'job': job})
+
+
+@login_required
+def update_note_view(request, note_id):
+    note = get_object_or_404(Note, id=note_id, job__user=request.user)
+
+    if request.method == 'POST':
+        form = NoteForm(request.POST, instance=note)
+        if form.is_valid():
+            form.save()
+            return redirect('job_detail', job_id=note.job.id)
+    else:
+        form = NoteForm(instance=note)
+
+    return render(request, 'update_note.html', {'form': form, 'note': note})
 
 @login_required
 def get_job_titles(request):

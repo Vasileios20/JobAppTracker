@@ -860,7 +860,7 @@ body.dark-mode {
     letter-spacing: 1px;
     border-radius: 6px;
     border: 2px solid #fff;
-    background: linear-gradient(90deg, #00d1ce, #7f48cb);
+    background: linear-gradient(90deg, #00d1ce, #b398da);
     box-shadow: 0px 0px 1px 3px #9ee5e3 inset, 0px 4px 4px 0px #181a6040;
     
 }
@@ -871,16 +871,6 @@ body.dark-mode {
     justify-content: center;
     align-items: center;
 }
-
-/* #id_remember {
-    padding: 5px;
-    width: fit-content;
-} */
-
-/* .border-clr {
-    border: 1px solid #bbbbbb;
-    border-radius: 5px;
-} */
 
 /* From Uiverse.io by KhelVers */
 /* From Uiverse.io by yashasvi9199 */

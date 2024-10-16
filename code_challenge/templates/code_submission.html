@@ -7,44 +7,30 @@ Code Challenge Submission
 {% endblock %}
 
 {% block content %}
-
-<form method="post" action="{% url 'submit_solution' %}">
-    {% csrf_token %}
-    <div class="form-group">
-        <label for="language">Language</label>
-        <select name="language" class="form-control">
+<div class="{% if ai_feedback %}d-none{% endif %}">
+    <form method="POST" action=""> <!-- Updated action -->
+        {% csrf_token %}
+        <textarea name="source_code" placeholder="Enter your code here..." required></textarea>
+        <select name="language">
             <option value="python">Python</option>
             <option value="javascript">JavaScript</option>
             <option value="cpp">C++</option>
-            <!-- Add more languages if needed -->
+            <!-- Add more languages as needed -->
         </select>
-    </div>
+        <button type="submit">Submit</button>
+    </form>
 
-    <div class="form-group">
-        <label for="source_code">Your Solution</label>
-        <textarea name="source_code" class="form-control" rows="10" required></textarea>
-    </div>
+</div>
 
-    <input type="hidden" name="expected_output" value="{{ expected_output }}" />
-
-    <button type="submit" class="btn btn-primary">Submit Solution</button>
-</form>
-
-
-<div>
+<div class="feedback-section {% if not evaluation_result and not ai_feedback %}d-none{% endif %}">
     <h3>Feedback</h3>
-    {% if evaluation_result %}
-        <div class="alert alert-info">
-            <p><strong>Language:</strong> {{ language }}</p>
-            <p><strong>Source Code:</strong></p>
-            <pre>{{ source_code }}</pre>
-            <p><strong>Expected Output:</strong> {{ expected_output }}</p>
-            <p><strong>Evaluation Result:</strong> {{ evaluation_result.status.description }}</p>
-            <p><strong>Passed:</strong> {{ passed }}</p>
-        </div>
-    {% else %}
-        <p>No feedback available yet.</p>
+    {% if ai_feedback %}
+    <div class="feedback-section">
+        <h2>AI Feedback</h2>
+        <p>{{ ai_feedback }}</p>
+    </div>
     {% endif %}
 </div>
+
 
 {% endblock %}

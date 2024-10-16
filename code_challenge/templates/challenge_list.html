@@ -13,8 +13,12 @@
       <button type="submit">Filter</button>
    </form>
    <ul class="list-group">
+<div class="cc-container">
+   <h1 class="cc-title">Available Challenges (Difficulty: {{ difficulty }})</h1>
+
+   <ul class="cc-list">
       {% for challenge in challenges %}
-      <li class="list-group-item">
+      <li class="cc-list-item">
          <a href="{% url 'challenge_detail' challenge.slug %}">
             {{ challenge.title }}
          </a>

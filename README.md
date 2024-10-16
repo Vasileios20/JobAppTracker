@@ -140,6 +140,8 @@ Remember, in the world of job hunting, it's not about the destination, it's abou
 
 ![Desktop Practice Interview page]()
 
+</details>
+
 ## Performance
 
 The Git Hired website was assessed with Google Lighthouse via Google Chrome Developer Tools. Performance scores were evaluated for both desktop and mobile devices.

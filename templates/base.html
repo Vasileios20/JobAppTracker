@@ -22,38 +22,35 @@
 
 <body>
     <header class="header">
-        <nav class="navbar navbar-expand-lg navbar-dark w-100">
-            <div class="logo-container me-auto">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
                 <a class="navbar-brand" href="{% url 'home' %}">
-                    <img src="https://img.icons8.com/?size=100&id=2784&format=png&color=FFFFFF" alt="GitHired Icon"
-                        class="logo-icon">
+                    <!-- <img src="https://img.icons8.com/?size=100&id=2784&format=png&color=FFFFFF" alt="GitHired Icon" class="logo-icon"> -->
                     <h1 class="logo-text">GitHired</h1>
                 </a>
-            </div>
-
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse ms-auto" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'about' %}">About</a>
-                    </li>
-
-                    <li class="nav-item">
-                        {% if user.is_authenticated %}
-                        <a class="nav-link join-button" href="{% url 'account_logout' %}">Logout</a>
-                        {% else %}
-                        <a class="nav-link join-button" href="{% url 'account_signup' %}">Join Now</a>
-                    </li>
-                    {% endif %}
-                </ul>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'about' %}">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'statistics' %}">Statistics</a>
+                        </li>
+                        <li class="nav-item">
+                            {% if user.is_authenticated %}
+                            <a class="nav-link join-button" href="{% url 'account_logout' %}">Logout</a>
+                            {% else %}
+                            <a class="nav-link join-button" href="{% url 'account_signup' %}">Join Now</a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>

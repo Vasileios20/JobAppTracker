@@ -23,4 +23,6 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path("job/", include("job_application.urls")),
     path("practice/", include("practice_interview.urls")),
+    path('job_details/', include('job_details.urls')),
+    path("code-challenge/", include("code_challenge.urls")),
 ]

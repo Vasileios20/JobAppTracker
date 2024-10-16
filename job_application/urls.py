@@ -8,4 +8,5 @@ urlpatterns = [
     path('filter/', views.filter_jobs, name='filter'),
     path('statistics/', views.statistics_view, name='statistics'),
     path('api/get-job-titles/', views.get_job_titles, name='get_job_titles'),
+    path('job/<int:job_id>/', views.job_detail_view, name='job_detail'),
 ]

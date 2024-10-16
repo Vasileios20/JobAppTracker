@@ -461,3 +461,18 @@
     }
 }
 
+/* Add a subtle difference for the edit page */
+.note-form-container.edit {
+    border: 1px solid var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .note-container {
+        padding: 20px 10px;
+    }
+
+    .note-form-container {
+        padding: 20px;
+    }
+}
+

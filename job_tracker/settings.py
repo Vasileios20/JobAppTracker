@@ -64,7 +64,6 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     'home',
     'job_application',
-    'job_details',
     'practice_interview',
     'code_challenge',
 ]

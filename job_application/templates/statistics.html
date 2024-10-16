@@ -1,768 +1,113 @@
-{% extends 'base.html' %} {% block title %}Job Application Statistics{% endblock%} {% block content %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Your Job Search Journey{% endblock %}
+
+{% block content %}
 <div class="stats-container">
-  <h1 class="stats-title">Job Application Dashboard</h1>
+    <h1 class="stats-title">Your Job Search Journey</h1>
 
-  <div class="stats-row">
-    <div class="stats-col">
-      <div class="stats-card">
-        <div class="stats-card-body">
-          <h5 class="stats-card-title">Date Range Selection</h5>
-          <form id="dateRangeForm" class="stats-form">
-            <select id="dateRange" class="stats-select">
-              <option value="7">Last 7 days</option>
-              <option value="30" selected>Last 30 days</option>
-              <option value="90">Last 90 days</option>
-              <option value="180">Last 6 months</option>
-              <option value="365">Last year</option>
-              <option value="all">All time</option>
-            </select>
-            <button type="submit" class="stats-button">Update</button>
-          </form>
-        </div>
-      </div>
-    </div>
-    <div class="stats-col">
-      <div class="stats-card">
-        <div class="stats-card-body">
-          <h5 class="stats-card-title">Application Streak</h5>
-          <p class="stats-card-value">{{ current_streak }}</p>
-          <p class="stats-card-subtitle">Current Streak</p>
-          <p class="stats-card-subtitle">
-            Longest Streak: {{ longest_streak }}
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="stats-row">
-    <div class="stats-col">
-      <div class="stats-card">
-        <div class="stats-card-body">
-          <h5 class="stats-card-title">Total Applications</h5>
-          <p class="stats-card-value">{{ total_applications }}</p>
-        </div>
-      </div>
-    </div>
-    <div class="stats-col">
-      <div class="stats-card">
-        <div class="stats-card-body">
-          <h5 class="stats-card-title">Success Rate</h5>
-          <p class="stats-card-value">{{ success_rate }}%</p>
-          <div class="stats-progress">
-            <div
-              class="stats-progress-bar"
-              style="width: {{ success_rate }}%;"
-            ></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="stats-col">
-      <div class="stats-card">
-        <div class="stats-card-body">
-          <h5 class="stats-card-title">Response Rate</h5>
-          <p class="stats-card-value">{{ response_rate }}%</p>
-          <div class="stats-progress">
-            <div
-              class="stats-progress-bar"
-              style="width: {{ response_rate }}%;"
-            ></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="stats-col">
-      <div class="stats-card">
-        <div class="stats-card-body">
-          <h5 class="stats-card-title">Job Seeker Level</h5>
-          <p class="stats-card-value">Level {{ job_seeker_level }}</p>
-          <p class="stats-card-subtitle">
-            {{ experience_points }} / {{ next_level_points }} XP
-          </p>
-          <div class="stats-progress">
-            <div
-              class="stats-progress-bar"
-              style="width: {% widthratio experience_points next_level_points 100 %}%;"
-            ></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="stats-row">
-    <div class="stats-col">
-      <div class="stats-card">
-        <div class="stats-card-body">
-          <h5 class="stats-card-title">Application Status Distribution</h5>
-          <canvas id="statusChart" class="stats-chart"></canvas>
-        </div>
-      </div>
-    </div>
-    <div class="stats-col">
-      <div class="stats-card">
-        <div class="stats-card-body">
-          <h5 class="stats-card-title">Application Trend</h5>
-          <canvas id="trendChart" class="stats-chart"></canvas>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="stats-row">
-    <div class="stats-col">
-      <div class="stats-card">
-        <div class="stats-card-body">
-          <h5 class="stats-card-title">Top 5 Companies Applied</h5>
-          <ul class="stats-list" id="topCompanies">
-            {% for company in top_companies %}
-            <li class="stats-list-item">
-              {{ company.company }}
-              <span class="stats-badge">{{ company.count }}</span>
-            </li>
-            {% endfor %}
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="stats-col">
-      <div class="stats-card">
-        <div class="stats-card-body">
-          <h5 class="stats-card-title">Achievements</h5>
-          <ul class="stats-list">
-            {% for achievement in achievements %}
-            <li class="stats-list-item">
-              {{ achievement.name }}
-              <span class="stats-badge">{{ achievement.points }} XP</span>
-            </li>
-            {% endfor %}
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="stats-col">
-      <div class="stats-card">
-        <div class="stats-card-body">
-          <h5 class="stats-card-title">Goal Setting</h5>
-          <form id="goalForm" class="stats-form">
-            <div class="stats-form-group">
-              <label for="goalType" class="stats-label">Goal Type</label>
-              <select id="goalType" class="stats-select">
-                <option value="applications">Total Applications</option>
-                <option value="interviews">Interviews</option>
-                <option value="offers">Offers</option>
-              </select>
+    <div class="stats-section">
+        <h2>Your Current Level</h2>
+        <div class="level-card">
+            <div class="level-display">
+                <span class="level-number">{{ job_seeker_level }}</span>
+                <span class="level-title">Code Warrior</span>
             </div>
-            <div class="stats-form-group">
-              <label for="goalValue" class="stats-label">Goal Value</label>
-              <input
-                type="number"
-                id="goalValue"
-                class="stats-input"
-                min="1"
-                required
-              />
+            <div class="progress-bar">
+                <div class="progress" style="width: {% widthratio experience_points next_level_points 100 %}%"></div>
             </div>
-            <div class="stats-form-group">
-              <label for="goalDeadline" class="stats-label">Deadline</label>
-              <input
-                type="date"
-                id="goalDeadline"
-                class="stats-input"
-                required
-              />
-            </div>
-            <button type="submit" class="stats-button">Set Goal</button>
-          </form>
-          <div id="currentGoal" class="stats-current-goal">
-            <h6 class="stats-subtitle">Current Goal:</h6>
-            <p id="goalDescription" class="stats-goal-description"></p>
-            <div class="stats-progress">
-              <div
-                id="goalProgress"
-                class="stats-progress-bar"
-                style="width: 0%"
-              ></div>
-            </div>
-          </div>
+            <p>{{ experience_points }} / {{ next_level_points }} XP to next level</p>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="stats-row">
-  <div class="stats-col">
-    <div class="stats-card">
-      <div class="stats-card-body">
-        <h5 class="stats-card-title">XP Progression</h5>
-        <div class="xp-bar-container">
-          <div
-            class="xp-bar"
-            style="width: {% widthratio experience_points next_level_points 100 %}%;"
-          >
-            <span class="xp-text"
-              >{{ experience_points }} / {{ next_level_points }} XP</span
-            >
-          </div>
-        </div>
-        <p class="stats-card-subtitle">Level {{ job_seeker_level }}</p>
-        <p class="stats-card-subtitle">
-          {{ next_level_points|add:"-"|add:experience_points }} XP to next level
+        <p class="level-explanation">
+            Level up by applying to jobs, completing interviews, and achieving milestones in your job search. 
+            Higher levels unlock new achievements and quests!
         </p>
-      </div>
     </div>
-  </div>
-  <div class="stats-col">
-    <div class="stats-card">
-      <div class="stats-card-body">
-        <h5 class="stats-card-title">XP Gain Guide</h5>
-        <ul class="xp-list">
-          <li>
-            <span class="xp-action">Apply to a job</span>
-            <span class="xp-value">+10 XP</span>
-          </li>
-          <li>
-            <span class="xp-action">Get an interview</span>
-            <span class="xp-value">+20 XP</span>
-          </li>
-          <li>
-            <span class="xp-action">Complete an interview</span>
-            <span class="xp-value">+50 XP</span>
-          </li>
-          <li>
-            <span class="xp-action">Receive a job offer</span>
-            <span class="xp-value">+100 XP</span>
-          </li>
-          <li>
-            <span class="xp-action">Update your resume</span>
-            <span class="xp-value">+5 XP</span>
-          </li>
-          <li>
-            <span class="xp-action">Practice interview question</span>
-            <span class="xp-value">+5 XP</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
 
-<!-- Add this section for achievements and quests -->
-<div class="stats-row">
-  <div class="stats-col">
-    <div class="stats-card">
-      <div class="stats-card-body">
-        <h5 class="stats-card-title">Achievements</h5>
-        <div class="achievement-grid">
-          {% for achievement in achievements %}
-          <div
-            class="achievement-item {% if achievement.unlocked %}unlocked{% endif %}"
-            title="{{ achievement.description }}"
-          >
-            <i class="fas fa-{{ achievement.icon }}"></i>
-            <span>{{ achievement.name }}</span>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="stats-col">
-    <div class="stats-card">
-      <div class="stats-card-body">
-        <h5 class="stats-card-title">Active Quests</h5>
-        <ul class="quest-list">
-          {% for quest in active_quests %}
-          <li class="quest-item">
-            <span class="quest-name">{{ quest.name }}</span>
-            <div class="quest-progress-bar">
-              <div
-                class="quest-progress"
-                style="width: {{ quest.progress }}%;"
-              ></div>
+    <div class="stats-section">
+        <h2>Your Job Search Stats</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Applications</h3>
+                <div class="stat-circle">
+                    <span class="stat-number">{{ total_applications }}</span>
+                </div>
             </div>
-            <span class="quest-reward">+{{ quest.xp_reward }} XP</span>
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
+            <div class="stat-card">
+                <h3>Success Rate</h3>
+                <div class="stat-circle">
+                    <span class="stat-number">{{ success_rate }}%</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <h3>Response Rate</h3>
+                <div class="stat-circle">
+                    <span class="stat-number">{{ response_rate }}%</span>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+
+    <div class="stats-section">
+        <h2>Application Insights</h2>
+        <div class="chart-grid">
+            <div class="chart-card">
+                <h3>Application Status</h3>
+                <canvas id="statusChart"></canvas>
+            </div>
+            <div class="chart-card">
+                <h3>Application Trend</h3>
+                <canvas id="trendChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="stats-section">
+        <h2>Your Achievements</h2>
+        <p class="achievement-explanation">
+            Unlock achievements by reaching milestones in your job search. Each achievement grants XP and helps you level up!
+        </p>
+        <div class="achievements-grid">
+            {% for achievement in achievements %}
+            <div class="achievement {% if achievement.unlocked %}unlocked{% endif %}" title="{{ achievement.description }}">
+                <i class="fas fa-{{ achievement.icon }}"></i>
+                <span>{{ achievement.name }}</span>
+                {% if achievement.unlocked %}
+                <span class="xp-reward">+{{ achievement.xp }} XP</span>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="stats-section">
+        <h2>Active Quests</h2>
+        <p class="quest-explanation">
+            Complete quests to earn XP and improve your job search skills. New quests become available as you level up!
+        </p>
+        <ul class="quest-list">
+            {% for quest in active_quests %}
+            <li>
+                <span class="quest-name">{{ quest.name }}</span>
+                <div class="quest-progress-container">
+                    <div class="quest-progress" style="width: {{ quest.progress }}%"></div>
+                </div>
+                <span class="quest-reward">+{{ quest.xp_reward }} XP</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
 
-<style>
-  .xp-bar-container {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    height: 20px;
-    overflow: hidden;
-    margin-top: 10px;
-  }
-
-  .xp-bar {
-    background: linear-gradient(90deg, #00d1ce, #7f48cb);
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: width 1s ease-in-out;
-  }
-
-  .xp-text {
-    color: white;
-    font-size: 0.8rem;
-    font-weight: bold;
-  }
-
-  .xp-list {
-    list-style-type: none;
-    padding: 0;
-  }
-
-  .xp-list li {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
-  }
-
-  .xp-action {
-    color: #ffffff;
-  }
-
-  .xp-value {
-    color: #00d1ce;
-    font-weight: bold;
-  }
-
-  .achievement-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-  }
-
-  .achievement-item {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 5px;
-    padding: 10px;
-    text-align: center;
-    opacity: 0.5;
-    transition: all 0.3s ease;
-  }
-
-  .achievement-item.unlocked {
-    opacity: 1;
-    background-color: rgba(0, 209, 206, 0.2);
-  }
-
-  .achievement-item i {
-    font-size: 1.5rem;
-    margin-bottom: 5px;
-  }
-
-  .quest-list {
-    list-style-type: none;
-    padding: 0;
-  }
-
-  .quest-item {
-    margin-bottom: 15px;
-  }
-
-  .quest-name {
-    display: block;
-    margin-bottom: 5px;
-  }
-
-  .quest-progress-bar {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 5px;
-    height: 10px;
-    overflow: hidden;
-  }
-
-  .quest-progress {
-    background: linear-gradient(90deg, #00d1ce, #7f48cb);
-    height: 100%;
-    transition: width 0.5s ease-in-out;
-  }
-
-  .quest-reward {
-    display: block;
-    text-align: right;
-    color: #00d1ce;
-    font-size: 0.8rem;
-    margin-top: 2px;
-  }
-  .stats-container {
-    padding: 20px;
-    color: #ffffff;
-    font-family: Arial, sans-serif;
-  }
-
-  .stats-title {
-    text-align: center;
-    color: #00d1ce;
-    margin-bottom: 30px;
-    font-size: 2.5rem;
-  }
-
-  .stats-row {
-    display: flex;
-    flex-wrap: wrap;
-    margin: -10px;
-  }
-
-  .stats-col {
-    flex: 1;
-    padding: 10px;
-    min-width: 250px;
-  }
-
-  .stats-card {
-    background: linear-gradient(135deg, #00d1ce 0%, #7f48cb 100%);
-    border-radius: 15px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-  }
-
-  .stats-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 209, 206, 0.4);
-  }
-
-  .stats-card-body {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 20px;
-    text-align: center;
-  }
-
-  .stats-card-title {
-    color: #ffffff;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-  }
-
-  .stats-card-value {
-    color: #00d1ce;
-    font-size: 2rem;
-    font-weight: bold;
-    margin: 0;
-  }
-
-  .stats-card-subtitle {
-    color: #ffffff;
-    font-size: 0.9rem;
-    margin: 5px 0;
-  }
-
-  .stats-progress {
-    height: 10px;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
-    overflow: hidden;
-    margin-top: 10px;
-  }
-
-  .stats-progress-bar {
-    height: 100%;
-    background-image: linear-gradient(to right, #00d1ce, #7f48cb);
-    transition: width 0.5s ease;
-  }
-
-  .stats-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .stats-list-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .stats-badge {
-    background-color: #00d1ce;
-    color: #000000;
-    padding: 3px 8px;
-    border-radius: 10px;
-    font-size: 0.8rem;
-  }
-
-  .stats-form {
-    text-align: left;
-  }
-
-  .stats-form-group {
-    margin-bottom: 15px;
-  }
-
-  .stats-label {
-    display: block;
-    margin-bottom: 5px;
-    color: #ffffff;
-  }
-
-  .stats-input,
-  .stats-select {
-    width: 100%;
-    padding: 8px;
-    border-radius: 5px;
-    border: none;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-  }
-
-  .stats-button {
-    background-color: #00d1ce;
-    color: #000000;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  .stats-button:hover {
-    background-color: #00a3a0;
-  }
-
-  .stats-chart {
-    width: 100%;
-    height: 300px;
-  }
-
-  @media (max-width: 768px) {
-    .stats-col {
-      flex-basis: 100%;
-    }
-  }
-</style>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-  // Status Distribution Chart
-  const statusCtx = document.getElementById('statusChart').getContext('2d');
-  new Chart(statusCtx, {
-      type: 'doughnut',
-      data: {
-          labels: [{% for status in status_counts %}'{{ status.status }}',{% endfor %}],
-          datasets: [{
-              data: [{% for status in status_counts %}{{ status.count }},{% endfor %}],
-              backgroundColor: [
-                  '#00d1ce',
-                  '#7f48cb',
-                  '#ff6b6b',
-                  '#feca57',
-                  '#48dbfb',
-                  '#ff9ff3'
-              ],
-          }]
-      },
-      options: {
-          responsive: true,
-          plugins: {
-              legend: {
-                  position: 'right',
-                  labels: {
-                      color: 'white'
-                  }
-              }
-          }
-      }
-  });
-
-  // Application Trend Chart
-  const trendCtx = document.getElementById('trendChart').getContext('2d');
-  new Chart(trendCtx, {
-      type: 'line',
-      data: {
-          labels: [{% for item in trend_data %}'{{ item.date|date:"M d" }}',{% endfor %}],
-          datasets: [{
-              label: 'Applications',
-              data: [{% for item in trend_data %}{{ item.count }},{% endfor %}],
-              borderColor: '#00d1ce',
-              backgroundColor: 'rgba(0, 209, 206, 0.2)',
-              tension: 0.1,
-              fill: true
-          }]
-      },
-      options: {
-          responsive: true,
-          scales: {
-              y: {
-                  beginAtZero: true,
-                  ticks: {
-                      stepSize: 1,
-                      color: 'white'
-                  },
-                  grid: {
-                      color: 'rgba(255, 255, 255, 0.1)'
-                  }
-              },
-              x: {
-                  ticks: {
-                      color: 'white'
-                  },
-                  grid: {
-                      color: 'rgba(255, 255, 255, 0.1)'
-                  }
-              }
-          },
-          plugins: {
-              legend: {
-                  labels: {
-                      color: 'white'
-                  }
-              }
-          }
-      }
-  });
-
-  // Date range form submission
-  document.getElementById('dateRangeForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const days = document.getElementById('dateRange').value;
-      // Here you would typically make an AJAX call to update the data
-      console.log('Updating data for last', days, 'days');
-      // Reload the page with the new date range
-      window.location.href = `?days=${days}`;
-  });
-
-  // Goal setting form submission
-  document.getElementById('goalForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const goalType = document.getElementById('goalType').value;
-      const goalValue = document.getElementById('goalValue').value;
-      const goalDeadline = document.getElementById('goalDeadline').value;
-      // Here you would typically make an AJAX call to save the goal
-      console.log('Setting goal:', goalType, goalValue, 'by', goalDeadline);
-
-      // Update current goal display (this is just a placeholder, you'd update with actual data)
-      document.getElementById('goalDescription').textContent = `${goalValue} ${goalType} by ${goalDeadline}`;
-      document.getElementById('goalProgress').style.width = '0%';
-      document.getElementById('goalProgress').textContent = '0%';
-
-      // Show the current goal section
-      document.getElementById('currentGoal').style.display = 'block';
-  });
-
-  // Function to update progress bars
-  function updateProgressBars() {
-      const progressBars = document.querySelectorAll('.stats-progress-bar');
-      progressBars.forEach(bar => {
-          const width = bar.style.width;
-          bar.style.width = '0%';
-          setTimeout(() => {
-              bar.style.width = width;
-          }, 100);
-      });
-  }
-
-  // Call updateProgressBars on page load
-  document.addEventListener('DOMContentLoaded', updateProgressBars);
-
-  // Function to animate number counters
-  function animateValue(obj, start, end, duration) {
-      let startTimestamp = null;
-      const step = (timestamp) => {
-          if (!startTimestamp) startTimestamp = timestamp;
-          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-          obj.innerHTML = Math.floor(progress * (end - start) + start);
-          if (progress < 1) {
-              window.requestAnimationFrame(step);
-          }
-      };
-      window.requestAnimationFrame(step);
-  }
-
-  // Animate number counters on page load
-  document.addEventListener('DOMContentLoaded', () => {
-      const counters = document.querySelectorAll('.stats-card-value');
-      counters.forEach(counter => {
-          const value = parseInt(counter.innerText);
-          animateValue(counter, 0, value, 1000);
-      });
-  });
-
-  document.addEventListener('DOMContentLoaded', function() {
-    // Animate XP bar on load
-    const xpBar = document.querySelector('.xp-bar');
-    const originalWidth = xpBar.style.width;
-    xpBar.style.width = '0%';
-    setTimeout(() => {
-        xpBar.style.width = originalWidth;
-    }, 500);
-
-    // Add hover effect to achievement items
-    const achievementItems = document.querySelectorAll('.achievement-item');
-    achievementItems.forEach(item => {
-        item.addEventListener('mouseenter', () => {
-            if (item.classList.contains('unlocked')) {
-                item.style.transform = 'scale(1.1)';
-            }
-        });
-        item.addEventListener('mouseleave', () => {
-            item.style.transform = 'scale(1)';
-        });
-    });
-
-    // Animate quest progress bars on load
-    const questBars = document.querySelectorAll('.quest-progress');
-    questBars.forEach(bar => {
-        const originalWidth = bar.style.width;
-        bar.style.width = '0%';
-        setTimeout(() => {
-            bar.style.width = originalWidth;
-        }, 500);
-    });
-});
-
-  // Add hover effect to achievement items
-  const achievementItems = document.querySelectorAll('.stats-list-item');
-  achievementItems.forEach(item => {
-      item.addEventListener('mouseenter', () => {
-          item.style.transform = 'scale(1.05)';
-          item.style.transition = 'transform 0.3s ease';
-      });
-      item.addEventListener('mouseleave', () => {
-          item.style.transform = 'scale(1)';
-      });
-  });
-
-  // Function to update charts (placeholder for AJAX updates)
-  function updateCharts(data) {
-      // Update Status Distribution Chart
-      statusChart.data.datasets[0].data = data.statusCounts;
-      statusChart.update();
-
-      // Update Application Trend Chart
-      trendChart.data.labels = data.trendDates;
-      trendChart.data.datasets[0].data = data.trendCounts;
-      trendChart.update();
-  }
-
-  // Example of how you might use the updateCharts function with AJAX
-  // Uncomment and modify as needed for your backend setup
-  /*
-  function fetchUpdatedData(days) {
-      fetch(`/api/statistics?days=${days}`)
-          .then(response => response.json())
-          .then(data => {
-              updateCharts(data);
-              // Update other elements as needed
-          })
-          .catch(error => console.error('Error:', error));
-  }
-
-  document.getElementById('dateRangeForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const days = document.getElementById('dateRange').value;
-      fetchUpdatedData(days);
-  });
-  */
+    window.djangoData = {
+        statusLabels: [{% for status in status_counts %}'{{ status.status }}',{% endfor %}],
+        statusData: [{% for status in status_counts %}{{ status.count }},{% endfor %}],
+        trendLabels: [{% for item in trend_data %}'{{ item.date|date:"M d" }}',{% endfor %}],
+        trendData: [{% for item in trend_data %}{{ item.count }},{% endfor %}]
+    };
 </script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{% static 'js/interactive.js' %}"></script>
 {% endblock %}

@@ -200,43 +200,43 @@ function initializeCharts() {
         });
     }
 
-    // Application Funnel Chart
-    const funnelCtx = document.getElementById('funnelChart');
-    if (funnelCtx && typeof Chart.Funnel !== 'undefined') {
-        new Chart.Funnel(funnelCtx, {
-            data: {
-                labels: ['Applied', 'Reviewed', 'Interviewed', 'Offered'],
-                datasets: [{
-                    data: [
-                        window.djangoData.funnelData.applied,
-                        window.djangoData.funnelData.reviewed,
-                        window.djangoData.funnelData.interviewed,
-                        window.djangoData.funnelData.offered
-                    ],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.8)',
-                        'rgba(54, 162, 235, 0.8)',
-                        'rgba(255, 206, 86, 0.8)',
-                        'rgba(75, 192, 192, 0.8)'
-                    ]
-                }]
-            },
-            options: {
-                responsive: true,
+// Application Funnel Chart
+const funnelCtx = document.getElementById('funnelChart');
+if (funnelCtx) {
+    new Chart(funnelCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Applied', 'Reviewed', 'Interviewed', 'Offered'],
+            datasets: [{
+                data: [
+                    window.djangoData.funnelData.applied,
+                    window.djangoData.funnelData.reviewed,
+                    window.djangoData.funnelData.interviewed,
+                    window.djangoData.funnelData.offered
+                ],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(54, 162, 235, 0.8)',
+                    'rgba(255, 206, 86, 0.8)',
+                    'rgba(75, 192, 192, 0.8)'
+                ]
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            plugins: {
                 legend: {
-                    position: 'right'
+                    display: false
                 },
                 title: {
                     display: true,
                     text: 'Application Funnel'
-                },
-                animation: {
-                    animateScale: true,
-                    animateRotate: true
                 }
             }
-        });
-    }
+        }
+    });
+}
 
     // Skills Progression Chart
     const skillsCtx = document.getElementById('skillsChart');
@@ -312,6 +312,36 @@ function setupProgressBars() {
     });
 }
 
+function displayJobLocations() {
+    const locationsContainer = document.getElementById('jobLocations');
+    if (locationsContainer && window.djangoData.jobLocations) {
+        const locationsList = document.createElement('ul');
+        window.djangoData.jobLocations.forEach(job => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${job.company}: ${job.location}`;
+            locationsList.appendChild(listItem);
+        });
+        locationsContainer.appendChild(locationsList);
+    }
+}
+
+function createJobSearchTimeline() {
+    const timeline = document.getElementById('jobSearchTimeline');
+    if (timeline && window.djangoData.timelineData) {
+        window.djangoData.timelineData.forEach((event, index) => {
+            const item = document.createElement('div');
+            item.className = 'timeline-item';
+            item.innerHTML = `
+                <div class="timeline-content">
+                    <h3>${event.date}</h3>
+                    <p>${event.description}</p>
+                </div>
+            `;
+            timeline.appendChild(item);
+        });
+    }
+}
+
 // Main initialization function
 function initializeAll() {
     typeWriter();
@@ -328,6 +358,8 @@ function initializeAll() {
     createJobSearchTimeline();
     initializeJobMap();
     generateInsights();
+    displayJobLocations();
+    createJobSearchTimeline();
 
     // Animate stat numbers
     document.querySelectorAll('.stat-number').forEach(el => {

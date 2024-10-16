@@ -63,27 +63,31 @@
       </div>
   </div>
 
-  <div class="stats-section">
+  <!-- <div class="stats-section">
       <h2>Your Job Search Timeline</h2>
       <div id="jobSearchTimeline" class="timeline"></div>
-  </div>
+  </div> -->
 
-  <div class="stats-section">
+  <!-- <div class="stats-section">
       <h2>Skills Progression</h2>
       <div class="chart-card">
           <canvas id="skillsChart"></canvas>
       </div>
-  </div>
+  </div> -->
 
   <div class="stats-section">
       <h2>Job Search Map</h2>
       <div id="jobMap" class="job-map"></div>
   </div>
-
   <div class="stats-section">
+    <h2>Job Locations</h2>
+    <div id="jobLocations" class="job-locations-list"></div>
+</div>
+
+  <!-- <div class="stats-section">
       <h2>Personalized Insights</h2>
       <div id="insights" class="insights-container"></div>
-  </div>
+  </div> -->
 
     <div class="stats-section">
         <h2>Your Achievements</h2>
@@ -124,38 +128,32 @@
 
 <script>
   window.djangoData = {
-      statusLabels: [{% for status in status_counts %}'{{ status.status }}',{% endfor %}],
-      statusData: [{% for status in status_counts %}{{ status.count }},{% endfor %}],
+      statusLabels: [{% for item in status_counts %}'{{ item.status }}',{% endfor %}],
+      statusData: [{% for item in status_counts %}{{ item.count }},{% endfor %}],
+      trendLabels: [{% for item in trend_data %}'{{ item.date }}',{% endfor %}],
+      trendData: [{% for item in trend_data %}{{ item.count }},{% endfor %}],
       funnelData: {
-          applied: {{ total_applications }},
-          reviewed: {{ reviewed_applications }},
-          interviewed: {{ interviewed_applications }},
-          offered: {{ offered_applications }}
+          applied: {{ funnelData.applied }},
+          reviewed: {{ funnelData.reviewed }},
+          interviewed: {{ funnelData.interviewed }},
+          offered: {{ funnelData.offered }}
       },
-      timelineData: [
-          {% for event in job_search_events %}
-          {
-              date: '{{ event.date|date:"Y-m-d" }}',
-              type: '{{ event.type }}',
-              description: '{{ event.description }}'
-          },
-          {% endfor %}
-      ],
       skillsData: {
-          labels: ['Python', 'JavaScript', 'React', 'Django', 'SQL', 'Git'],
-          data: [85, 75, 70, 80, 65, 90]
+          labels: {{ skillsData.labels|safe }},
+          data: {{ skillsData.data|safe }}
       },
+      timelineData: {{ timelineData|safe }},
       jobLocations: [
-          {% for job in job_locations %}
-          {
-              lat: {{ job.latitude }},
-              lng: {{ job.longitude }},
-              title: '{{ job.company }}'
-          },
+          {% for job in jobLocations %}
+              {
+                  company: '{{ job.company|escapejs }}',
+                  location: '{{ job.location|escapejs }}'
+              },
           {% endfor %}
       ]
   };
 </script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-funnel@3.0.0/build/Chart.Funnel.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>

@@ -349,6 +349,34 @@ def statistics_view(request):
         {'action': 'Complete a mock interview', 'xp': 15},
     ]
 
+      # Funnel Data
+    funnel_data = {
+        'applied': total_applications,
+        'reviewed': all_applications.exclude(status='Applied').count(),
+        'interviewed': all_applications.filter(status__in=['Interview', 'Offer']).count(),
+        'offered': success_count
+    }
+
+    # Skills Data (you may want to replace this with actual user skills data)
+    skills_data = {
+        'labels': ['Python', 'JavaScript', 'React', 'Django', 'SQL', 'Git'],
+        'data': [85, 75, 70, 80, 65, 90]
+    }
+
+    # Job Search Timeline
+    timeline_data = all_applications.order_by('date_applied').values('date_applied', 'company', 'status')
+    job_search_events = [
+        {
+            'date': item['date_applied'].strftime('%Y-%m-%d'),
+            'type': item['status'],
+            'description': f"Applied to {item['company']}"
+        }
+        for item in timeline_data
+    ]
+
+    # Job Locations (using only the 'location' field)
+    job_locations = all_applications.values('company', 'location').distinct()
+
     context = {
         'total_applications': total_applications,
         'success_rate': success_rate,
@@ -377,6 +405,12 @@ def statistics_view(request):
         'longest_streak': longest_streak,
         'active_quests': active_quests,
         'xp_gain_guide': xp_gain_guide,
+        'status_counts': [{'status': item['status'], 'count': item['count']} for item in status_counts],
+        'trend_data': [{'date': item['date_applied'].strftime('%Y-%m-%d'), 'count': item['count']} for item in trend_data],
+        'funnelData': funnel_data,
+        'skillsData': skills_data,
+        'timelineData': job_search_events,
+        'jobLocations': list(job_locations),
     }
 
     return render(request, 'statistics.html', context)

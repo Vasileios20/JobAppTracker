@@ -7,9 +7,9 @@
 <div class="jd-container">
     <h1 class="jd-title">Job Dashboard</h1>
     
-    <div class="jd-actions">
+    <!--<div class="jd-actions">
         <a href="{% url 'job_form' %}" class="jd-button">Add Job</a>
-    </div>
+    </div>-->
 
     <div class="jd-search-container">
         <h2>Search Applications</h2>
@@ -21,7 +21,11 @@
         </form>
     </div>
     <div class="jd-table-container">
-        <h2>Your Applications</h2>
+        <h2>Your Applications
+            <div class="jd-actions">
+                <a href="{% url 'job_form' %}" class="jd-button">Add Job</a>
+            </div>
+        </h2>
         <table class="jd-table">
             <thead>
                 <tr>

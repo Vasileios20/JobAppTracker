@@ -476,3 +476,185 @@
     }
 }
 
+/* Job Detail Styles */
+.jd-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.jd-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(0, 209, 206, 0.5);
+}
+
+.jd-content {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.jd-job-details, .jd-notes-section {
+    flex: 1;
+    min-width: 300px;
+}
+
+.jd-section-title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 10px;
+}
+
+.jd-info-card, .jd-note-item {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.jd-info-card:hover, .jd-note-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 209, 206, 0.2);
+}
+
+.jd-highlight {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.jd-status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 15px;
+    background: var(--gradient);
+    color: white;
+    font-weight: bold;
+}
+
+.jd-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: flex-end;
+}
+
+.jd-button {
+    padding: 12px 24px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.jd-button::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--gradient);
+    z-index: -1;
+    filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.jd-button:hover::before {
+    opacity: 1;
+}
+
+.jd-button-edit {
+    background: var(--gradient);
+}
+
+.jd-button-delete {
+    background: linear-gradient(90deg, #ff4757, #ff6b81);
+}
+
+.jd-button-add {
+    background: linear-gradient(90deg, #26de81, #2bcbba);
+}
+
+.jd-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.jd-notes-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.jd-note-content {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: var(--light-text);
+}
+
+.jd-note-meta {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 10px;
+}
+
+.jd-note-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.jd-button-small {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+}
+
+.jd-no-job, .jd-no-notes {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    color: var(--light-text);
+}
+
+@media (max-width: 768px) {
+    .jd-content {
+        flex-direction: column;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.jd-info-card, .jd-note-item {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Pulsating effect for buttons */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.jd-button:hover {
+    animation: pulse 1s infinite;
+}

@@ -5,6 +5,31 @@
 {% block title %}Code Challenge Submission{% endblock %}
 
 {% block content %}
+<div class="{% if ai_feedback %}d-none{% endif %}">
+    <form method="POST" action=""> <!-- Updated action -->
+        {% csrf_token %}
+        <textarea name="source_code" placeholder="Enter your code here..." required></textarea>
+        <select name="language">
+            <option value="python">Python</option>
+            <option value="javascript">JavaScript</option>
+            <option value="cpp">C++</option>
+            <!-- Add more languages as needed -->
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+
+</div>
+
+<div class="feedback-section {% if not evaluation_result and not ai_feedback %}d-none{% endif %}">
+    <h3>Feedback</h3>
+    {% if ai_feedback %}
+    <div class="feedback-section">
+        <h2>AI Feedback</h2>
+        <p>{{ ai_feedback }}</p>
+    </div>
+    {% endif %}
+</div>
+
 <div class="cc-container">
     <h1 class="cc-title">Code Challenge Submission</h1>
 

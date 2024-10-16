@@ -27,7 +27,11 @@
         </div>
 
         <input type="hidden" name="expected_output" value="{{ challenge.expected_output }}" />
-        <button type="submit" class="cc-button">Submit Solution</button>
+
+        <input type="hidden" name="challenge" value="{{ challenge.content }}" />
+        <input type="hidden" name="challenge_slug" value="{{ challenge.slug }}" />
+        <input type="hidden" name="example_test_case" value="{{ challenge.exampleTestcases }}" />
+        <button type="submit" class="btn btn-primary">Submit Solution</button>
     </form>
 </div>
 {% endblock %}

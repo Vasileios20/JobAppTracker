@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+Update Job Application
+{% endblock %}
+
+{% block content %}
+<div class="jad-container">
+    <h1 class="jad-title">Job Application Dashboard</h1>
+    <div class="jad-form-container">
+        <form id="job-form" class="jad-form" method="POST">
+            {% csrf_token %}
+            <div class="jad-form-group">
+                <label for="country" class="jad-label">Country</label>
+                <input type="text" class="jad-input" id="country" name="country" list="country-list">
+                <datalist id="country-list">
+                    <option value="United States">
+                    <option value="United Kingdom">
+                    <option value="Australia">
+                    <option value="Austria">
+                    <option value="Belgium">
+                    <option value="Greece">
+                </datalist>
+            </div>
+            <div class="jad-form-group">
+                <label for="location" class="jad-label">Location</label>
+                <input type="text" class="jad-input" id="location" name="location" list="location-list">
+                <datalist id="location-list">
+                    <option value="New York">
+                    <option value="San Francisco">
+                    <option value="London">
+                    <option value="Berlin">
+                    <option value="Tokyo">
+                </datalist>
+            </div>
+            <div class="jad-form-group">
+                <label for="category" class="jad-label">Category</label>
+                <input type="text" class="jad-input" id="category" name="category" list="category-list">
+                <datalist id="category-list">
+                    {% for category in categories %}
+                    <option value="{{ category.label }}">
+                        {% endfor %}
+                </datalist>
+            </div>
+            <div class="jad-form-group">
+                <label for="title" class="jad-label">Job Title</label>
+                <input type="text" class="jad-input" id="title" name="title" list="title-list">
+                <datalist id="title-list">
+                    {% for job in job_data %}
+                    <option value="{{ job.title }}">
+                        {% endfor %}
+                </datalist>
+            </div>
+            <div class="jad-form-group">
+                <label for="company" class="jad-label">Company Name</label>
+                <input type="text" class="jad-input" id="company" name="company" list="company-list">
+                <datalist id="company-list">
+                    {% for job in job_data %}
+                    <option value="{{ job.company.display_name }}">
+                        {% endfor %}
+                </datalist>
+            </div>
+            <div class="jad-form-group">
+                <label for="date-applied" class="jad-label">Date Applied</label>
+                <input type="date" class="jad-input" id="date-applied" name="date_applied" required>
+            </div>
+            <div class="jad-form-group">
+                <label for="status" class="jad-label">Status</label>
+                <select class="jad-select" id="status" name="status">
+                    <option value="Applied">Applied</option>
+                    <option value="Interview">Interview</option>
+                    <option value="Offer">Offer</option>
+                    <option value="Rejected">Rejected</option>
+                </select>
+            </div>
+            <button type="submit" class="jad-button jad-button-primary">Update Application</button>
+        </form>
+    </div>
+<div class="mt-5 d-flex">
+
+    <a href="{% url 'job_application' %}" class="jad-button jad-button-primary mx-auto">Back to Job List</a>
+    </div>
+
+</div>
+
+{% endblock %}

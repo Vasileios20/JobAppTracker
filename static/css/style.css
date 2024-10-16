@@ -1213,6 +1213,7 @@ body.dark-mode {
 
 .active, .dot:hover {
     background-color: #717171;
+}
 
   /* Responsive styling for screens with max width of 480px */
 @media (max-width: 480px) {
@@ -1245,4 +1246,48 @@ body.dark-mode {
         align-items: center;
     }
 
+}
+
+/* Job Details Box */
+.job-details {
+    padding: 20px;
+    background-color: #6fa9a0;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.job-details p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.job-details p strong {
+    color: #000000;
+}
+
+/* No Job Selected Message */
+.no-job-message {
+    padding: 20px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        margin: 20px;
+    }
+    
+    h3 {
+        font-size: 20px;
+    }
+    
+    .job-details p {
+        font-size: 14px;
+    }
 }

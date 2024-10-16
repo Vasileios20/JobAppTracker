@@ -28,6 +28,18 @@ class Job(models.Model):
         ordering = ['-date_applied']
         verbose_name_plural = 'Jobs'
 
+
 class Goal(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    goal_type = models.CharField(max_length=20)  #
+    goal_type = models.CharField(max_length=20)
+
+
+class JobNotes(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    job = models.ForeignKey(Job, on_delete=models.CASCADE)
+    notes = models.TextField()
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.notes

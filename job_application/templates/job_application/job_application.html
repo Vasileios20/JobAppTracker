@@ -25,6 +25,11 @@ Job Dashboard
             <p>No job selected. Please add or select a job to view details.</p>
             {% endif %}
         </div>
+        <div class="col-md-6 mb-4 text-right">
+            {% if job %}
+            <a href="{% url 'delete_job' job.id %}" class="btn btn-danger">Delete Job Application</a>
+            {% endif %}
+        </div>
     </div>
     <div class="row">
 

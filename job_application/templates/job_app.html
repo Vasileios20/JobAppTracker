@@ -36,7 +36,7 @@ Job Dashboard
                     </thead>
                     <tbody id="application-list">
                         {% for application in applications %}
-                        <tr>
+                        <tr data-href="{% url 'job_detail' application.id %}">
                             <td>{{ application.date_applied }}</td>
                             <td>{{ application.company }}</td>
                             <td>{{ application.title }}</td>
@@ -45,7 +45,7 @@ Job Dashboard
                         </tr>
                         {% empty %}
                         <tr>
-                            <td colspan="4" class="text-center">No applications found.</td>
+                            <td colspan="5" class="text-center">No applications found.</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -57,5 +57,16 @@ Job Dashboard
 
 <!-- Link the external JavaScript file for job title search -->
 <script src="{% static 'js/job_search.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var rows = document.querySelectorAll('tr[data-href]');
+        rows.forEach(function (row) {
+            row.addEventListener('click', function () {
+                window.location.href = this.getAttribute('data-href');
+            });
+        });
+    });
+</script>
+
 
 {% endblock %}

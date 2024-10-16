@@ -64,7 +64,6 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     'home',
     'job_application',
-    'job_details',
     'practice_interview',
     'code_challenge',
 ]
@@ -82,6 +81,7 @@ CSRF_TRUSTED_ORIGINS = [
     'https://8000-vasileios20-jobapptrack-akj1o3fuxmu.ws-eu116.gitpod.io/',
     'https://8000-vasileios20-jobapptrack-mj4cdfx0pfc.ws-eu116.gitpod.io',
     'https://8000-vasileios20-jobapptrack-akj1o3fuxmu.ws-eu116.gitpod.io',
+    'https://8000-vasileios20-jobapptrack-ibxgsdfkvu3.ws.codeinstitute-ide.net',
 ]
 
 

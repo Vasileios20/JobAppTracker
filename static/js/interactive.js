@@ -122,7 +122,6 @@ function setupDarkMode() {
     }
 }
 
-// Initialize charts
 function initializeCharts() {
     if (typeof Chart === 'undefined' || typeof window.djangoData === 'undefined') return;
 
@@ -201,35 +200,39 @@ function initializeCharts() {
         });
     }
 
-    // Top Companies Chart
-    const companiesCtx = document.getElementById('companiesChart');
-    if (companiesCtx) {
-        new Chart(companiesCtx.getContext('2d'), {
-            type: 'bar',
+    // Application Funnel Chart
+    const funnelCtx = document.getElementById('funnelChart');
+    if (funnelCtx && typeof Chart.Funnel !== 'undefined') {
+        new Chart.Funnel(funnelCtx, {
             data: {
-                labels: window.djangoData.companiesLabels,
+                labels: ['Applied', 'Reviewed', 'Interviewed', 'Offered'],
                 datasets: [{
-                    label: 'Applications',
-                    data: window.djangoData.companiesData,
-                    backgroundColor: 'rgba(255, 99, 132, 0.8)',
-                    borderColor: 'rgb(255, 99, 132)',
-                    borderWidth: 1
+                    data: [
+                        window.djangoData.funnelData.applied,
+                        window.djangoData.funnelData.reviewed,
+                        window.djangoData.funnelData.interviewed,
+                        window.djangoData.funnelData.offered
+                    ],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.8)',
+                        'rgba(54, 162, 235, 0.8)',
+                        'rgba(255, 206, 86, 0.8)',
+                        'rgba(75, 192, 192, 0.8)'
+                    ]
                 }]
             },
             options: {
                 responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: { stepSize: 1 }
-                    }
+                legend: {
+                    position: 'right'
                 },
-                plugins: {
-                    legend: { display: false }
+                title: {
+                    display: true,
+                    text: 'Application Funnel'
                 },
                 animation: {
-                    duration: 2000,
-                    easing: 'easeOutBounce'
+                    animateScale: true,
+                    animateRotate: true
                 }
             }
         });
@@ -241,10 +244,10 @@ function initializeCharts() {
         new Chart(skillsCtx.getContext('2d'), {
             type: 'radar',
             data: {
-                labels: window.djangoData.skillsLabels,
+                labels: window.djangoData.skillsData.labels,
                 datasets: [{
                     label: 'Skill Level',
-                    data: window.djangoData.skillsData,
+                    data: window.djangoData.skillsData.data,
                     fill: true,
                     backgroundColor: 'rgba(54, 162, 235, 0.2)',
                     borderColor: 'rgb(54, 162, 235)',
@@ -321,6 +324,10 @@ function initializeAll() {
     initializeCharts();
     setupAchievements();
     setupProgressBars();
+    initializeCharts();
+    createJobSearchTimeline();
+    initializeJobMap();
+    generateInsights();
 
     // Animate stat numbers
     document.querySelectorAll('.stat-number').forEach(el => {

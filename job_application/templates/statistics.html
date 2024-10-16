@@ -50,18 +50,40 @@
     </div>
 
     <div class="stats-section">
-        <h2>Application Insights</h2>
-        <div class="chart-grid">
-            <div class="chart-card">
-                <h3>Application Status</h3>
-                <canvas id="statusChart"></canvas>
-            </div>
-            <div class="chart-card">
-                <h3>Application Trend</h3>
-                <canvas id="trendChart"></canvas>
-            </div>
-        </div>
-    </div>
+      <h2>Application Insights</h2>
+      <div class="chart-grid">
+          <div class="chart-card">
+              <h3>Application Status</h3>
+              <canvas id="statusChart"></canvas>
+          </div>
+          <div class="chart-card">
+              <h3>Application Funnel</h3>
+              <canvas id="funnelChart"></canvas>
+          </div>
+      </div>
+  </div>
+
+  <div class="stats-section">
+      <h2>Your Job Search Timeline</h2>
+      <div id="jobSearchTimeline" class="timeline"></div>
+  </div>
+
+  <div class="stats-section">
+      <h2>Skills Progression</h2>
+      <div class="chart-card">
+          <canvas id="skillsChart"></canvas>
+      </div>
+  </div>
+
+  <div class="stats-section">
+      <h2>Job Search Map</h2>
+      <div id="jobMap" class="job-map"></div>
+  </div>
+
+  <div class="stats-section">
+      <h2>Personalized Insights</h2>
+      <div id="insights" class="insights-container"></div>
+  </div>
 
     <div class="stats-section">
         <h2>Your Achievements</h2>
@@ -101,13 +123,41 @@
 </div>
 
 <script>
-    window.djangoData = {
-        statusLabels: [{% for status in status_counts %}'{{ status.status }}',{% endfor %}],
-        statusData: [{% for status in status_counts %}{{ status.count }},{% endfor %}],
-        trendLabels: [{% for item in trend_data %}'{{ item.date|date:"M d" }}',{% endfor %}],
-        trendData: [{% for item in trend_data %}{{ item.count }},{% endfor %}]
-    };
+  window.djangoData = {
+      statusLabels: [{% for status in status_counts %}'{{ status.status }}',{% endfor %}],
+      statusData: [{% for status in status_counts %}{{ status.count }},{% endfor %}],
+      funnelData: {
+          applied: {{ total_applications }},
+          reviewed: {{ reviewed_applications }},
+          interviewed: {{ interviewed_applications }},
+          offered: {{ offered_applications }}
+      },
+      timelineData: [
+          {% for event in job_search_events %}
+          {
+              date: '{{ event.date|date:"Y-m-d" }}',
+              type: '{{ event.type }}',
+              description: '{{ event.description }}'
+          },
+          {% endfor %}
+      ],
+      skillsData: {
+          labels: ['Python', 'JavaScript', 'React', 'Django', 'SQL', 'Git'],
+          data: [85, 75, 70, 80, 65, 90]
+      },
+      jobLocations: [
+          {% for job in job_locations %}
+          {
+              lat: {{ job.latitude }},
+              lng: {{ job.longitude }},
+              title: '{{ job.company }}'
+          },
+          {% endfor %}
+      ]
+  };
 </script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-chart-funnel@3.0.0/build/Chart.Funnel.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script src="{% static 'js/interactive.js' %}"></script>
 {% endblock %}

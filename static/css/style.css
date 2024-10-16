@@ -1106,6 +1106,7 @@ body.dark-mode {
     width: fit-content;
   }
 
+
 /* New styles for modern and techy look */
 
 .hero-section {
@@ -1212,4 +1213,36 @@ body.dark-mode {
 
 .active, .dot:hover {
     background-color: #717171;
+
+  /* Responsive styling for screens with max width of 480px */
+@media (max-width: 480px) {
+    .flex-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .feature-column {
+        text-align: center;
+        margin-bottom: 20px;
+        width:fit-content;
+    }
+
+    .feature-column > p {
+        text-align: justify;
+    }
+
+    .feature-column > h4 {
+        text-shadow:  0 4px 20px #00d1ce;
+    }
+
+    .hero {
+        width: 80%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+    .features-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
 }

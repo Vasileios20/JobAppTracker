@@ -1,0 +1,97 @@
+/* Job Application Dashboard Styles */
+
+.jad-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.jad-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(0, 209, 206, 0.5);
+}
+
+.jad-form-container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.jad-form-group {
+    margin-bottom: 20px;
+}
+
+.jad-label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--light-text);
+    font-weight: bold;
+}
+
+.jad-input,
+.jad-select {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--light-text);
+    transition: all 0.3s ease;
+}
+
+.jad-input:focus,
+.jad-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 209, 206, 0.2);
+}
+
+.jad-button {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.jad-button-primary {
+    background: var(--gradient);
+    color: white;
+}
+
+.jad-button-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 209, 206, 0.4);
+}
+
+/* Add some tech-edge animations */
+@keyframes glow {
+    0% { box-shadow: 0 0 5px rgba(0, 209, 206, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(0, 209, 206, 0.5); }
+    100% { box-shadow: 0 0 5px rgba(0, 209, 206, 0.5); }
+}
+
+.jad-input:focus,
+.jad-select:focus {
+    animation: glow 1.5s infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .jad-container {
+        padding: 20px 10px;
+    }
+
+    .jad-form-container {
+        padding: 20px;
+    }
+}

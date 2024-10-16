@@ -3,10 +3,22 @@
 {% block content %}
 <div class="container">
    <h1>Available Challenges (Difficulty: {{ difficulty }})</h1>
-
+   <form method="get" action="">
+      <label for="difficulty">Choose Difficulty:</label>
+      <select name="difficulty" id="difficulty">
+         <option value="easy" {% if difficulty == 'easy' %}selected{% endif %}>Easy</option>
+         <option value="medium" {% if difficulty == 'medium' %}selected{% endif %}>Medium</option>
+         <option value="hard" {% if difficulty == 'hard' %}selected{% endif %}>Hard</option>
+      </select>
+      <button type="submit">Filter</button>
+   </form>
    <ul class="list-group">
+<div class="cc-container">
+   <h1 class="cc-title">Available Challenges (Difficulty: {{ difficulty }})</h1>
+
+   <ul class="cc-list">
       {% for challenge in challenges %}
-      <li class="list-group-item">
+      <li class="cc-list-item">
          <a href="{% url 'challenge_detail' challenge.slug %}">
             {{ challenge.title }}
          </a>

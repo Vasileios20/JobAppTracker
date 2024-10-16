@@ -303,6 +303,21 @@
     color: var(--light-text);
 }
 
+.jd-header {
+    display: flex;
+    align-items: center; /* Ensures vertical alignment of text and button */
+}
+
+.jd-header h2 {
+    margin-right: 10px; /* Ensures heading stays on the left */
+}
+
+.jd-add {
+    /*margin-left: 20px; /* Adds space between the heading and the button */
+    margin-left: auto;
+    /*margin-left: 165px;*/
+}
+
 .jd-table-container {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
@@ -335,6 +350,8 @@
     background-color: rgba(255, 255, 255, 0.1);
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0, 209, 206, 0.2);
+    color:  rgb(0, 209, 206);
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {

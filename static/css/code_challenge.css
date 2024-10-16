@@ -1,0 +1,153 @@
+/* Code Challenge Styles */
+
+.cc-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.cc-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(0, 209, 206, 0.5);
+}
+
+.cc-content {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.cc-content pre {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 15px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: var(--light-text);
+    font-family: 'Courier New', monospace;
+}
+
+.cc-form-group {
+    margin-bottom: 20px;
+}
+
+.cc-label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--light-text);
+    font-weight: bold;
+}
+
+.cc-select, .cc-textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--light-text);
+    transition: all 0.3s ease;
+}
+
+.cc-select:focus, .cc-textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 209, 206, 0.2);
+}
+
+.cc-textarea {
+    min-height: 200px;
+    font-family: 'Courier New', monospace;
+    resize: vertical;
+}
+
+.cc-button {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: var(--gradient);
+    color: white;
+}
+
+.cc-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 209, 206, 0.4);
+}
+
+.cc-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.cc-list-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.cc-list-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 209, 206, 0.4);
+}
+
+.cc-list-item a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.cc-list-item p {
+    color: var(--light-text);
+    margin-top: 10px;
+}
+
+.cc-feedback {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.cc-feedback h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.cc-alert {
+    background: rgba(0, 209, 206, 0.1);
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.cc-alert pre {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .cc-container {
+        padding: 20px 10px;
+    }
+
+    .cc-content {
+        padding: 20px;
+    }
+}

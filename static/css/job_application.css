@@ -188,20 +188,119 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
-.jd-search-input {
-    width: 100%;
-    padding: 12px 15px;
-    border-radius: 5px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background-color: rgba(255, 255, 255, 0.1);
-    color: var(--light-text);
-    transition: all 0.3s ease;
+.jd-search-form {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
-.jd-search-input:focus {
+.input-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
+.input {
+    width: 100%;
+    height: 60px;
+    padding: 12px;
+    font-size: 18px;
+    font-family: "Courier New", monospace;
+    color: var(--light-text);
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 4px solid var(--primary-color);
+    border-radius: 0;
     outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 8px 8px 0 var(--secondary-color);
+}
+
+.input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.input:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0 var(--secondary-color);
+}
+
+.input:focus {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: var(--light-text);
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(0, 209, 206, 0.2);
+}
+
+.input:focus::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+.input:focus::after {
+    content: "|";
+    position: absolute;
+    right: 10px;
+    animation: blink 0.7s step-end infinite;
+}
+
+.input:valid {
+    animation: typing 2s steps(30, end);
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px) rotate(-5deg); }
+    50% { transform: translateX(5px) rotate(5deg); }
+    75% { transform: translateX(-5px) rotate(-5deg); }
+    100% { transform: translateX(0); }
+}
+
+.input:focus {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes glitch {
+    0% { transform: none; opacity: 1; }
+    7% { transform: skew(-0.5deg, -0.9deg); opacity: 0.75; }
+    10% { transform: none; opacity: 1; }
+    27% { transform: none; opacity: 1; }
+    30% { transform: skew(0.8deg, -0.1deg); opacity: 0.75; }
+    35% { transform: none; opacity: 1; }
+    52% { transform: none; opacity: 1; }
+    55% { transform: skew(-1deg, 0.2deg); opacity: 0.75; }
+    50% { transform: none; opacity: 1; }
+    72% { transform: none; opacity: 1; }
+    75% { transform: skew(0.4deg, 1deg); opacity: 0.75; }
+    80% { transform: none; opacity: 1; }
+    100% { transform: none; opacity: 1; }
+}
+
+.input:not(:placeholder-shown) {
+    animation: glitch 1s linear infinite;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 0px 0px 0 var(--primary-color);
+}
+
+.input-container::after {
+    content: "|";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-color);
+    animation: blink 0.7s step-end infinite;
+}
+
+.input:focus + .input-container::after {
+    color: var(--light-text);
 }
 
 .jd-table-container {

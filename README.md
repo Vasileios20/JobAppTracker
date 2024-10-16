@@ -51,6 +51,12 @@ Welcome to Git Hired, your new best friend in the job application jungle. Born i
 - **Notes and Comments**: For when you need to remember that the interviewer had a cat named "Mr. Whiskers" (it might be important, you never know).
 - **Analytics**: Impress your friends with fancy graphs about your job search. Who said unemployment can't be fun?
 
+### Homepage
+
+![alt text](documentation/images/home1.png)
+![alt text](documentation/images/home2.png)
+![alt text](documentation/images/home3.png)
+
 ## Installation
 
 1. Clone the repo:
@@ -216,18 +222,27 @@ ll pages were validated, and the code was pasted in. A filter was applied to rem
 
 | **Tested** | **Result** | **View Result** | **Pass** |
 --- | --- | --- | :---:
-|base| No errors | <details><summary>Screenshot of result</summary>![Result]()</details>| :white_check_mark:
-|index| No errors | <details><summary>Screenshot of result</summary>![Result]()</details>| :white_check_mark:
+|base| No errors | <details><summary>Screenshot of result</summary>![Result](documentation/validator/css/html/base.png)</details>| :white_check_mark:
+|index| No errors | <details><summary>Screenshot of result</summary>![Result](documentation/validator/css/html/index.png)</details>| :white_check_mark:
 |about| No errors | <details><summary>Screenshot of result</summary>![Result]()</details>| :white_check_mark:
-|Job Application| No errors | <details><summary>Screenshot of result</summary>![Result]()</details>| :white_check_mark:
+|Job Application| No errors | <details><summary>Screenshot of result</summary>![Result](documentation/validator/css/html/job_app.png)</details>| :white_check_mark:
 |Practice| No errors | <details><summary>Screenshot of result</summary>![Result]()</details>| :white_check_mark:
-
+|Add Note| No errors | <details><summary>Screenshot of result</summary>![Result](documentation/validator/css/html/add_note.png)</details>| :white_check_mark:
+|Challenge Detail| No errors | <details><summary>Screenshot of result</summary>![Result](documentation/validator/css/html/challenge_detail.png)</details>| :white_check_mark:
+|Challenge List| No errors | <details><summary>Screenshot of result</summary>![Result](documentation/validator/css/html/challenge_list.png)</details>| :white_check_mark:
+|Code Submission| No errors | <details><summary>Screenshot of result</summary>![Result](documentation/validator/css/html/code_submission.png)</details>| :white_check_mark:
+|Job Dashboard| No errors | <details><summary>Screenshot of result</summary>![Result](documentation/validator/css/html/job_dashboard.png)</details>| :white_check_mark:
+|Job Form| No errors | <details><summary>Screenshot of result</summary>![Result](documentation/validator/css/html/job_form.png)</details>| :white_check_mark:
+|Note| No errors | <details><summary>Screenshot of result</summary>![Result](documentation/validator/css/html/note.png)</details>| :white_check_mark:
+|Update Job Application| No errors | <details><summary>Screenshot of result</summary>![Result](documentation/validator/css/html/update_job_application.png)</details>| :white_check_mark:
 
 ### CSS Validation
 
 | **Tested** | **Result** | **View Result** | **Pass** |
 --- | --- | --- | :---:
-|styles.css | No errors |<details><summary>Screenshot of result</summary>![Result]()</details>| :white_check_mark:
+|styles.css | No errors |<details><summary>Screenshot of result</summary>![Result](documentation/validator/css/css-styles.png)</details>| :white_check_mark:
+|interview.css | No errors |<details><summary>Screenshot of result</summary>![Result](documentation/validator/css/css-interviews.png)</details>| :white_check_mark:
+|job_application.css | No errors |<details><summary>Screenshot of result</summary>![Result](documentation/validator/css/css-jobapplication.png)</details>| :white_check_mark:
 
 ## Acknowledgements
 

@@ -1,5 +1,5 @@
 import requests
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
 from django.db.models import Q, Count
 from django.utils import timezone
@@ -93,6 +93,28 @@ class JobFormView(View):
             job_data = response.json().get('results', [])
             return job_data
         return []
+
+
+@login_required
+def job_detail_view(request, job_id):
+    # Fetch the specific job by its ID
+    job = get_object_or_404(Job, id=job_id, user=request.user)
+
+    # If the request method is POST, it means we are trying to update the job
+    if request.method == 'POST':
+        job.title = request.POST.get('title')
+        job.company = request.POST.get('company')
+        job.category = request.POST.get('category')
+        job.date_applied = request.POST.get('date_applied')
+        job.status = request.POST.get('status')
+        job.save()  # Save the updated job to the database
+
+        # Redirect back to the job list after saving
+        return redirect('job_application')
+
+    # Render the job detail form with the existing job data
+    print(job.date_applied)
+    return render(request, 'job_application/job_application.html', {'job': job})
 
 
 @login_required

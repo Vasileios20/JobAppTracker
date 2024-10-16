@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+Job Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <!-- Left Side: Add Application Form -->
+        <div class="col-md-6 mb-4">
+            <h3>Add a Job Application</h3>
+            {{ job.location }}
+            <div class="job-details">
+                <h4>Job Details</h4>
+                <p><strong>Title:</strong> {{ job.title }}</p>
+                <p><strong>Company:</strong> {{ job.company }}</p>
+                <p><strong>Location:</strong> {{ job.location }}</p>
+                <p><strong>Status:</strong> {{ job.status }}</p>
+                <p><strong>Date Created:</strong> {{ job.date_applied }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -21,11 +21,12 @@
         </form>
     </div>
     <div class="jd-table-container">
-        <h2>Your Applications
-            <div class="jd-actions">
-                <a href="{% url 'job_form' %}" class="jd-button">Add Job</a>
-            </div>
-        </h2>
+        <div class="jd-header">
+            <h2>Your Applications</h2>
+            <a href="{% url 'job_form' %}" class="jd-button jd-add">Add Job</a>
+        </div>
+    </div>
+    
         <table class="jd-table">
             <thead>
                 <tr>

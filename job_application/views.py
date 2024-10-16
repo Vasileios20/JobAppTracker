@@ -109,7 +109,18 @@ def job_detail_view(request, job_id):
     job = get_object_or_404(Job, id=job_id, user=request.user)
     notes = job.notes.all()
 
-    # If the request method is POST, it means we are trying to update the job
+    context = {
+        'job': job,
+        'notes': notes
+    }
+
+    # Render the job detail form with the existing job data
+    return render(request, 'job_application/job_application.html', context)
+
+
+@login_required
+def update_job_view(request, job_id):
+    job = get_object_or_404(Job, id=job_id, user=request.user)
     if request.method == 'POST':
         job.title = request.POST.get('title')
         job.company = request.POST.get('company')
@@ -118,17 +129,11 @@ def job_detail_view(request, job_id):
         job.date_applied = request.POST.get('date_applied')
         job.status = request.POST.get('status')
         job.save()  # Save the updated job to the database
-
         # Redirect back to the job list after saving
         return redirect('job_application')
-
-    context = {
-        'job': job,
-        'notes': notes
-    }
-
-    # Render the job detail form with the existing job data
-    return render(request, 'job_application/job_application.html', context)
+    else:
+        # If the request method is GET, render the update form with the existing job data
+        return render(request, 'job_application/update_job.html', {'job': job})
 
 
 @login_required
@@ -245,7 +250,8 @@ def statistics_view(request):
     ).order_by('date')
 
     # Ensure all dates in the range have a data point
-    all_dates = {(start_date + timedelta(days=i)).isoformat(): 0 for i in range((timezone.now().date() - start_date).days + 1)}
+    all_dates = {(start_date + timedelta(days=i)).isoformat()
+                  : 0 for i in range((timezone.now().date() - start_date).days + 1)}
     for item in trend_data:
         all_dates[item['date'].isoformat()] = item['count']
     trend_data = [{'date': date, 'count': count}

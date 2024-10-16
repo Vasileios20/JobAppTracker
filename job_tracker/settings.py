@@ -40,7 +40,7 @@ ALLOWED_HOSTS = [
     '8000-vasileios20-jobapptrack-6lu7eot9vyv.ws-eu116.gitpod.io',
     '8000-vasileios20-jobapptrack-jdhekqqlmug.ws.codeinstitute-ide.net',
     '8000-vasileios20-jobapptrack-xsq6cepinzr.ws.codeinstitute-ide.net',
-    '8000-trxdave-jobapptracker-5hwx1suqe4e.ws-eu116.gitpod.io',
+    '8000-vasileios20-jobapptrack-5621qkea7ar.ws-us116.gitpod.io',
     '8000-vasileios20-jobapptrack-akj1o3fuxmu.ws-eu116.gitpod.io'
 
 ]
@@ -75,12 +75,11 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 CSRF_TRUSTED_ORIGINS = [
     'https://www.8000-vasileios20-jobapptrack-llbcz1jmbfv.ws.codeinstitute-ide.net',
-    'https://www.8000-trxdave-jobapptracker-txg6sp6ytqh.ws-eu116.gitpod.io',
+    'https://8000-vasileios20-jobapptrack-5621qkea7ar.ws-us116.gitpod.io',
     'https://www.8000-vasileios20-jobapptrack-6lu7eot9vyv.ws-eu116.gitpod.io',
     'https://8000-vasileios20-jobapptrack-xsq6cepinzr.ws.codeinstitute-ide.net',
     'https://8000-vasileios20-jobapptrack-6lu7eot9vyv.ws-eu116.gitpod.io',
     'https://8000-vasileios20-jobapptrack-akj1o3fuxmu.ws-eu116.gitpod.io/',
-    os.environ.get("ORIGIN"),
     'https://8000-vasileios20-jobapptrack-mj4cdfx0pfc.ws-eu116.gitpod.io',
     'https://8000-vasileios20-jobapptrack-akj1o3fuxmu.ws-eu116.gitpod.io',
 ]

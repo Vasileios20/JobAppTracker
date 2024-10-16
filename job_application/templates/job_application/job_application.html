@@ -34,6 +34,7 @@ Job Dashboard
                 {% endif %}
             </li>
             <a href="{% url 'update_note' note.id %}">Edit</a>
+            <a href="{% url 'delete_note' note.id %}">Delete</a>
             {% endfor %}
         </ul>
 

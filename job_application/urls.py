@@ -12,4 +12,6 @@ urlpatterns = [
     path('job/<int:job_id>/add_note/', views.add_note_view, name='add_note'),
     path('note/<int:note_id>/update/',
          views.update_note_view, name='update_note'),
+    path('note/<int:note_id>/delete/',
+         views.delete_note_view, name='delete_note'),
 ]

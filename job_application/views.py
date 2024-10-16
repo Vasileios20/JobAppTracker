@@ -154,6 +154,12 @@ def update_note_view(request, note_id):
     return render(request, 'update_note.html', {'form': form, 'note': note})
 
 @login_required
+def delete_note_view(request, note_id):
+    note = get_object_or_404(Note, id=note_id, job__user=request.user)
+    note.delete()
+    return redirect('job_detail', job_id=note.job.id)
+
+@login_required
 def get_job_titles(request):
     category = request.GET.get('category')
     if category:

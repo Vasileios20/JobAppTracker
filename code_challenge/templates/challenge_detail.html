@@ -1,32 +1,33 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
-    <h1>{{ challenge.title }}</h1>
-    <p>{{ challenge.content|safe }}</p>
-    
-    <h3>Example Testcases:</h3>
-    <pre>{{ challenge.exampleTestcases }}</pre>
+<div class="cc-container">
+    <h1 class="cc-title">{{ challenge.title }}</h1>
+    <div class="cc-content">
+        <p>{{ challenge.content|safe }}</p>
+        
+        <h3>Example Testcases:</h3>
+        <pre>{{ challenge.exampleTestcases }}</pre>
+    </div>
 
-
-    <form method="post" action="{% url 'submit_solution' %}">
+    <form method="post" action="{% url 'submit_solution' %}" class="cc-content">
         {% csrf_token %}
-        <div class="form-group">
-            <label for="language">Language</label>
-            <select name="language" class="form-control">
+        <div class="cc-form-group">
+            <label for="language" class="cc-label">Language</label>
+            <select name="language" class="cc-select">
                 <option value="python">Python</option>
                 <option value="javascript">JavaScript</option>
                 <option value="cpp">C++</option>
             </select>
         </div>
 
-        <div class="form-group">
-            <label for="source_code">Your Solution</label>
-            <textarea name="source_code" class="form-control" rows="10" required></textarea>
+        <div class="cc-form-group">
+            <label for="source_code" class="cc-label">Your Solution</label>
+            <textarea name="source_code" class="cc-textarea" rows="10" required></textarea>
         </div>
 
         <input type="hidden" name="expected_output" value="{{ challenge.expected_output }}" />
-        <button type="submit" class="btn btn-primary">Submit Solution</button>
+        <button type="submit" class="cc-button">Submit Solution</button>
     </form>
 </div>
 {% endblock %}

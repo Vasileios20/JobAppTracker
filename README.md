@@ -6,6 +6,7 @@
 Welcome to Git Hired, your new best friend in the job application jungle. Born in the crucible of the Elevate Hackathon, Git Hired is here to turn your job search from a chaotic mess into a well-oiled machine. (We can't guarantee you'll get hired, but at least you'll know where you applied!)
 
 ## Table of Contents
+- [User Stories](#user-stories)
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -13,6 +14,14 @@ Welcome to Git Hired, your new best friend in the job application jungle. Born i
 - [Contributing](#contributing)
 - [The Dream Team](#the-dream-team)
 - [License](#license)
+- [Entity Relationship Diagram (ERD) Design](#entity-relationship-diagram-erd-design)
+- [Wireframes](#wireframes)
+- [Performance](#performance)
+- [Technologies Used](#technologies-used)
+- [Code Validation](#code-validation)
+- [CSS Validation](#css-validation)
+- [Acknowledgements](#acknowledgements)
+
 
 # User Stories
 
@@ -151,7 +160,7 @@ The Git Hired website was assessed with Google Lighthouse via Google Chrome Deve
 
 | **Tested** | **Performance Score** | **View Result** | **Pass** |
 --- | --- | --- | :---:
-|index| 95 / 100 | <details><summary>Screenshot of result</summary>![Result]()</details> | :white_check_mark:
+|homepage| 100 / 100 | <details><summary>Screenshot of result</summary>![Result](documentation/images/homepage.jpg)</details> | :white_check_mark:
 |about| 85 / 100 | <details><summary>Screenshot of result</summary>![Result]()</details> | :white_check_mark:
 |Job Application| 99 / 100 | <details><summary>Screenshot of result</summary>![Result]()</details> | :white_check_mark:
 |Practice| 74 / 100 | <details><summary>Screenshot of result</summary>![Result]()</details> | :white_check_mark:
@@ -162,12 +171,30 @@ The Git Hired website was assessed with Google Lighthouse via Google Chrome Deve
 
 | **Tested** | **Performance Score** | **View Result** | **Pass** |
 --- | --- | --- | :---:
-|index| 95 / 100 | <details><summary>Screenshot of result</summary>![Result]()</details> | :white_check_mark:
+|homepage| 95 / 100 | <details><summary>Screenshot of result</summary>![Result]()</details> | :white_check_mark:
 |about| 85 / 100 | <details><summary>Screenshot of result</summary>![Result]()</details> | :white_check_mark:
 |Job Application| 99 / 100 | <details><summary>Screenshot of result</summary>![Result]()</details> | :white_check_mark:
 |Practice| 74 / 100 | <details><summary>Screenshot of result</summary>![Result]()</details> | :white_check_mark:
 
-[Return to Table of Contents](#table-of-contents)
+## Technologies Used
+
+### Languages
+
+- <strong>HTML:</strong> Used for structuring the content on the web pages. It forms the backbone of the project, ensuring that all elements are correctly placed and accessible.
+
+- <strong>CSS:</strong> Used for styling the HTML elements, providing the visual appearance and layout of the web pages. CSS ensures the platform is visually appealing and user-friendly.
+
+- <strong>JavaScript: </strong>Adds interactivity and dynamic behavior to the web pages. It enhances the user experience by allowing for real-time updates, form validations, and interactive elements.
+
+- <strong>Python:</strong> a primary programming language for the backend of the project. It is used in conjunction with the Django framework to handle server-side logic, data processing, and integration with the database.
+
+### Frameworks
+
+- <strong>Django:</strong> A high-level Python web framework that encourages rapid development and clean, pragmatic design. It provides robust features for building the backend, including user authentication, URL routing, and database management, ensuring a scalable and secure web application.
+
+### Supporting Libraries and Packages
+
+- <strong>Bootstrap:</strong> As a popular CSS framework that helps in designing responsive and mobile-first web pages, we used it to ensure the directory is accessible and visually consistent across different devices and screen sizes.
 
 ## Code Validation
 
@@ -195,4 +222,5 @@ ll pages were validated, and the code was pasted in. A filter was applied to rem
 [David Cotter](https://github.com/trxdave)<br>
 [Erin Doyle](https://github.com/erinvdoyle)<br>
 [Kim Halon](https://github.com/kimatron)<br>
-[Vasilis](https://github.com/Vasileios20)
+[Marlon Mandaya](https://github.com/Markpm-code)<br>
+[Vasilis Tsimourdagkas](https://github.com/Vasileios20)

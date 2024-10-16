@@ -1,5 +1,6 @@
 import requests
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
 from django.conf import settings
 from django.db.models import Q, Count
 from django.utils import timezone
@@ -73,11 +74,16 @@ class JobFormView(View):
 
     def fetch_categories(self):
         # Fetch job categories from Adzuna API
-        url = f"http://api.adzuna.com/v1/api/jobs/gb/categories?app_id={ADZUNA_APP_ID}&app_key={ADZUNA_APP_KEY}"
-        response = requests.get(url)
+        url = (
+            f"http://api.adzuna.com/v1/api/jobs/gb/categories"
+            f"?app_id={ADZUNA_APP_ID}&app_key={ADZUNA_APP_KEY}"
+        )
+        response = requests.get(
+            url
+        )
         if response.status_code == 200:
             categories_data = response.json().get('results', [])
-            # Each category has 'tag' (for API queries) and 'label' (for display)
+            # Each category has 'tag' (for API queries) and 'label' for display
             categories = [{'tag': category['tag'], 'label': category['label']}
                           for category in categories_data]
             return categories
@@ -103,7 +109,18 @@ def job_detail_view(request, job_id):
     job = get_object_or_404(Job, id=job_id, user=request.user)
     notes = job.notes.all()
 
-    # If the request method is POST, it means we are trying to update the job
+    context = {
+        'job': job,
+        'notes': notes
+    }
+
+    # Render the job detail form with the existing job data
+    return render(request, 'job_application/job_application.html', context)
+
+
+@login_required
+def update_job_view(request, job_id):
+    job = get_object_or_404(Job, id=job_id, user=request.user)
     if request.method == 'POST':
         job.title = request.POST.get('title')
         job.company = request.POST.get('company')
@@ -112,17 +129,18 @@ def job_detail_view(request, job_id):
         job.date_applied = request.POST.get('date_applied')
         job.status = request.POST.get('status')
         job.save()  # Save the updated job to the database
-
         # Redirect back to the job list after saving
         return redirect('job_application')
+    else:
+        # If the request method is GET, render the update form with the existing job data
+        return render(request, 'job_application/update_job.html', {'job': job})
 
-    context = {
-        'job': job,
-        'notes': notes
-    }
 
-    # Render the job detail form with the existing job data
-    return render(request, 'job_application/job_application.html', context)
+@login_required
+def delete_job_view(request, job_id):
+    job = get_object_or_404(Job, id=job_id, user=request.user)
+    job.delete()
+    return redirect(reverse('job_application'))
 
 
 @login_required
@@ -156,11 +174,13 @@ def update_note_view(request, note_id):
 
     return render(request, 'update_note.html', {'form': form, 'note': note})
 
+
 @login_required
 def delete_note_view(request, note_id):
     note = get_object_or_404(Note, id=note_id, job__user=request.user)
     note.delete()
     return redirect('job_detail', job_id=note.job.id)
+
 
 @login_required
 def get_job_titles(request):
@@ -352,7 +372,7 @@ def statistics_view(request):
         {'action': 'Complete a mock interview', 'xp': 15},
     ]
 
-      # Funnel Data
+    # Funnel Data
     funnel_data = {
         'applied': total_applications,
         'reviewed': all_applications.exclude(status='Applied').count(),
@@ -367,7 +387,8 @@ def statistics_view(request):
     }
 
     # Job Search Timeline
-    timeline_data = all_applications.order_by('date_applied').values('date_applied', 'company', 'status')
+    timeline_data = all_applications.order_by(
+        'date_applied').values('date_applied', 'company', 'status')
     job_search_events = [
         {
             'date': item['date_applied'].strftime('%Y-%m-%d'),

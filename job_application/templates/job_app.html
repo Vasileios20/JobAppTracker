@@ -1,61 +1,55 @@
 {% extends "base.html" %}
-
 {% load static %}
 
-{% block title %}
-Job Dashboard
-{% endblock %}
+{% block title %}Job Dashboard{% endblock %}
 
 {% block content %}
-<div class="container my-5 fluid">
-    <div class="row">
-        <div class="d-flex">
-            <a href="{% url 'job_form' %}" class="btn ms-auto start-tracking">Add job</a>
-        </div>
-        <div class="row w-100">
-            <div class="col-md-6 mx-auto">
-                <h3>Search for Applications</h3>
-                <form action="/job/filter/" method="GET" class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
-                        name="query">
-                    <button class="start-tracking" type="submit">Search</button>
-                </form>
-            </div>
+<div class="jd-container">
+    <h1 class="jd-title">Job Dashboard</h1>
+    
+    <div class="jd-actions">
+        <a href="{% url 'job_form' %}" class="jd-button">Add Job</a>
+    </div>
 
-            <div class="col-12 mx-auto">
-                <h3>Your Applications</h3>
-                <table class="table table-hover table-bordered">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>Date Applied</th>
-                            <th>Company</th>
-                            <th>Job Title</th>
-                            <th>Location</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="application-list">
-                        {% for application in applications %}
-                        <tr data-href="{% url 'job_detail' application.id %}">
-                            <td>{{ application.date_applied }}</td>
-                            <td>{{ application.company }}</td>
-                            <td>{{ application.title }}</td>
-                            <td>{{ application.location }}</td>
-                            <td>{{ application.status }}</td>
-                        </tr>
-                        {% empty %}
-                        <tr>
-                            <td colspan="5" class="text-center">No applications found.</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
+    <div class="jd-search-container">
+        <h2>Search Applications</h2>
+        <form action="/job/filter/" method="GET" class="jd-search-form">
+            <input class="jd-search-input" type="search" placeholder="Search for applications..." aria-label="Search" name="query">
+            <button class="jd-button" type="submit">Search</button>
+        </form>
+    </div>
+
+    <div class="jd-table-container">
+        <h2>Your Applications</h2>
+        <table class="jd-table">
+            <thead>
+                <tr>
+                    <th>Date Applied</th>
+                    <th>Company</th>
+                    <th>Job Title</th>
+                    <th>Location</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="application-list">
+                {% for application in applications %}
+                <tr data-href="{% url 'job_detail' application.id %}">
+                    <td>{{ application.date_applied }}</td>
+                    <td>{{ application.company }}</td>
+                    <td>{{ application.title }}</td>
+                    <td>{{ application.location }}</td>
+                    <td>{{ application.status }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center">No applications found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </div>
 
-<!-- Link the external JavaScript file for job title search -->
 <script src="{% static 'js/job_search.js' %}"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -67,6 +61,4 @@ Job Dashboard
         });
     });
 </script>
-
-
 {% endblock %}

@@ -1,0 +1,251 @@
+/* Job Application Dashboard Styles */
+
+.jad-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.jad-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(0, 209, 206, 0.5);
+}
+
+.jad-form-container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.jad-form-group {
+    margin-bottom: 20px;
+}
+
+.jad-label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--light-text);
+    font-weight: bold;
+}
+
+.jad-input,
+.jad-select {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--light-text);
+    transition: all 0.3s ease;
+}
+
+.jad-input:focus,
+.jad-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 209, 206, 0.2);
+}
+
+.jad-button {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.jad-button-primary {
+    background: var(--gradient);
+    color: white;
+}
+
+.jad-button-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 209, 206, 0.4);
+}
+
+/* Add some tech-edge animations */
+@keyframes glow {
+    0% { box-shadow: 0 0 5px rgba(0, 209, 206, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(0, 209, 206, 0.5); }
+    100% { box-shadow: 0 0 5px rgba(0, 209, 206, 0.5); }
+}
+
+.jad-input:focus,
+.jad-select:focus {
+    animation: glow 1.5s infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .jad-container {
+        padding: 20px 10px;
+    }
+
+    .jad-form-container {
+        padding: 20px;
+    }
+}
+
+.jad-input,
+.jad-select {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--light-text);
+    transition: all 0.3s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, var(--primary-color) 50%),
+                      linear-gradient(135deg, var(--primary-color) 50%, transparent 50%);
+    background-position: calc(100% - 20px) calc(1em + 2px),
+                         calc(100% - 15px) calc(1em + 2px);
+    background-size: 5px 5px,
+                     5px 5px;
+    background-repeat: no-repeat;
+}
+
+.jad-input[type="date"] {
+    position: relative;
+}
+
+.jad-input[type="date"]::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
+
+.jad-input[type="date"]::before {
+    content: "\f073";
+    font-family: "Font Awesome 5 Free";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-color);
+}
+
+/* Job Dashboard Styles */
+.jd-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.jd-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(0, 209, 206, 0.5);
+}
+
+.jd-button {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: var(--gradient);
+    color: white;
+    text-decoration: none;
+}
+
+.jd-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 209, 206, 0.4);
+}
+
+.jd-search-container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.jd-search-input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--light-text);
+    transition: all 0.3s ease;
+}
+
+.jd-search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 209, 206, 0.2);
+}
+
+.jd-table-container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.jd-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.jd-table th {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--primary-color);
+    font-weight: bold;
+    padding: 15px;
+    text-align: left;
+}
+
+.jd-table td {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    transition: all 0.3s ease;
+}
+
+.jd-table tr:hover td {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 209, 206, 0.2);
+}
+
+@media (max-width: 768px) {
+    .jd-container {
+        padding: 20px 10px;
+    }
+
+    .jd-search-container,
+    .jd-table-container {
+        padding: 20px;
+    }
+}
+

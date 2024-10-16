@@ -97,32 +97,32 @@ Meet the caffeinated coders behind Git Hired:
 ### Vasi "The Visionary" 👁️
 - Frontend Maestro
 - Turns caffeine into pixel-perfect UIs
-- [GitHub](https://github.com/vasi) | [LinkedIn](https://linkedin.com/in/vasi)
+- [GitHub](https://github.com/Vasileios20) | [LinkedIn](https://www.linkedin.com/in/vasileios-tsimourdagkas/)
 
 ### Erin "The Energizer" ⚡
 - Full Stack Dynamo
 - Codes faster than the speed of light (almost)
-- [GitHub](https://github.com/erin) | [LinkedIn](https://linkedin.com/in/erin)
+- [GitHub](https://github.com/erinvdoyle) | [LinkedIn](https://www.linkedin.com/in/erinvdoyle)
 
 ### David "The Debugger" 🐛
 - Backend Sorcerer
 - Can smell a bug from a mile away
-- [GitHub](https://github.com/david) | [LinkedIn](https://linkedin.com/in/david)
+- [GitHub](https://github.com/trxdave) | [LinkedIn](www.linkedin.com/in/david-cotter-junior-software-developer)
 
 ### Ciaran "The Connector" 🔗
 - API Alchemist
 - Connects dots and databases with equal ease
-- [GitHub](https://github.com/ciaran) | [LinkedIn](https://linkedin.com/in/ciaran)
+- [GitHub](https://github.com/ciarangriffin93) | [LinkedIn](https://www.linkedin.com/in/ciaran-griffin-2534622a5/)
 
 ### Marlon "The Mastermind" 🧠
 - Architecture Aficionado
 - Builds systems that even Skynet would envy
-- [GitHub](https://github.com/marlon) | [LinkedIn](https://linkedin.com/in/marlon)
+- [GitHub](https://github.com/Markpm-code) | [LinkedIn](https://www.linkedin.com/in/marlon-mandaya-544172234/)
 
 ### Kim "The Kode Whisperer" 🤫
 - UX/UI Enchanter
 - Makes our app look prettier than your Instagram feed
-- [GitHub](https://github.com/kim) | [LinkedIn](https://linkedin.com/in/kim)
+- [GitHub](https://github.com/kimatron) | [LinkedIn](https://www.linkedin.com/in/kimhanlon291354/)
 
 ## License
 
@@ -133,6 +133,19 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 Remember, in the world of job hunting, it's not about the destination, it's about the journey. And with Git Hired, at least that journey will be well-documented! Happy job hunting! 🎉
 
 ## Entity-Relationship Diagram (ERD) Design
+
+This ERD outlines the database schema for the Git Hired application. It includes three main models: Job, Goal, and Note, each associated with the User model.
+
+Job: Represents job applications, including details such as the category, company, title, location, application status, and the date applied.
+Goal: Tracks user-defined career goals.
+Note: Allows users to add notes related to specific job applications, with timestamps for creation and updates.
+
+The relationships between the models are defined as follows:
+
+A User can have multiple Jobs and Goals.
+Each Job can have multiple associated Notes.
+
+![alt text](documentation/ERD/githired-erd.jpg)
 
 ### Wireframes
 

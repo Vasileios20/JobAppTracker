@@ -650,6 +650,14 @@ body {
         width:fit-content;
     }
 
+    .feature-column > p {
+        text-align: justify;
+    }
+
+    .feature-column > h4 {
+        text-shadow:  0 4px 20px #00d1ce;
+    }
+
     .hero {
         width: 80%;
         height: auto;

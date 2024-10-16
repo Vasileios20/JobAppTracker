@@ -55,6 +55,7 @@ class JobFormView(View):
         job_title = request.POST.get('title')
         company_name = request.POST.get('company')
         category = request.POST.get('category')
+        location = request.POST.get('location')
         date_applied = request.POST.get('date_applied')
         status = request.POST.get('status')
 
@@ -63,6 +64,7 @@ class JobFormView(View):
             title=job_title,
             company=company_name,
             category=category,
+            location=location,
             date_applied=date_applied,
             status=status,
             user=request.user
@@ -106,6 +108,7 @@ def job_detail_view(request, job_id):
         job.title = request.POST.get('title')
         job.company = request.POST.get('company')
         job.category = request.POST.get('category')
+        job.location = request.POST.get('location')
         job.date_applied = request.POST.get('date_applied')
         job.status = request.POST.get('status')
         job.save()  # Save the updated job to the database

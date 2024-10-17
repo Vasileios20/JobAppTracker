@@ -160,13 +160,23 @@ Each Job can have multiple associated Notes.
 #### Desktop:
 <details>
 
-![Desktop Home page]()
+![Desktop Home page](/docs/images/home-page-1.png)
 
-![Desktop About page]()
+![Desktop Hoome page](/docs/images/home-page-2.png)
 
-![Desktop Job Application page]()
+![Desktop Hoome page](/docs/images/home-page-3.png)
 
-![Desktop Practice Interview page]()
+![Desktop Hoome page](/docs/images/home-page-4.png)
+
+![Desktop About page](/docs/images/about-page-1.png)
+
+![Desktop Job Form page](/docs/images/job-form-page.png)
+
+![Desktop Job page](/docs/images/job-page-1.png)
+
+![Desktop Statistics page](/docs/images/statistics-page-1.png)
+
+![Desktop Statistics page](/docs/images/statistics-page-2.png)
 
 </details>
 

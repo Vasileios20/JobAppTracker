@@ -1,9 +1,16 @@
+<div align="center">
+  <h1 align="center"><strong> ResuMates </strong></h1>
+  <div> This project was made as an entry to <strong>Elevate</strong>-Hackathon, October 2024 organized by <img width="50"src="https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png"/> </div>
+
+<img align="center" src="documentation/images/elevate.jpeg" alt="ResuMates" width="800" />
 
 # Git Hired 🚀
 
 ## Because your job hunt shouldn't feel like searching for a needle in a digital haystack!
 
 Welcome to Git Hired, your new best friend in the job application jungle. Born in the crucible of the Elevate Hackathon, Git Hired is here to turn your job search from a chaotic mess into a well-oiled machine. (We can't guarantee you'll get hired, but at least you'll know where you applied!)
+
+The project is deployed and can be accessed at: https://jobtracker-team4-b6fdc54fc148.herokuapp.com/
 
 ## Table of Contents
 - [User Stories](#user-stories)

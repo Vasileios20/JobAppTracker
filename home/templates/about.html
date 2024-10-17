@@ -7,52 +7,47 @@
 {% block content %}
 
 
-<div class="how-it-works-section p-3">
-    <h1>About GitHired, the Job Tracker and Code Challenge Platform</h1>
-    <p>Welcome to <strong>GitHired</strong>, where we help you fork your job search and merge it with success! Whether you're actively pushing out applications or just committing time to refine your coding skills, GitHired is your all-in-one solution to stay organized, sharpen your technical chops, and prepare for interviews. Think of us as the GitHub of your career—except instead of repositories, you’re tracking job applications (though we fully support you branching out!).</p>
+<div class="stats-container">
+    <h1 class="stats-title">Where Your Career Commits Meet Opportunity Pushes</h1>
+    <div class="level-card">
+    <p><h3 class="about-h3"><span class="about-span">Welcome to <strong>GitHired,</strong></span></h3></p> 
+        <h3 class="about-h3b">we help you fork your job search and merge it with success!</span></h3><p class="about-p"><i>Whether you're actively pushing out applications or just committing time to refine your coding skills, GitHired is your all-in-one solution to stay organized, sharpen your technical chops, and prepare for interviews. Think of us as the GitHub of your career—except instead of repositories, you’re tracking job applications (though we fully support you branching out!).</i></p>
+    </div>
 
-    <h2>Features</h2>
-
-    <h3>Job Application Tracker</h3>
-    <p>No more job search spaghetti code! Our platform includes a comprehensive tracking tool to keep your job hunt organized and bug-free:</p>
-    <ul>
-        <li><strong>Track job applications</strong>: Keep a clean commit history of all your applications—job title, company, date applied, and status (because job hunting shouldn't be a mystery branch!).</li>
-        <li><strong>Organize your search</strong>: Categorize by job type, industry, or even what stage you’re in (pending pull request a.k.a. interview?).</li>
-        <li><strong>Monitor performance</strong>: Visualize success and response rates with dashboards, because who doesn't love a little data visualization? Bonus: unlock achievements along the way.</li>
-        <li><strong>Set goals and streaks</strong>: Keep your job search productive with streaks and built-in milestones. It’s like version control for your motivation!</li>
+<div class="about-div">  
+    <h1 class="abt-h1">Features</h1>
+    <ul class="abt-ul">
+        <li style="--accent-color:#41516C">
+            <div class="date">Application Tracker</div>
+            <div class="title">No more job search spaghetti code! Keep your job hunt organized and bug-free</div>
+            <div class="descr"><strong class="text-bold">Track job applications</strong> and<bold> keep</bold> a clean commit history of all your applications<br>
+                <strong>Organize your search</strong>
+                <br><br>
+                <strong>
+                    Monitor performance</strong> with data visualization to see your success and response rates<br><strong>goals and streaks</strong> to keep your search productive with streaks and built-in milestones</div>
+        </li>
+        <li style="--accent-color:#FBCA3E">
+            <div class="date">Code Challenges</div>
+            <div class="title">Polish your coding skills with our LeetCode-style challenges</div>
+            <div class="descr">Real-world problem-solving: Face code challenges based on real scenarios, not just another "FizzBuzz"<br> Language Support: Choose from a range of languages<br> Gemini AI feedback: Submit your code and let Gemnini give you a review<br> Hybrid evaluation system (coming soon!): Get both AI and human code reviews</div>
+        </li>
+        <li style="--accent-color:#E24A68">
+            <div class="date">Interview Preparation</div>
+            <div class="title">Ace that technical interview like a well-structured algorithm</div>
+            <div class="descr">AI-powered interview practice: Simulate realistic interview questions<br>Track Progress: Keep tabs on how you're improving-- because success isn't just about getting the job; it's about growth</div>
+        </li>
+        <li style="--accent-color:#1B5F8C">
+            <div class="date">Our Mission</div>
+            <div class="title">We want to pull success into your main branch</div>
+            <div class="descr">By combining job tracking, coding practice, and interview preparation, we provide a platform that makes the job search process less daunting and a little more fun—because we know job hunting can sometimes feel like an infinite loop</div>
+        </li>
+        <li style="--accent-color:#4CADAD">
+            <div class="date">Future Plans</div>
+            <div class="title">Here's what we've got coming up in our next release</div>
+            <div class="descr">Enhanced coding challenge evaluation: AI and human-reviewed feedback<br>Job suggestions: Personalized recommendations based on your skills and history-- like auto-complete for your career<br>Gamification: Earn point, badges, and other rewards for tracking applications and completing coding challenges</div>
+        </li>
     </ul>
-
-    <h3>Code Challenges</h3>
-    <p>Polish your coding skills before your next pull request (a.k.a. interview). Our platform offers a collection of LeetCode-style challenges to help you level up:</p>
-    <ul>
-        <li><strong>Real-world problem-solving</strong>: Face coding challenges based on real scenarios, not just another “FizzBuzz.”</li>
-        <li><strong>Language support</strong>: Choose from a range of languages—Python, JavaScript, C++, and more. Pick your weapon of choice.</li>
-        <li><strong>Gemini AI feedback</strong>: Submit your code and let our AI give you a review (like getting a pull request review, but with less snark). Find out what’s working and what needs refactoring.</li>
-        <li><strong>Hybrid evaluation system (coming soon)</strong>: Soon, you’ll get both AI and human code reviews, because sometimes even your AI could use a code buddy!</li>
-    </ul>
-
-    <h3>Interview Preparation</h3>
-    <p>Get ready to ace that technical interview like a well-structured algorithm:</p>
-    <ul>
-        <li><strong>AI-powered interview practice</strong>: Simulate realistic interviews with AI-driven questions. No interviewer judgment if you need a second to Google (just kidding, no Googling allowed!).</li>
-        <li><strong>Code challenges</strong>: Practice questions similar to those found in actual technical interviews, so you’re always prepared when the whiteboard comes calling.</li>
-        <li><strong>Track progress</strong>: Keep tabs on how you’re improving—because success isn’t just about getting the job; it’s about growth. Version 2.0 of you is looking pretty good!</li>
-    </ul>
-
-    <h2>Our Mission</h2>
-    <p>Our mission is simple: to help you pull success into your main branch. By combining job tracking, coding practice, and interview preparation, we provide a platform that makes the job search process less daunting and a little more fun—because we know job hunting can sometimes feel like an infinite loop.</p>
-
-    <h2>Future Plans</h2>
-    <p>We’re always iterating and building new features. Here’s what we’ve got coming up in our next release:</p>
-    <ul>
-        <li><strong>Enhanced coding challenge evaluation</strong>: AI and human-reviewed feedback to ensure your code gets the attention it deserves (no merge conflicts here).</li>
-        <li><strong>Job suggestions</strong>: Personalized job recommendations based on your skills and history. It’s like auto-complete, but for your career!</li>
-        <li><strong>Gamification</strong>: Earn points, badges, and other fun rewards for tracking applications and completing coding challenges. Because why shouldn’t job hunting be as rewarding as leveling up in your favorite game?</li>
-    </ul>
-
-    <p>Thank you for choosing <strong>GitHired</strong>! We’re excited to help you rebase your career, one successful application at a time.</p>
-</div>
-
+</div>     
 
 
 {% endblock %}

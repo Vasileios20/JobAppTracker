@@ -6,4 +6,8 @@ def index(request):
 
 
 def about(request):
-    return render(request, 'aboutUs.html')
+    return render(request, 'about.html')
+
+
+def team(request):
+    return render(request, 'team.html')

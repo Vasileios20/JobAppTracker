@@ -63,7 +63,8 @@ def submit_solution(request):
             f"Language: {language}\n\n"
             f"If there is Example test case:{example_test_case}\n"
             f"If there is The actual output is:\n{actual_output}\n\n"
-            f"Please compare the challenge prompt to source code and give feedback."
+            f"Please compare the challenge prompt to source code"
+            f"and give feedback."
         )
 
         try:

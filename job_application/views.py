@@ -359,8 +359,9 @@ def statistics_view(request):
 
     # Adjusted level calculation
     job_seeker_level = (total_xp // 100) + 1
-    next_level_points = job_seeker_level * 100
-    xp_to_next_level = next_level_points - total_xp
+    next_level_points = 100  # Always 100 XP to next level
+    experience_points = total_xp % 100  # XP progress towards next level
+    xp_to_next_level = next_level_points - experience_points
 
     # XP Gain Guide
     xp_gain_guide = [
@@ -406,8 +407,11 @@ def statistics_view(request):
         'success_rate': success_rate,
         'response_rate': response_rate,
         'job_seeker_level': job_seeker_level,
+        'job_seeker_level': job_seeker_level,
         'experience_points': experience_points,
         'next_level_points': next_level_points,
+        'xp_to_next_level': xp_to_next_level,
+        'total_xp': total_xp,
         'status_counts': status_counts,
         'trend_data': trend_data,
         'top_companies': top_companies,

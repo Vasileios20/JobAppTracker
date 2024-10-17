@@ -1634,3 +1634,33 @@ body.dark-mode {
         flex-direction: column;
     }
 }
+
+.pagination {
+    text-align: center;
+    margin: 50px 0;
+    font-size: 1.2rem;
+}
+
+.step-links {
+    display: inline-block;
+    padding: 0;
+    list-style: none;
+}
+
+.step-links a {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    margin: 0 2px;
+    text-decoration: none;
+}
+
+.step-links a:hover {
+    background-color: #f0f0f0;
+}
+
+.step-links .current {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    background-color: #f0f0f0;
+    color: #333;
+}

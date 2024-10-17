@@ -15,59 +15,22 @@
             <option value="cpp">C++</option>
             <!-- Add more languages as needed -->
         </select>
-        <button type="submit">Submit</button>
+        <button type="submit" class="btn glow-button">Submit</button>
     </form>
 
 </div>
 
-<div class="feedback-section {% if not evaluation_result and not ai_feedback %}d-none{% endif %}">
-    <h3>Feedback</h3>
+<div class="{% if not evaluation_result and not ai_feedback %}d-none{% endif %} pi-card pi-evaluation-card cc-container">
+    <h3 class="cc-title">Feedback</h3>
     {% if ai_feedback %}
-    <div class="feedback-section">
-        <h2>AI Feedback</h2>
+    <div class="cc-content">
         <p>{{ ai_feedback }}</p>
     </div>
     {% endif %}
 </div>
-
 <div class="cc-container">
-    <h1 class="cc-title">Code Challenge Submission</h1>
-
-    <form method="post" action="{% url 'submit_solution' %}" class="cc-content">
-        {% csrf_token %}
-        <div class="cc-form-group">
-            <label for="language" class="cc-label">Language</label>
-            <select name="language" class="cc-select">
-                <option value="python">Python</option>
-                <option value="javascript">JavaScript</option>
-                <option value="cpp">C++</option>
-            </select>
-        </div>
-
-        <div class="cc-form-group">
-            <label for="source_code" class="cc-label">Your Solution</label>
-            <textarea name="source_code" class="cc-textarea" rows="10" required></textarea>
-        </div>
-
-        <input type="hidden" name="expected_output" value="{{ expected_output }}" />
-
-        <button type="submit" class="cc-button">Submit Solution</button>
-    </form>
-
-    <div class="cc-feedback">
-        <h3>Feedback</h3>
-        {% if evaluation_result %}
-            <div class="cc-alert">
-                <p><strong>Language:</strong> {{ language }}</p>
-                <p><strong>Source Code:</strong></p>
-                <pre>{{ source_code }}</pre>
-                <p><strong>Expected Output:</strong> {{ expected_output }}</p>
-                <p><strong>Evaluation Result:</strong> {{ evaluation_result.status.description }}</p>
-                <p><strong>Passed:</strong> {{ passed }}</p>
-            </div>
-        {% else %}
-            <p>No feedback available yet.</p>
-        {% endif %}
-    </div>
+    <a href="{% url 'code_challenge' %}" class="btn glow-button">Back to Challenge List</a>
 </div>
+
+
 {% endblock %}

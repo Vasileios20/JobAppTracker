@@ -199,11 +199,13 @@ Each Job can have multiple associated Notes.
 
 ![Desktop Hoome page](/docs/images/home-page-2.png)
 
-![Desktop Hoome page](/docs/images/home-page-3.png)
+![Desktop Home page](/docs/images/home-page-3.png)
 
-![Desktop Hoome page](/docs/images/home-page-4.png)
+![Desktop Home page](/docs/images/home-page-4.png)
 
-![Desktop About page](/docs/images/about-page-1.png)
+![Desktop Team page](/docs/images/team-page.png)
+
+![Desktop About page](/docs/images/about-page.png)
 
 ![Desktop Job Form page](/docs/images/job-form-page.png)
 

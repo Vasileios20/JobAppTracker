@@ -1026,28 +1026,26 @@ body.dark-mode {
     box-shadow: 0px 0px 30px 1px #7f48cb;
   }
 
-  .card-1 {
-    background-image: url('../images/vas_pr.png');
+  .top {
+    border-radius: 25px 25px 0 0;
+    height: 100px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
   }
 
-  .card-2 {
-    background-image: url('../images/erin_pr.png');
+  .profile-card img {
+    margin: 20px 20px 0 10px;
   }
-
-  .card-3 {
-    background-image: url('../images/mar_pr.png');
-  }
-
-  .card-4 {
-    background-image: url('../images/david_pr.png');
-  }
-
-  .card-5 {
-    background-image: url('../images/kim_pr.png');
-  }
-
-  .card-6 {
-    background-image: url('../images/cair_pr.png');
+  
+  .circle-img {
+    border-radius: 50%;
+    border: 4px solid #FFFF;
+    box-shadow: 0px 0px 30px 1px #7f48cb;
+    width: 120px;
+    height: 120px;
   }
 
   .name-info {
@@ -1073,14 +1071,10 @@ body.dark-mode {
   }
 
   .bottom {
-    margin-top: 200px;
-    overflow-y: auto !important;
+    margin-top: 100px;
+    overflow-y: hidden;
     border-radius: 10px;
-    border-top:2px solid#FFFFFF;
-    background-color: #130e01;
-    opacity: 0.8;
-    opacity: 0.9;
-    height: 140px;
+    height: 240px;
   }
 
   .info {

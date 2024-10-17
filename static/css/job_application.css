@@ -354,6 +354,65 @@
     cursor: pointer;
 }
 
+/* Edit Application Styles */
+.danger {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: white;
+    text-decoration: none;
+    background-color: blueviolet !important;
+    border: none;
+}
+
+.ja-container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.ja-container strong {
+    color:rgb(0, 209, 206);
+}
+
+.ja-button-group {
+    text-align: center; /* Center-aligns all buttons inside this div */
+    margin: 40px 0 20px 0;   /* Optional: Adds some space above the buttons */
+}
+
+.ja-button {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 0 10px;   
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: var(--gradient);
+    color: white;
+    text-decoration: none;
+}
+
+.ja-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 209, 206, 0.4);
+}
+
+
+/* Media Queries */
+
 @media (max-width: 768px) {
     .jd-container {
         padding: 20px 10px;

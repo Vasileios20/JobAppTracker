@@ -1,7 +1,10 @@
 {% extends "base.html" %}
+
 {% load static %}
 
-{% block title %}Job Details Dashboard{% endblock %}
+{% block title %}
+Job Dashboard
+{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -28,6 +31,19 @@
                 {% endif %}
             </div>
 
+            {% else %}
+            <p>No job selected. Please add or select a job to view details.</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+
+        <h3 class="jd-title">Notes</h3>
+        <ul>
+            {% for note in notes %}
+            <li>{{ note.notes }} <small>(Added on {{ note.date_created }})</small>
+
+
             <div class="jd-notes-section">
                 <h2 class="jd-section-title">Notes</h2>
                 {% if notes %}
@@ -51,9 +67,22 @@
                 {% else %}
                     <p class="jd-no-notes">No notes added yet.</p>
                 {% endif %}
+
                 <a href="{% url 'add_note' job.id %}" class="jd-button jd-button-add">Add Note</a>
             </div>
         </div>
     </div>
+
+            </li>
+            <a href="{% url 'update_note' note.id %}">Edit</a>
+            <a href="{% url 'delete_note' note.id %}">Delete</a>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'add_note' job.id %}" class="jd-button">Add Note</a>
+    </div>
+
+
 </div>
+
 {% endblock %}

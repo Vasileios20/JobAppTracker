@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .leetcode_fetcher import LeetCodeChallengeFetcher
 from .code_evaluator import CodeEvaluator
 import google.generativeai as genai
+from django.core.paginator import Paginator
 import os
 
 API_KEY = os.getenv("GENAI_API_KEY")
@@ -12,10 +13,19 @@ def code_challenge_view(request):
     difficulty = request.GET.get('difficulty', 'easy')  # Default to easy
     fetcher = LeetCodeChallengeFetcher()
     challenges = fetcher.get_challenges(difficulty=difficulty)
+
+    # Implement pagination: 20 challenges per page
+    paginator = Paginator(challenges, 10)  # Show 20 challenges per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     return render(
         request,
         'challenge_list.html',
-        {'challenges': challenges, 'difficulty': difficulty}
+        {
+            'page_obj': page_obj,  # Pass paginated challenges
+            'difficulty': difficulty
+        }
     )
 
 

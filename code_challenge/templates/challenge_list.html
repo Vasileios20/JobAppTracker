@@ -2,29 +2,35 @@
 
 {% block content %}
 <div class="container">
-   <h1>Available Challenges (Difficulty: {{ difficulty }})</h1>
-   <form method="get" action="">
-      <label for="difficulty">Choose Difficulty:</label>
-      <select name="difficulty" id="difficulty">
-         <option value="easy" {% if difficulty == 'easy' %}selected{% endif %}>Easy</option>
-         <option value="medium" {% if difficulty == 'medium' %}selected{% endif %}>Medium</option>
-         <option value="hard" {% if difficulty == 'hard' %}selected{% endif %}>Hard</option>
-      </select>
-      <button type="submit">Filter</button>
-   </form>
-   <ul class="list-group">
-<div class="cc-container">
-   <h1 class="cc-title">Available Challenges (Difficulty: {{ difficulty }})</h1>
 
-   <ul class="cc-list">
-      {% for challenge in challenges %}
-      <li class="cc-list-item">
-         <a href="{% url 'challenge_detail' challenge.slug %}">
-            {{ challenge.title }}
-         </a>
-         <p>{{ challenge.description }}</p>
-      </li>
-      {% endfor %}
-   </ul>
-</div>
-{% endblock %}
+   <ul class="list-group">
+      <div class="cc-container">
+         <h1 class="cc-title">Available Challenges (Difficulty: {{ difficulty }})</h1>
+         <form method="get" action="" class="d-flex align-items-center">
+            <div class="jad-form-group w-50">
+               <label for="difficulty" class="jad-label">Choose Difficulty:</label>
+               <select name="difficulty" id="difficulty" class="jad-input">
+                  <option value="easy" {% if difficulty == 'easy' %}selected{% endif %}>Easy</option>
+                  <option value="medium" {% if difficulty == 'medium' %}selected{% endif %}>Medium</option>
+                  <option value="hard" {% if difficulty == 'hard' %}selected{% endif %}>Hard</option>
+               </select>
+
+            </div>
+            <div class="d-flex w-100">
+               <button type="submit" class="cta-button glow-button start-tracking ms-auto my-auto w-50 ">Filter</button>
+            </div>
+
+         </form>
+
+         <ul class="cc-list">
+            {% for challenge in challenges %}
+            <li class="cc-list-item">
+               <a href="{% url 'challenge_detail' challenge.slug %}">
+                  {{ challenge.title }}
+               </a>
+               <p>{{ challenge.description }}</p>
+            </li>
+            {% endfor %}
+         </ul>
+      </div>
+      {% endblock %}

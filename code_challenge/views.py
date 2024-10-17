@@ -1,6 +1,11 @@
 from django.shortcuts import render
 from .leetcode_fetcher import LeetCodeChallengeFetcher
 from .code_evaluator import CodeEvaluator
+import google.generativeai as genai
+import os
+
+API_KEY = os.getenv("GENAI_API_KEY")
+genai.configure(api_key=API_KEY)
 
 
 def code_challenge_view(request):
@@ -29,6 +34,8 @@ def submit_solution(request):
         source_code = request.POST.get('source_code')
         language = request.POST.get('language')  # e.g., 'python'
         expected_output = request.POST.get('expected_output')
+        challenge = request.POST.get('challenge')
+        example_test_case = request.POST.get('example_test_case')
 
         # Map language to the corresponding Judge0 ID (e.g., Python -> 71)
         language_map = {
@@ -43,19 +50,37 @@ def submit_solution(request):
         evaluation_result = evaluator.evaluate(
             source_code, language_id, expected_output)
 
+        actual_output = evaluation_result.get('stdout', '')
+        expected_output = expected_output.strip()
+
         # Check if the output matches the expected output
-        passed = evaluation_result['stdout'] == expected_output
+        passed = actual_output == expected_output
+
+        # Generate AI feedback based on the evaluation result
+        feedback_prompt = (
+            f"Here is the challenge prompt:\n{challenge}\n\n"
+            f"Here is the code:\n{source_code}\n\n"
+            f"Language: {language}\n\n"
+            f"If there is Example test case:{example_test_case}\n"
+            f"If there is The actual output is:\n{actual_output}\n\n"
+            f"Please compare the challenge prompt to source code and give feedback."
+        )
+
+        try:
+            feedback_response = genai.GenerativeModel(
+                "gemini-1.5-flash").generate_content(feedback_prompt)
+            feedback = feedback_response.text.strip().replace('*', '')
+        except Exception as e:
+            feedback = f"Error generating feedback: {e}"
+
         context = {
             'passed': passed,
             'source_code': source_code,
             'language': language,
             'expected_output': expected_output,
+            'actual_output': actual_output,
             'evaluation_result': evaluation_result,
+            'ai_feedback': feedback,  # Add AI feedback here
         }
-
-        # return JsonResponse({
-        #     'passed': passed,
-        #     'result': evaluation_result,
-        # })
-
+        return render(request, 'code_submission.html', context)
     return render(request, 'code_submission.html', context)

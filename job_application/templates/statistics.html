@@ -1,4 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% load static %} {% block title %}Your Job Search
+Journey{% endblock %} {% block content %}
+<div class="stats-container">
+  <h1 class="stats-title">Your Job Search Journey</h1>
+
 
 {% block title %}Job Application Statistics{% endblock %}
 
@@ -91,7 +95,30 @@
                 </div>
             </div>
         </div>
+
+  <div class="stats-section">
+    <h2>Your Current Level</h2>
+    <div class="level-card">
+      <div class="level-display">
+        <span class="level-number">{{ job_seeker_level }}</span>
+        <span class="level-title">Code Warrior</span>
+      </div>
+      <div class="progress-bar">
+        <div
+          class="progress"
+          style="width: {% widthratio experience_points next_level_points 100 %}%"
+        ></div>
+      </div>
+      <p>{{ experience_points }} / {{ next_level_points }} XP to next level</p>
+
     </div>
+    <p class="level-explanation">
+      Level up by applying to jobs, completing interviews, and achieving
+      milestones in your job search. Higher levels unlock new achievements and
+      quests!
+    </p>
+  </div>
+
 
     <div class="row mb-4">
         <div class="col-md-6 mb-3">
@@ -178,8 +205,31 @@
                     </div>
                 </div>
             </div>
+
+  <div class="stats-section">
+    <h2>Your Job Search Stats</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>Total Applications</h3>
+        <div class="stat-circle">
+          <span class="stat-number">{{ total_applications }}</span>
         </div>
+      </div>
+      <div class="stat-card">
+        <h3>Success Rate</h3>
+        <div class="stat-circle">
+          <span class="stat-number">{{ success_rate }}%</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <h3>Response Rate</h3>
+        <div class="stat-circle">
+          <span class="stat-number">{{ response_rate }}%</span>
+
+        </div>
+      </div>
     </div>
+
 </div>
 
 <style>
@@ -268,8 +318,135 @@
     }
     </style>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </div>
+
+  <div class="stats-section">
+    <h2>Application Insights</h2>
+    <div class="chart-grid">
+      <div class="chart-card">
+        <h3>Application Status</h3>
+        <canvas id="statusChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>Application Funnel</h3>
+        <canvas id="funnelChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="stats-section">
+      <h2>Your Job Search Timeline</h2>
+      <div id="jobSearchTimeline" class="timeline"></div>
+  </div> -->
+
+  <!-- <div class="stats-section">
+      <h2>Skills Progression</h2>
+      <div class="chart-card">
+          <canvas id="skillsChart"></canvas>
+      </div>
+  </div> -->
+
+  <!-- <div class="stats-section">
+      <h2>Job Search Map</h2>
+      <div id="jobMap" class="job-map"></div>
+  </div>
+  <div class="stats-section">
+    <h2>Job Locations</h2>
+    <div id="jobLocations" class="job-locations-list"></div>
+</div> -->
+
+  <!-- <div class="stats-section">
+      <h2>Personalized Insights</h2>
+      <div id="insights" class="insights-container"></div>
+  </div> -->
+
+  <div class="stats-section">
+    <h2>Your Achievements</h2>
+    <p class="achievement-explanation">
+      Unlock achievements by reaching milestones in your job search. Each
+      achievement grants XP and helps you level up!
+    </p>
+    <div class="achievements-grid">
+      {% for achievement in achievements %}
+      <div
+        class="achievement {% if achievement.unlocked %}unlocked{% endif %}"
+        title="{{ achievement.description }}"
+      >
+        <i class="fas fa-{{ achievement.icon }}"></i>
+        <span>{{ achievement.name }}</span>
+        {% if achievement.unlocked %}
+        <span class="xp-reward">+{{ achievement.xp }} XP</span>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  
+
+  <div class="stats-section">
+    <h2>Active Quests</h2>
+    <p class="quest-explanation">
+      Complete quests to earn XP and improve your job search skills. New quests
+      become available as you level up!
+    </p>
+    <ul class="quest-list">
+      {% for quest in active_quests %}
+      <li>
+        <span class="quest-name">{{ quest.name }}</span>
+        <div class="quest-progress-container">
+          <div
+            class="quest-progress"
+            style="width: {{ quest.progress }}%"
+          ></div>
+        </div>
+        <span class="quest-reward">+{{ quest.xp_reward }} XP</span>
+      </li>
+      {% endfor %}
+    </ul>
+    <div class="stats-section">
+      <h2>XP System Guide</h2>
+      <div class="xp-infographic">
+        <div class="xp-card">
+          <h3>How to Gain XP</h3>
+          <ul class="xp-list">
+            <li><i class="fas fa-paper-plane"></i> Apply to a job: +10 XP</li>
+            <li><i class="fas fa-phone"></i> Get an interview: +20 XP</li>
+            <li>
+              <i class="fas fa-comments"></i> Complete an interview: +30 XP
+            </li>
+            <li><i class="fas fa-trophy"></i> Receive a job offer: +50 XP</li>
+            <li><i class="fas fa-file-alt"></i> Update your resume: +5 XP</li>
+            <li>
+              <i class="fas fa-tasks"></i> Complete a quest: +10 to +50 XP
+            </li>
+          </ul>
+        </div>
+        <div class="xp-card">
+          <h3>Leveling Up</h3>
+          <p>Every 100 XP gains you a new level!</p>
+          <div class="level-example">
+            <div class="level-bar">
+              <div class="level-progress" style="width: 75%"></div>
+            </div>
+            <p>75 XP / 100 XP to next level</p>
+          </div>
+        </div>
+        <div class="xp-card">
+          <h3>Benefits of Leveling Up</h3>
+          <ul class="xp-benefits">
+            <li><i class="fas fa-unlock"></i> Unlock new achievements</li>
+            <li><i class="fas fa-star"></i> Access to higher-tier quests</li>
+            <li><i class="fas fa-chart-line"></i> Track your progress</li>
+            <li><i class="fas fa-award"></i> Earn bragging rights!</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
+
     // Status Distribution Chart
     const statusCtx = document.getElementById('statusChart').getContext('2d');
     new Chart(statusCtx, {
@@ -372,5 +549,40 @@
         document.getElementById('goalProgress').style.width = '0%';
         document.getElementById('goalProgress').textContent = '0%';
     });
+
+  window.djangoData = {
+      statusLabels: [{% for item in status_counts %}'{{ item.status }}',{% endfor %}],
+      statusData: [{% for item in status_counts %}{{ item.count }},{% endfor %}],
+      trendLabels: [{% for item in trend_data %}'{{ item.date }}',{% endfor %}],
+      trendData: [{% for item in trend_data %}{{ item.count }},{% endfor %}],
+      funnelData: {
+          applied: {{ funnelData.applied }},
+          reviewed: {{ funnelData.reviewed }},
+          interviewed: {{ funnelData.interviewed }},
+          offered: {{ funnelData.offered }}
+      },
+      skillsData: {
+          labels: {{ skillsData.labels|safe }},
+          data: {{ skillsData.data|safe }}
+      },
+      timelineData: {{ timelineData|safe }},
+      jobLocations: [
+          {% for job in jobLocations %}
+              {
+                  company: '{{ job.company|escapejs }}',
+                  location: '{{ job.location|escapejs }}'
+              },
+          {% endfor %}
+      ]
+  };
+
 </script>
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-chart-funnel@3.0.0/build/Chart.Funnel.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="{% static 'js/interactive.js' %}"></script>
 {% endblock %}

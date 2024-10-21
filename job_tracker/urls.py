@@ -23,4 +23,5 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path("job/", include("job_application.urls")),
     path("practice/", include("practice_interview.urls")),
+    path("code-challenge/", include("code_challenge.urls")),
 ]

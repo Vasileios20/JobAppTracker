@@ -1,48 +1,70 @@
 {% extends "base.html" %}
-
 {% load static %}
 
-{% block title %}
-Job Dashboard
-{% endblock %}
+{% block title %}Job Dashboard{% endblock %}
 
 {% block content %}
-<div class="container my-5">
-    <div class="row">
-        
+<div class="jd-container">
+    <h1 class="jd-title">Job Dashboard</h1>
+    
+    <!--<div class="jd-actions">
+        <a href="{% url 'job_form' %}" class="jd-button">Add Job</a>
+    </div>-->
 
-        <!-- Right Side: Application Dashboard -->
-        <div class="col-md-6">
-            <h3>Your Applications</h3>
-            <table class="table table-hover table-bordered">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>Date Applied</th>
-                        <th>Company</th>
-                        <th>Job Title</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody id="application-list">
-                    {% for application in applications %}
-                    <tr>
-                        <td>{{ application.date_applied }}</td>
-                        <td>{{ application.company }}</td>
-                        <td>{{ application.title }}</td>
-                        <td>{{ application.status }}</td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="4" class="text-center">No applications found.</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+    <div class="jd-search-container">
+        <h2>Search Applications</h2>
+        <form action="/job/filter/" method="GET" class="jd-search-form">
+            <div class="input-container">
+                <input class="input" type="search" placeholder="Search for applications..." aria-label="Search" name="query">
+            </div>
+            <button class="jd-button" type="submit">Search</button>
+        </form>
+    </div>
+    <div class="jd-table-container">
+        <div class="jd-header">
+            <h2>Your Applications</h2>
+            <a href="{% url 'job_form' %}" class="jd-button jd-add">Add Job</a>
         </div>
+    </div>
+    
+        <table class="jd-table">
+            <thead>
+                <tr>
+                    <th>Date Applied</th>
+                    <th>Company</th>
+                    <th>Job Title</th>
+                    <th>Location</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="application-list">
+                {% for application in applications %}
+                <tr data-href="{% url 'job_detail' application.id %}">
+                    <td>{{ application.date_applied }}</td>
+                    <td>{{ application.company }}</td>
+                    <td>{{ application.title }}</td>
+                    <td>{{ application.location }}</td>
+                    <td>{{ application.status }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center">No applications found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </div>
 
-<!-- Link the external JavaScript file for job title search -->
-
-
+<script src="{% static 'js/job_search.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var rows = document.querySelectorAll('tr[data-href]');
+        rows.forEach(function (row) {
+            row.addEventListener('click', function () {
+                window.location.href = this.getAttribute('data-href');
+            });
+        });
+    });
+</script>
 {% endblock %}

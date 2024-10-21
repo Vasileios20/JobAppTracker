@@ -1,0 +1,719 @@
+/* Job Application Dashboard Styles */
+
+.jad-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.jad-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(0, 209, 206, 0.5);
+}
+
+.jad-form-container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.jad-form-group {
+    margin-bottom: 20px;
+}
+
+.jad-label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--light-text);
+    font-weight: bold;
+}
+
+.jad-input,
+.jad-select {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--light-text);
+    transition: all 0.3s ease;
+}
+
+.jad-input:focus,
+.jad-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 209, 206, 0.2);
+}
+
+.jad-button {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.jad-button-primary {
+    background: var(--gradient);
+    color: white;
+}
+
+.jad-button-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 209, 206, 0.4);
+}
+
+/* Add some tech-edge animations */
+@keyframes glow {
+    0% { box-shadow: 0 0 5px rgba(0, 209, 206, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(0, 209, 206, 0.5); }
+    100% { box-shadow: 0 0 5px rgba(0, 209, 206, 0.5); }
+}
+
+.jad-input:focus,
+.jad-select:focus {
+    animation: glow 1.5s infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .jad-container {
+        padding: 20px 10px;
+    }
+
+    .jad-form-container {
+        padding: 20px;
+    }
+}
+
+.jad-input,
+.jad-select {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--light-text);
+    transition: all 0.3s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, var(--primary-color) 50%),
+                      linear-gradient(135deg, var(--primary-color) 50%, transparent 50%);
+    background-position: calc(100% - 20px) calc(1em + 2px),
+                         calc(100% - 15px) calc(1em + 2px);
+    background-size: 5px 5px,
+                     5px 5px;
+    background-repeat: no-repeat;
+}
+
+.jad-input[type="date"] {
+    position: relative;
+}
+
+.jad-input[type="date"]::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
+
+.jad-input[type="date"]::before {
+    content: "\f073";
+    font-family: "Font Awesome 5 Free";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-color);
+}
+
+/* Job Dashboard Styles */
+.jd-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.jd-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(0, 209, 206, 0.5);
+}
+
+.jd-button {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: var(--gradient);
+    color: white;
+    text-decoration: none;
+}
+
+.jd-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 209, 206, 0.4);
+}
+
+.jd-search-container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.jd-search-form {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.input-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
+.input {
+    width: 100%;
+    height: 60px;
+    padding: 12px;
+    font-size: 18px;
+    font-family: "Courier New", monospace;
+    color: var(--light-text);
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 4px solid var(--primary-color);
+    border-radius: 0;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 8px 8px 0 var(--secondary-color);
+}
+
+.input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.input:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0 var(--secondary-color);
+}
+
+.input:focus {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: var(--light-text);
+    border-color: var(--primary-color);
+}
+
+.input:focus::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+.input:focus::after {
+    content: "|";
+    position: absolute;
+    right: 10px;
+    animation: blink 0.7s step-end infinite;
+}
+
+.input:valid {
+    animation: typing 2s steps(30, end);
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px) rotate(-5deg); }
+    50% { transform: translateX(5px) rotate(5deg); }
+    75% { transform: translateX(-5px) rotate(-5deg); }
+    100% { transform: translateX(0); }
+}
+
+.input:focus {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes glitch {
+    0% { transform: none; opacity: 1; }
+    7% { transform: skew(-0.5deg, -0.9deg); opacity: 0.75; }
+    10% { transform: none; opacity: 1; }
+    27% { transform: none; opacity: 1; }
+    30% { transform: skew(0.8deg, -0.1deg); opacity: 0.75; }
+    35% { transform: none; opacity: 1; }
+    52% { transform: none; opacity: 1; }
+    55% { transform: skew(-1deg, 0.2deg); opacity: 0.75; }
+    50% { transform: none; opacity: 1; }
+    72% { transform: none; opacity: 1; }
+    75% { transform: skew(0.4deg, 1deg); opacity: 0.75; }
+    80% { transform: none; opacity: 1; }
+    100% { transform: none; opacity: 1; }
+}
+
+.input:not(:placeholder-shown) {
+    animation: glitch 1s linear infinite;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 0px 0px 0 var(--primary-color);
+}
+
+.input-container::after {
+    content: "|";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-color);
+    animation: blink 0.7s step-end infinite;
+}
+
+.input:focus + .input-container::after {
+    color: var(--light-text);
+}
+
+.jd-header {
+    display: flex;
+    align-items: center; /* Ensures vertical alignment of text and button */
+}
+
+.jd-header h2 {
+    margin-right: 10px; /* Ensures heading stays on the left */
+}
+
+.jd-add {
+    /*margin-left: 20px; /* Adds space between the heading and the button */
+    margin-left: auto;
+    /*margin-left: 165px;*/
+}
+
+.jd-table-container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.jd-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.jd-table th {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--primary-color);
+    font-weight: bold;
+    padding: 15px;
+    text-align: left;
+}
+
+.jd-table td {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    transition: all 0.3s ease;
+}
+
+.jd-table tr:hover td {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 209, 206, 0.2);
+    color:  rgb(0, 209, 206);
+    cursor: pointer;
+}
+
+/* Edit Application Styles */
+.danger {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: white;
+    text-decoration: none;
+    background-color: blueviolet !important;
+    border: none;
+}
+
+.ja-container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.ja-container strong {
+    color:rgb(0, 209, 206);
+}
+
+.ja-button-group {
+    text-align: center; /* Center-aligns all buttons inside this div */
+    margin: 40px 0 20px 0;   /* Optional: Adds some space above the buttons */
+}
+
+.ja-button {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 0 10px;   
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: var(--gradient);
+    color: white;
+    text-decoration: none;
+}
+
+.ja-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 209, 206, 0.4);
+}
+
+
+/* Media Queries */
+
+@media (max-width: 768px) {
+    .jd-container {
+        padding: 20px 10px;
+    }
+
+    .jd-search-container,
+    .jd-table-container {
+        padding: 20px;
+    }
+}
+
+/* Add Note Styles */
+.note-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.note-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(0, 209, 206, 0.5);
+}
+
+.note-form-container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.note-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.note-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.note-label {
+    margin-bottom: 5px;
+    color: var(--light-text);
+    font-weight: bold;
+}
+
+.note-form input[type="text"],
+.note-form textarea {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--light-text);
+    transition: all 0.3s ease;
+}
+
+.note-form input[type="text"]:focus,
+.note-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 209, 206, 0.2);
+}
+
+.note-form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.note-help-text {
+    margin-top: 5px;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.note-button {
+    align-self: flex-start;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: var(--gradient);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.note-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 209, 206, 0.4);
+}
+
+@media (max-width: 768px) {
+    .note-container {
+        padding: 20px 10px;
+    }
+
+    .note-form-container {
+        padding: 20px;
+    }
+}
+
+/* Add a subtle difference for the edit page */
+.note-form-container.edit {
+    border: 1px solid var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .note-container {
+        padding: 20px 10px;
+    }
+
+    .note-form-container {
+        padding: 20px;
+    }
+}
+
+/* Job Detail Styles */
+.jd-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.jd-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(0, 209, 206, 0.5);
+}
+
+.jd-content {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.jd-job-details, .jd-notes-section {
+    flex: 1;
+    min-width: 300px;
+}
+
+.jd-section-title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 10px;
+}
+
+.jd-info-card, .jd-note-item {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.jd-info-card:hover, .jd-note-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 209, 206, 0.2);
+}
+
+.jd-highlight {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.jd-status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 15px;
+    background: var(--gradient);
+    color: white;
+    font-weight: bold;
+}
+
+.jd-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: flex-end;
+}
+
+.jd-button {
+    padding: 12px 24px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.jd-button::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--gradient);
+    z-index: -1;
+    filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.jd-button:hover::before {
+    opacity: 1;
+}
+
+.jd-button-edit {
+    background: var(--gradient);
+}
+
+.jd-button-delete {
+    background: linear-gradient(90deg, #ff4757, #ff6b81);
+}
+
+.jd-button-add {
+    background: linear-gradient(90deg, #26de81, #2bcbba);
+}
+
+.jd-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.jd-notes-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.jd-note-content {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: var(--light-text);
+}
+
+.jd-note-meta {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 10px;
+}
+
+.jd-note-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.jd-button-small {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+}
+
+.jd-no-job, .jd-no-notes {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    color: var(--light-text);
+}
+
+@media (max-width: 768px) {
+    .jd-content {
+        flex-direction: column;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.jd-info-card, .jd-note-item {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Pulsating effect for buttons */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.jd-button:hover {
+    animation: pulse 1s infinite;
+}

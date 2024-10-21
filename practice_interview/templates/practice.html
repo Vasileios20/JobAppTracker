@@ -1,49 +1,68 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}
-Job Dashboard
-{% endblock %}
+{% block title %}Practice Interview{% endblock %}
 
 {% block content %}
-<div class="text-center">
-    <h1>Practice Interview</h1>
-    <p>Enter the job title to generate questions</p>
-    <form method="post" action="{% url 'practice_interview' %}">
-        {% csrf_token %}
-        <label for="job_title">Job Title:</label>
-        <input class="w-50 bg-dark text-white" type="text" id="job_title" name="job_title" required>
-        <button type="submit">Generate Questions</button>
-    </form>
-</div>
+<div class="pi-container">
+    <h1 class="pi-page-title">Practice Interview</h1>
+    
+    <div class="pi-card">
+        <h2 class="pi-card-title">Generate Interview Questions</h2>
+        <p>Enter the job title to generate questions tailored to your desired role.</p>
+        <form method="post" action="{% url 'practice_interview' %}" class="pi-generate-form">
+            {% csrf_token %}
+            <div class="pi-form-group">
+                <label for="job_title">Job Title:</label>
+                <input class="pi-form-input" type="text" id="job_title" name="job_title" required>
+            </div>
+            <button type="submit" class="pi-btn pi-btn-primary">Generate Questions</button>
+        </form>
+    </div>
 
-{% if questions %}
-<div class="p-2">
-    <h2 class="text-center">Questions</h2>
+    {% if success_message %}
+    <div class="pi-alert pi-alert-success">{{ success_message }}</div>
+    {% endif %}
 
-    <form method="post" action="{% url 'evaluate_answers' %}">
-        {% csrf_token %}
-        {% for question in questions %}
-        <div class="m-3 d-flex flex-column">
-            <p>{{ question }}</p>
-            <input type="hidden" name="question_{{ forloop.counter }}" value="{{ question }}">
-            <label for="answer_{{ forloop.counter }}">Your Answer:</label>
-            <textarea class="w-50 bg-dark text-white" rows="5" cols="50" id="answer_{{ forloop.counter }}"
-                name="answers"></textarea>
+    {% if questions %}
+    <div class="pi-card pi-questions-card">
+        <h2 class="pi-card-title">Interview Questions</h2>
+        <form method="post" action="{% url 'evaluate_answers' %}" class="pi-questions-form">
+            {% csrf_token %}
+            {% for question in questions %}
+            <div class="pi-question-block">
+                <h3 class="pi-question-title">Question {{ forloop.counter }}</h3>
+                <p class="pi-question-text">{{ question }}</p>
+                <div class="pi-form-group">
+                    <label for="answer_{{ forloop.counter }}">Your Answer:</label>
+                    <textarea class="pi-form-input" id="answer_{{ forloop.counter }}" rows="4" name="answers" placeholder="Type your answer here..."></textarea>
+                </div>
+                <input type="hidden" name="question_{{ forloop.counter }}" value="{{ question }}">
+            </div>
+            {% endfor %}
+            <button type="submit" class="pi-btn pi-btn-primary">Submit Answers</button>
+        </form>
+    </div>
+    {% endif %}
+
+    {% if evaluation_data %}
+    <div class="pi-card pi-evaluation-card">
+        <h2 class="pi-card-title">AI Feedback</h2>
+        {% for question, answer, feedback in evaluation_data %}
+        <div class="pi-evaluation-block">
+            <h3 class="pi-question-title">Question {{ forloop.counter }}</h3>
+            <p class="pi-question-text">{{ question }}</p>
+            <div class="pi-answer-block">
+                <h4>Your Answer:</h4>
+                <p>{{ answer }}</p>
+            </div>
+            <div class="pi-feedback-block">
+                <h4>AI Feedback:</h4>
+                <p>{{ feedback }}</p>
+            </div>
         </div>
         {% endfor %}
-        <button type="submit" class="btn button1 w-25 mt-2">Evaluate Answers</button>
-    </form>
-</div>
-{% endif %}
-
-{% if feedback %}
-<div class="mx-auto">
-    <h2 class="text-center">Feedback</h2>
-    {% for fb in feedback %}
-    <div class="mb-3 p-3">
-        <p>{{ fb }}</p>
     </div>
-    {% endfor %}
+    {% endif %}
 </div>
-{% endif %}
 {% endblock %}

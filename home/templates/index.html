@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
+
 {% block title %}GitHired{% endblock %}
 
 {% block content %}
@@ -17,9 +18,26 @@
                     <a href="{% url 'account_login' %}" class="start-tracking">Start Tracking</a>
                 {% endif %}
             </div>
+
+{% block title %}Welcome to GitHired{% endblock %}
+
+{% block content %}
+<main>
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title" id="typing-title">Git Your Dream Job with GitHired</h1>
+            <h2 class="hero-subtitle">Where Your Career Commits Meet Opportunity Pushes</h2>
+            <p class="hero-description">Our streamlined job application tracker helps you manage every step of your job
+                search process, so
+                you can focus on what really matters — merging into your dream company's main branch.</p>
+            {% if user.is_authenticated %}
+            <a href="{% url 'job_form' %}" class="btn cta-button glow-button">Add New Job Branch</a>
+            {% else %}
+            <a href="{% url 'account_login' %}" class="btn cta-button glow-button">Initialize Your Job Search</a>
+            {% endif %}
+
         </div>
-    </div>
-</main>
+    </section>
 
 <h3 class="subtitle">The Ultimate Job Application Tracker for Developers</h3>
 
@@ -78,4 +96,193 @@
         <p>Get ready for your interviews with a curated library of coding interview questions designed for developers. Hone your problem-solving skills and ace technical interviews</p>
     </div>
 </section>
+
+    <section id="features" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Features That Work Harder Than A Caffeinated Coder</h2>
+            <div class="icon-section">
+                <div class="icon">
+                    <a href="{% url 'job_application' %}">
+                        <svg class="icon-svg" width="80" height="80" viewBox="0 0 100 100" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect width="100" height="100" fill="none" />
+                            <path
+                                d="M80 20H20C15.5817 20 12 23.5817 12 28V72C12 76.4183 15.5817 80 20 80H80C84.4183 80 88 76.4183 88 72V28C88 23.5817 84.4183 20 80 20Z"
+                                stroke="url(#paint0_linear)" stroke-width="4" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M32 40H68M32 55H68M32 70H52" stroke="url(#paint0_linear)" stroke-width="4"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <defs>
+                                <linearGradient id="paint0_linear" x1="12" y1="20" x2="88" y2="80"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#00D1CE" />
+                                    <stop offset="1" stop-color="#7F48CB" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <p>Track Applications Like Git Commits</p>
+                    </a>
+                </div>
+                <div class="icon">
+                    <a href="{% url 'statistics' %}">
+                        <svg class="icon-svg" width="80" height="80" viewBox="0 0 100 100" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect x="10" y="70" width="20" height="20" rx="2" stroke="url(#paint1_linear)" stroke-width="4"/>
+                            <rect x="40" y="50" width="20" height="40" rx="2" stroke="url(#paint1_linear)" stroke-width="4"/>
+                            <rect x="70" y="30" width="20" height="60" rx="2" stroke="url(#paint1_linear)" stroke-width="4"/>
+                            <defs>
+                                <linearGradient id="paint1_linear" x1="10" y1="10" x2="90" y2="90"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#00D1CE" />
+                                    <stop offset="1" stop-color="#7F48CB" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <p>Track Your Progress: Visualize Your Job Search Journey</p>
+                    </a>
+                </div>
+                <div class="icon">
+                    <a href="{% url 'practice_interview' %}">
+                        <svg class="icon-svg" width="80" height="80" viewBox="0 0 100 100" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect x="20" y="20" width="60" height="60" rx="5" stroke="url(#paint2_linear)"
+                                stroke-width="4" />
+                            <path d="M35 40L30 50L35 60M65 40L70 50L65 60" stroke="url(#paint2_linear)" stroke-width="4"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M45 65L55 35" stroke="url(#paint2_linear)" stroke-width="4"
+                                stroke-linecap="round" />
+                            <defs>
+                                <linearGradient id="paint2_linear" x1="20" y1="20" x2="80" y2="80"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#00D1CE" />
+                                    <stop offset="1" stop-color="#7F48CB" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <p>Interview Prep: Debug Your Responses</p>
+                    </a>
+                </div>
+                <div class="icon">
+                    <a href="{% url 'code_challenge' %}">
+                        <svg class="icon-svg" width="80" height="80" viewBox="0 0 100 100" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50 20L20 35V65L50 80L80 65V35L50 20Z" stroke="url(#paint3_linear)"
+                                stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M20 35L50 50M50 50L80 35M50 50V80" stroke="url(#paint3_linear)" stroke-width="4"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <defs>
+                                <linearGradient id="paint3_linear" x1="20" y1="20" x2="80" y2="80"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#00D1CE" />
+                                    <stop offset="1" stop-color="#7F48CB" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <p>Code Challenges: Compile Your Skills</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="how-it-works" class="how-it-works-section">
+        <div class="container">
+            <h2 class="section-title">How GitHired Works</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Sign Up</h3>
+                        <p>Create your GitHired account and set up your profile.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Track Applications</h3>
+                        <p>Add and manage your job applications with ease.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Practice Skills</h3>
+                        <p>Sharpen your coding skills with our challenges and interview prep.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Track Progress</h3>
+                        <p>Monitor your job search progress and improve your strategies.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonial-section">
+        <div class="container">
+            <h2 class="section-title">Testimonials: No Bug Reports Here!</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>"GitHired refactored my job search from O(n²) to O(log n) complexity!"</p>
+                    <footer>- Sarah, Full Stack Optimizer</footer>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Thanks to GitHired, I deployed my career faster than a Docker container!"</p>
+                    <footer>- Mike, DevOps Ninja</footer>
+                </div>
+                <div class="testimonial-card">
+                    <p>"GitHired is like React for your job search - it makes everything component and efficient!"</p>
+                    <footer>- Emily, Frontend Wizard</footer>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container my-3">
+            <h2 class="section-title">Ready to Optimize Your Job Search?</h2>
+            <p class="cta-description">Don't let your dream job slip through the exception handler. Start tracking with
+                GitHired today!</p>
+            <a href="{% url 'account_signup' %}" class="btn cta-button glow-button">Sign Up and Start Debugging Your
+                Career</a>
+        </div>
+        
+        <div class="container d-flex mt-5">
+            <div class="m-auto">
+                <a href="{% url 'team' %}" class="btn cta-button glow-button">
+                    Meet the team
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- <div class="fab-container">
+        <button class="fab" id="scrollToTop" title="Scroll to Top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div> -->
+
+    <!-- <div class="dark-mode-toggle">
+        <input type="checkbox" id="darkModeToggle" class="dark-mode-checkbox">
+        <label for="darkModeToggle" class="dark-mode-label">
+            <i class="fas fa-sun"></i>
+            <i class="fas fa-moon"></i>
+        </label>
+    </div> -->
+
+</main>
+
+<div id="particles-js"></div>
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="{% static 'js/interactive.js' %}"></script>
 {% endblock %}

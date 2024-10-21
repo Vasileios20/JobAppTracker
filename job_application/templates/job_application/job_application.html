@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+Job Dashboard
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="jd-container">
+        <h1 class="jd-title">Job Details Dashboard</h1>
+        
+        <div class="jd-content">
+            <div class="jd-job-details">
+                <h2 class="jd-section-title">Job Information</h2>
+                {% if job %}
+                    <div class="jd-info-card">
+                        <p><strong>Title:</strong> <span class="jd-highlight">{{ job.title }}</span></p>
+                        <p><strong>Company:</strong> <span class="jd-highlight">{{ job.company }}</span></p>
+                        <p><strong>Location:</strong> <span class="jd-highlight">{{ job.location }}</span></p>
+                        <p><strong>Status:</strong> <span class="jd-status">{{ job.status }}</span></p>
+                        <p><strong>Date Applied:</strong> <span class="jd-highlight">{{ job.date_applied }}</span></p>
+                    </div>
+                    <div class="jd-actions me-4">
+                        <a href="{% url 'update_job' job.id %}" class="jd-button jd-button-edit jd-button-small">Edit Application</a>
+                        <a href="{% url 'delete_job' job.id %}" class="jd-button jd-button-delete jd-button-small">Delete Application</a>
+                    </div>
+                {% else %}
+                    <p class="jd-no-job">No job selected. Please add or select a job to view details.</p>
+                {% endif %}
+            </div>
+
+            <div class="jd-notes-section">
+                <h2 class="jd-section-title">Notes</h2>
+                {% if notes %}
+                    <ul class="jd-notes-list">
+                        {% for note in notes %}
+                            <li class="jd-note-item">
+                                <div class="jd-note-content">{{ note.notes }}</div>
+                                <div class="jd-note-meta">
+                                    Added on {{ note.date_created }}
+                                    {% if note.date_updated != note.date_created %}
+                                        (Updated on {{ note.date_updated }})
+                                    {% endif %}
+                                </div>
+                                <div class="jd-note-actions">
+                                    <a href="{% url 'update_note' note.id %}" class="jd-button jd-button-small">Edit</a>
+                                    <a href="{% url 'delete_note' note.id %}" class="jd-button jd-button-small jd-button-delete">Delete</a>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="jd-no-notes">No notes added yet.</p>
+                {% endif %}
+                
+                {% if job %}
+                    <a href="{% url 'add_note' job.id %}" class="jd-button jd-button-add">Add Note</a>
+                {% else %}
+                    <p class="jd-no-job">Please select a job before adding notes.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

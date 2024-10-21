@@ -2,11 +2,14 @@ from django.shortcuts import render
 import google.generativeai as genai
 import os
 from django.views import View
+from jsonschema import validate, exceptions
 
-from jsonschema import validate
-from jsonschema import exceptions
+API_KEY = os.getenv("GENAI_API_KEY")
 
-# Define the JSON schema
+# Configure the Google Generative AI API key
+genai.configure(api_key=API_KEY)
+
+
 schema = {
     "type": "object",
     "properties": {
@@ -26,8 +29,6 @@ schema = {
     "required": ["job_title", "questions"]
 }
 
-genai.configure(api_key=os.environ["GENAI_API_KEY"])
-
 
 class InterviewQuestionGenerator:
     def __init__(self, job_title):
@@ -39,10 +40,14 @@ class InterviewQuestionGenerator:
         response = self.model.generate_content(prompt)
         lines = response.text.split('\n')
 
-        # Keep only lines that start with a number followed by a period (e.g., "1.", "2.", etc.)
+        # Filter and format the questions
         questions = [
             line.strip().replace('*', '') for line in lines
-            if (line.strip() and line.strip()[0].isdigit() and line.strip()[1] == '.')
+            if (
+                line.strip() and
+                line.strip()[0].isdigit() and
+                line.strip()[1] == '.'
+            )
         ]
 
         return questions
@@ -57,60 +62,56 @@ class GenerateInterviewQuestionsView(View):
         generator = InterviewQuestionGenerator(job_title)
         questions = generator.generate_questions()
 
-        # Validate the response data against the schema
         try:
+
+            # Validate the generated questions against the schema
             validate({'job_title': job_title, 'questions': questions}, schema)
-            # Response data is valid, proceed with rendering the template
+
             return render(request, 'practice.html', {
                 'questions': questions,
                 'job_title': job_title
             })
-        except exceptions.ValidationError as e:
-            # Response data is invalid, handle the error
-            print(f"Error validating response data: {e}")
+        except (exceptions.ValidationError, Exception) as e:
+            print(f"Error: {e}")
             return render(request, 'practice.html', {
-                'error': 'Invalid response data',
+                'error': 'Failed to generate valid questions.',
             })
 
 
 class EvaluateInterviewAnswersView(View):
     def post(self, request):
         answers = request.POST.getlist('answers')
-        feedback = []
         job_title = request.POST.get('job_title')
         generator = InterviewQuestionGenerator(job_title)
 
-        # Retrieve questions that were stored in the hidden input fields
-        questions = []
-        for i in range(1, 6):
-            question = request.POST.get(f'question_{i}')
-            if question:
-                questions.append(question)
+        # Retrieve questions from the form
+        questions = [request.POST.get(f'question_{i}') for i in range(
+            1, 6) if request.POST.get(f'question_{i}')]
 
         if len(questions) != len(answers):
             return render(request, 'practice.html', {
-                'error': 'Mismatch between questions and answers',
+                'error': 'Mismatch between questions and answers.',
             })
 
-        # Now, evaluate the answers based on the retrieved questions
+        evaluation_data = []
         for i, answer in enumerate(answers):
             question = questions[i]
-            print(f"Question: {question}")
-            print(f"Answer: {answer}")
-            print(f"Index: {i+1}")
-
-            # Uncomment to evaluate the answer using the model
             prompt = (
-                f"Evaluate the following answer to the question '{question}':\n\n"
+                f"Evaluate the following answer to the question '{question}':"
+                f"\n\n"
                 f"Answer: {answer}"
             )
-            # Simulate a response from the AI
-            response = generator.model.generate_content(prompt)
-            feedback.append(response.text.strip().replace('*', ''))
+
+            # Generate feedback using the model
+            try:
+                response = generator.model.generate_content(prompt)
+                feedback = response.text.strip().replace('*', '')
+                evaluation_data.append((question, answer, feedback))
+            except Exception as e:
+                evaluation_data.append(
+                    (question, answer, f"Error generating feedback: {e}"))
 
         return render(request, 'practice.html', {
-            'answers': answers,
-            'feedback': feedback,
+            'evaluation_data': evaluation_data,
             'job_title': job_title,
-            'questions': questions,  # Include the questions for context
         })

@@ -22,27 +22,14 @@ Job Dashboard
                         <p><strong>Status:</strong> <span class="jd-status">{{ job.status }}</span></p>
                         <p><strong>Date Applied:</strong> <span class="jd-highlight">{{ job.date_applied }}</span></p>
                     </div>
-                    <div class="jd-actions">
-                        <a href="{% url 'update_job' job.id %}" class="jd-button jd-button-edit">Edit Application</a>
-                        <a href="{% url 'delete_job' job.id %}" class="jd-button jd-button-delete">Delete Application</a>
+                    <div class="jd-actions me-4">
+                        <a href="{% url 'update_job' job.id %}" class="jd-button jd-button-edit jd-button-small">Edit Application</a>
+                        <a href="{% url 'delete_job' job.id %}" class="jd-button jd-button-delete jd-button-small">Delete Application</a>
                     </div>
                 {% else %}
                     <p class="jd-no-job">No job selected. Please add or select a job to view details.</p>
                 {% endif %}
             </div>
-
-            {% else %}
-            <p>No job selected. Please add or select a job to view details.</p>
-            {% endif %}
-        </div>
-    </div>
-    <div class="row">
-
-        <h3 class="jd-title">Notes</h3>
-        <ul>
-            {% for note in notes %}
-            <li>{{ note.notes }} <small>(Added on {{ note.date_created }})</small>
-
 
             <div class="jd-notes-section">
                 <h2 class="jd-section-title">Notes</h2>
@@ -67,22 +54,14 @@ Job Dashboard
                 {% else %}
                     <p class="jd-no-notes">No notes added yet.</p>
                 {% endif %}
-
-                <a href="{% url 'add_note' job.id %}" class="jd-button jd-button-add">Add Note</a>
+                
+                {% if job %}
+                    <a href="{% url 'add_note' job.id %}" class="jd-button jd-button-add">Add Note</a>
+                {% else %}
+                    <p class="jd-no-job">Please select a job before adding notes.</p>
+                {% endif %}
             </div>
         </div>
     </div>
-
-            </li>
-            <a href="{% url 'update_note' note.id %}">Edit</a>
-            <a href="{% url 'delete_note' note.id %}">Delete</a>
-            {% endfor %}
-        </ul>
-
-        <a href="{% url 'add_note' job.id %}" class="jd-button">Add Note</a>
-    </div>
-
-
 </div>
-
 {% endblock %}

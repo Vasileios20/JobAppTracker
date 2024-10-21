@@ -1,3 +1,5 @@
+/* Global Styles */
+
 :root {
     --primary-color: #00D1CE;
     --secondary-color: #7F48CB;
@@ -14,10 +16,14 @@ body {
     background-attachment: fixed;
     margin: 0;
     padding: 0;
+    color: white;
+
     color: var(--light-text);
+
     font-family: 'Poppins', sans-serif;
 }
 
+/* Header and Navigation */
 .header {
     display: flex;
     justify-content: space-between;
@@ -26,6 +32,11 @@ body {
 }
 
 .navbar {
+    background: linear-gradient(to right, #130e01, #130e01) !important;
+}
+
+.logo-container {
+    text-align: center;
     backdrop-filter: blur(10px);
     padding: 15px 0;
     transition: all 0.3s ease;
@@ -539,9 +550,15 @@ body.dark-mode {
 }
 
 .logo-icon {
+
+    width: 30px;
+    height: auto;
+    margin-top: -5px;
+
     width: 40px;
     height: auto;
     margin-right: 10px;
+
 }
 
 .logo-text {
@@ -576,7 +593,41 @@ body.dark-mode {
     width: 100%;
 }
 
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: linear-gradient(to right, #00d1ce, #7f48cb);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.navbar-brand:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(127, 72, 203, 0.5);
+}
+
+.nav-link {
+    color: #ffffff !important;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #00d1ce !important;
+    transform: translateY(-2px);
+}
+
 .join-button {
+    padding: 10px 20px;
+    background-color: #00d1ce;
+    color: rgba(243, 243, 243, 1) !important;
+    border-radius: 5px;
+    border: none;
+    transition: background-color 0.3s ease;
+
     background: linear-gradient(90deg, #00d1ce, #7f48cb);
     color: white !important;
     padding: 8px 20px;
@@ -590,7 +641,43 @@ body.dark-mode {
 }
 
 
+.user-info {
+    color: #7f48cb;
+    font-style: italic;
+}
+
+/* Main Container */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #130e01;
+    margin: 0;
+    border-radius: 25px;
+    position: relative;
+    z-index: 1;
+}
+
+.main-container h2 {
+    margin-bottom: 10px;
+}
+
+.start-tracking {
+    padding: 10px 30px;
+    background-color: #00d1ce;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    margin-top: 20px;
+}
+
+/* Card Styles */
+
+
 /* index.html --------------------------------------------- */
+
 
 
 .card {
@@ -616,6 +703,7 @@ body.dark-mode {
     clip-path: polygon(0% 0%, 10% 0%, 0% 10%, 0% 0%, 90% 0%, 100% 0%, 100% 10%, 100% 0%, 100% 90%, 100% 100%, 90% 100%, 100% 100%, 0% 100%, 0% 90%, 10% 100%, 0% 100%);
     transition: all 0.3s;
 }
+
 
 /* Main Container */
 
@@ -647,6 +735,8 @@ body.dark-mode {
 .card:hover {
     box-shadow: 0px 0px 30px 1px #7f48cb;
 }
+
+/* Icon Section */
 
 .main-container h2 {
     margin-bottom: 10px;
@@ -682,7 +772,60 @@ body.dark-mode {
 }
 
 .icon {
+    width: 120px;
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.icon:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.7),
+                0 0 30px rgba(0, 255, 255, 0.4),
+                0 0 45px rgba(0, 255, 255, 0.2);
+}
+
+.icon img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 0.5rem;
+}
+
+.icon p {
+    color: #ffffff;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.subtitle {
+    text-align: center;
+    color: white;
+    margin-top: 60px;
+}
+
+/* Features Section */
+.why-container {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.flex-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    padding: 40px 0;
+    border-top: 1px solid #7f48cb;
+    border-bottom: 1px solid #7f48cb;
+    margin: 20px 20px;
+}
+
+.features-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    margin: 40px;
     width: 200px;
     transition: all 0.3s ease;
 }
@@ -702,6 +845,7 @@ body.dark-mode {
 
 .icon:hover {
     transform: translateY(-10px);
+
 }
 
 .icon:hover .icon-svg {
@@ -709,13 +853,29 @@ body.dark-mode {
             drop-shadow(0 0 20px rgba(127, 72, 203, 0.4));
 }
 
+.features-list {
+    list-style-type: none;
+    padding-left: 0;
+    text-align: left;
+}
+
+.features-list li {
+
 .icon p {
+
     color: white;
     font-size: 1.1rem;
     margin-top: 15px;
     font-weight: 300;
     letter-spacing: 0.5px;
 }
+
+.hero {
+    height: 130px;
+    width: auto;
+}
+
+/* Form Styles */
 
 /* Modern tech-edge enhancements */
 .icon {
@@ -874,13 +1034,12 @@ body.dark-mode {
 
 /* From Uiverse.io by KhelVers */
 /* From Uiverse.io by yashasvi9199 */
+
 .form {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding-left: 2em;
-    padding-right: 2em;
-    padding-bottom: 0.4em;
+    padding: 2em;
     background-color: #171717;
     border-radius: 25px;
     transition: 0.4s ease-in-out;
@@ -913,6 +1072,7 @@ body.dark-mode {
     font-size: 1.2em;
 }
 
+
 .field {
     display: flex;
     align-items: center;
@@ -941,37 +1101,9 @@ body.dark-mode {
     color: #d3d3d3;
 }
 
-.form .btn {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    margin-top: 2.5em;
-}
-
-.button1 {
-    padding: 0.5em;
-    padding-left: 1.1em;
-    padding-right: 1.1em;
-    border-radius: 5px;
-    margin-right: 0.5em;
-    border: none;
-    outline: none;
-    transition: 0.4s ease-in-out;
-    background-color: #252525;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-}
-
-.button1:hover {
-    background-color: black;
-    color: white;
-}
-
-.button2 {
-    padding: 0.5em;
-    padding-left: 2.3em;
-    padding-right: 2.3em;
+/* Button Styles */
+.button1, .button2, .button3 {
+    padding: 0.5em 1.1em;
     border-radius: 5px;
     border: none;
     outline: none;
@@ -982,21 +1114,9 @@ body.dark-mode {
     text-decoration: none;
 }
 
-.button2:hover {
+.button1:hover, .button2:hover {
     background-color: black;
     color: white;
-}
-
-.button3 {
-    margin-bottom: 3em;
-    padding: 0.5em;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    transition: 0.4s ease-in-out;
-    background-color: #252525;
-    color: white;
-    text-decoration: none;
 }
 
 .button3:hover {
@@ -1004,12 +1124,7 @@ body.dark-mode {
     color: white;
 }
 
-/* .btn3-pd {
-    padding: 0.93rem;
-} */
-
-/* About page */
-
+/* Profile Card Styles */
 .profile-card {
     border-radius: 25px;
     position: relative;
@@ -1019,11 +1134,13 @@ body.dark-mode {
     margin: 20px 10px;
     height: 400px;
     align-items: center;
-  }
+}
 
-  .profile-card:hover{
+.profile-card:hover {
     transform: scale(1.05);
     box-shadow: 0px 0px 30px 1px #7f48cb;
+}
+
   }
 
   .top {
@@ -1048,27 +1165,38 @@ body.dark-mode {
     height: 120px;
   }
 
-  .name-info {
-    font-weight: 400;
-    font-size:24px;
-    border-left: 3px solid #7f48cb;
-    padding:4px;
-  }
 
-  .linkedin-icon,
-  .github-icon {
+.name-info {
+    font-weight: 400;
+    font-size: 24px;
+    border-left: 3px solid #7f48cb;
+    padding: 4px;
+}
+
+.linkedin-icon,
+.github-icon {
     background: linear-gradient(163deg, #00d1ce 0%, #7f48cb 100%);
     color: #FFFFFF;
     border-radius: 50%;
     padding: 10px;
     font-size: 20px;
-    margin:0 10px;
-    margin:20px 10px;
-  }
-  .linkedin-icon:hover,
-  .github-icon:hover {
+    margin: 20px 10px;
+}
+
+.linkedin-icon:hover,
+.github-icon:hover {
     box-shadow: 0px 0px 30px 1px #7f48cb;
-  }
+}
+
+
+.bottom {
+    margin-top: 200px;
+    overflow-y: auto;
+    border-radius: 10px;
+    border-top: 2px solid #FFFFFF;
+    background-color: rgba(19, 14, 1, 0.9);
+    height: 140px;
+}
 
   .bottom {
     margin-top: 100px;
@@ -1077,16 +1205,23 @@ body.dark-mode {
     height: 240px;
   }
 
-  .info {
-    margin: 20px auto;
-  }
 
-  .role {
+.info {
+    margin: 20px auto;
+}
+
+.role {
     margin: 20px 10px;
     font-weight: 400;
-    font-size:x-large;
-    border-bottom:2px solid #00d1ce;
+    font-size: x-large;
+    border-bottom: 2px solid #00d1ce;
     width: fit-content;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .icon-section, .features-container {
+
   }
 
 
@@ -1201,11 +1336,17 @@ body.dark-mode {
   /* Responsive styling for screens with max width of 480px */
 @media (max-width: 480px) {
     .flex-container {
+
         flex-direction: column;
         align-items: center;
     }
 
     .feature-column {
+
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
         text-align: center;
         margin-bottom: 20px;
         width:fit-content;

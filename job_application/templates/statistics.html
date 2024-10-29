@@ -3,6 +3,99 @@ Journey{% endblock %} {% block content %}
 <div class="stats-container">
   <h1 class="stats-title">Your Job Search Journey</h1>
 
+
+{% block title %}Job Application Statistics{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">Job Application Dashboard</h1>
+
+    <div class="row mb-4">
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card2 main-container">
+                    <h5 class="card-title">Date Range Selection</h5>
+                    <form id="dateRangeForm" class="d-flex align-items-center">
+                        <select id="dateRange" class="form-select me-2">
+                            <option value="7">Last 7 days</option>
+                            <option value="30" selected>Last 30 days</option>
+                            <option value="90">Last 90 days</option>
+                            <option value="180">Last 6 months</option>
+                            <option value="365">Last year</option>
+                            <option value="all">All time</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card2 main-container">
+                    <h5 class="card-title">Application Streak</h5>
+                    <div class="d-flex align-items-center">
+                        <div class="streak-counter me-3">{{ current_streak }}</div>
+                        <div>
+                            <p class="mb-0">Current Streak</p>
+                            <p class="mb-0">Longest Streak: {{ longest_streak }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-3 mb-3">
+            <div class="card">
+                <div class="card2 main-container">
+                    <h5 class="card-title">Total Applications</h5>
+                    <p class="card-text display-4">{{ total_applications }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card">
+                <div class="card2 main-container">
+                    <h5 class="card-title">Success Rate</h5>
+                    <div class="progress mt-3" style="height: 30px;">
+                        <div class="progress-bar" role="progressbar" style="width: {{ success_rate }}%;" 
+                             aria-valuenow="{{ success_rate }}" aria-valuemin="0" aria-valuemax="100">
+                            {{ success_rate }}%
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card">
+                <div class="card2 main-container">
+                    <h5 class="card-title">Response Rate</h5>
+                    <div class="progress mt-3" style="height: 30px;">
+                        <div class="progress-bar" role="progressbar" style="width: {{ response_rate }}%;" 
+                             aria-valuenow="{{ response_rate }}" aria-valuemin="0" aria-valuemax="100">
+                            {{ response_rate }}%
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card">
+                <div class="card2 main-container">
+                    <h5 class="card-title">Job Seeker Level</h5>
+                    <p class="card-text">Level {{ job_seeker_level }}</p>
+                    <p class="card-text">{{ experience_points }} / {{ next_level_points }} XP</p>
+                    <div class="progress mt-2">
+                        <div class="progress-bar" role="progressbar"
+     style="width: {% widthratio experience_points next_level_points 100 %}%;"
+     aria-valuenow="{{ experience_points }}" aria-valuemin="0" aria-valuemax="{{ next_level_points }}">
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
   <div class="stats-section">
     <h2>Your Current Level</h2>
     <div class="level-card">
@@ -17,6 +110,7 @@ Journey{% endblock %} {% block content %}
         ></div>
       </div>
       <p>{{ experience_points }} / {{ next_level_points }} XP to next level</p>
+
     </div>
     <p class="level-explanation">
       Level up by applying to jobs, completing interviews, and achieving
@@ -24,6 +118,93 @@ Journey{% endblock %} {% block content %}
       quests!
     </p>
   </div>
+
+
+    <div class="row mb-4">
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card2 main-container">
+                    <h5 class="card-title">Application Status Distribution</h5>
+                    <canvas id="statusChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card2 main-container">
+                    <h5 class="card-title">Application Trend</h5>
+                    <canvas id="trendChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card2 main-container">
+                    <h5 class="card-title">Top 5 Companies Applied</h5>
+                    <ul class="list-group list-group-flush" id="topCompanies">
+                        {% for company in top_companies %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ company.company }}
+                            <span class="badge bg-primary rounded-pill">{{ company.count }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card2 main-container">
+                    <h5 class="card-title">Achievements</h5>
+                    <ul class="list-group list-group-flush">
+                        {% for achievement in achievements %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ achievement.name }}
+                            <span class="badge bg-success rounded-pill">{{ achievement.points }} XP</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card2 main-container">
+                    <h5 class="card-title">Goal Setting</h5>
+                    <form id="goalForm" class="modern-form">
+                        <div class="form-group">
+                            <label for="goalType" class="form-label">Goal Type</label>
+                            <div class="select-wrapper">
+                                <select id="goalType" class="form-select">
+                                    <option value="applications">Total Applications</option>
+                                    <option value="interviews">Interviews</option>
+                                    <option value="offers">Offers</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="goalValue" class="form-label">Goal Value</label>
+                            <input type="number" id="goalValue" class="form-control" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="goalDeadline" class="form-label">Deadline</label>
+                            <input type="date" id="goalDeadline" class="form-control datepicker" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Set Goal</button>
+                    </form>
+                    <div id="currentGoal" class="mt-3">
+                        <h6>Current Goal:</h6>
+                        <p id="goalDescription" class="goal-description"></p>
+                        <div class="progress">
+                            <div id="goalProgress" class="progress-bar" role="progressbar" style="width: 0%;" 
+                                 aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
   <div class="stats-section">
     <h2>Your Job Search Stats</h2>
@@ -44,9 +225,99 @@ Journey{% endblock %} {% block content %}
         <h3>Response Rate</h3>
         <div class="stat-circle">
           <span class="stat-number">{{ response_rate }}%</span>
+
         </div>
       </div>
     </div>
+
+</div>
+
+<style>
+    .modern-form .form-group {
+        margin-bottom: 1.5rem;
+    }
+    
+    .modern-form .form-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #00d1ce;
+        font-weight: 600;
+    }
+    
+    .modern-form .form-control,
+    .modern-form .form-select {
+        background-color: #1e1e1e;
+        border: 2px solid #3a3a3a;
+        border-radius: 8px;
+        color: #ffffff;
+        padding: 0.75rem 1rem;
+        transition: all 0.3s ease;
+    }
+    
+    .modern-form .form-control:focus,
+    .modern-form .form-select:focus {
+        border-color: #00d1ce;
+        box-shadow: 0 0 0 2px rgba(0, 209, 206, 0.25);
+    }
+    
+    .modern-form .select-wrapper {
+        position: relative;
+    }
+    
+    .modern-form .select-wrapper::after {
+        content: '\25BC';
+        position: absolute;
+        top: 50%;
+        right: 1rem;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: #00d1ce;
+    }
+    
+    .modern-form .form-select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
+    
+    .modern-form .btn-primary {
+        background-image: linear-gradient(to right, #00d1ce, #7f48cb);
+        border: none;
+        border-radius: 8px;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+    }
+    
+    .modern-form .btn-primary:hover {
+        background-image: linear-gradient(to right, #00b3b0, #6a3eac);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .goal-description {
+        background: linear-gradient(to right, #00d1ce, #7f48cb);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+    
+    .progress {
+        height: 10px;
+        background-color: #1e1e1e;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    
+    .progress-bar {
+        background-image: linear-gradient(to right, #00d1ce, #7f48cb);
+        transition: width 0.5s ease;
+    }
+    </style>
+
   </div>
 
   <div class="stats-section">
@@ -175,6 +446,110 @@ Journey{% endblock %} {% block content %}
 </div>
 
 <script>
+
+    // Status Distribution Chart
+    const statusCtx = document.getElementById('statusChart').getContext('2d');
+    new Chart(statusCtx, {
+        type: 'doughnut',
+        data: {
+            labels: [{% for status in status_counts %}'{{ status.status }}',{% endfor %}],
+            datasets: [{
+                data: [{% for status in status_counts %}{{ status.count }},{% endfor %}],
+                backgroundColor: [
+                    '#00d1ce',
+                    '#7f48cb',
+                    '#ff6b6b',
+                    '#feca57',
+                    '#48dbfb',
+                    '#ff9ff3'
+                ],
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'right',
+                    labels: {
+                        color: 'white'
+                    }
+                }
+            }
+        }
+    });
+
+    // Application Trend Chart
+    const trendCtx = document.getElementById('trendChart').getContext('2d');
+    new Chart(trendCtx, {
+        type: 'line',
+        data: {
+            labels: [{% for item in trend_data %}'{{ item.date|date:"M d" }}',{% endfor %}],
+            datasets: [{
+                label: 'Applications',
+                data: [{% for item in trend_data %}{{ item.count }},{% endfor %}],
+                borderColor: '#00d1ce',
+                backgroundColor: 'rgba(0, 209, 206, 0.2)',
+                tension: 0.1,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1,
+                        color: 'white'
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)'
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: 'white'
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'white'
+                    }
+                }
+            }
+        }
+    });
+
+    // Date range form submission
+    document.getElementById('dateRangeForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const days = document.getElementById('dateRange').value;
+        // Here you would typically make an AJAX call to update the data
+        console.log('Updating data for last', days, 'days');
+        // Reload the page with the new date range
+        window.location.href = `?days=${days}`;
+    });
+
+    // Goal setting form submission
+    document.getElementById('goalForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const goalType = document.getElementById('goalType').value;
+        const goalValue = document.getElementById('goalValue').value;
+        const goalDeadline = document.getElementById('goalDeadline').value;
+        // Here you would typically make an AJAX call to save the goal
+        console.log('Setting goal:', goalType, goalValue, 'by', goalDeadline);
+        
+        // Update current goal display (this is just a placeholder, you'd update with actual data)
+        document.getElementById('goalDescription').textContent = `${goalValue} ${goalType} by ${goalDeadline}`;
+        document.getElementById('goalProgress').style.width = '0%';
+        document.getElementById('goalProgress').textContent = '0%';
+    });
+
   window.djangoData = {
       statusLabels: [{% for item in status_counts %}'{{ item.status }}',{% endfor %}],
       statusData: [{% for item in status_counts %}{{ item.count }},{% endfor %}],
@@ -200,6 +575,7 @@ Journey{% endblock %} {% block content %}
           {% endfor %}
       ]
   };
+
 </script>
 <link
   rel="stylesheet"

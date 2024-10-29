@@ -4,14 +4,18 @@ from django.urls import reverse
 from django.conf import settings
 from django.db.models import Q, Count
 from django.utils import timezone
+from .models import Job
+import datetime
 from .models import Job, Note
 from .forms import NoteForm
+
 from django.db.models.functions import TruncDate
 from datetime import timedelta
 from django.views import View
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 import os
+os.environ["GENAI_API_KEY"] = "AIzaSyCa184BrMh2Wnm78uWkY-HRutDaRSJIJa0"
 
 ADZUNA_APP_ID = os.getenv('ADZUNA_APP_ID')
 ADZUNA_APP_KEY = os.getenv('ADZUNA_API_KEY')
@@ -192,6 +196,7 @@ def get_job_titles(request):
 
 
 @login_required
+
 def filter_jobs(request):
     user = request.user
     query = request.GET.get('query')
@@ -219,6 +224,20 @@ def statistics_view(request):
 
     all_applications = Job.objects.filter(user=request.user)
     if start_date:
+
+        all_applications = all_applications.filter(date_applied__gte=start_date)
+
+    total_applications = all_applications.count()
+    
+    # Success Rate
+    success_count = all_applications.filter(status='Offer').count()
+    success_rate = round((success_count / total_applications) * 100, 2) if total_applications > 0 else 0
+    
+    # Response Rate
+    response_count = all_applications.exclude(status='Applied').count()
+    response_rate = round((response_count / total_applications) * 100, 2) if total_applications > 0 else 0
+    
+
         all_applications = all_applications.filter(
             date_applied__gte=start_date)
 
@@ -234,13 +253,19 @@ def statistics_view(request):
     response_rate = round((response_count / total_applications)
                           * 100, 2) if total_applications > 0 else 0
 
+
     # Job Seeker Level
     experience_points = total_applications * 10 + success_count * 50
     job_seeker_level = experience_points // 100 + 1
     next_level_points = job_seeker_level * 100
 
+    
+    status_counts = all_applications.values('status').annotate(count=Count('status'))
+
+
     status_counts = all_applications.values(
         'status').annotate(count=Count('status'))
+
 
     # Application Trend
     trend_data = all_applications.annotate(
@@ -250,6 +275,17 @@ def statistics_view(request):
     ).order_by('date')
 
     # Ensure all dates in the range have a data point
+
+    all_dates = {(start_date + timedelta(days=i)).isoformat(): 0 for i in range((timezone.now().date() - start_date).days + 1)}
+    for item in trend_data:
+        all_dates[item['date'].isoformat()] = item['count']
+    trend_data = [{'date': date, 'count': count} for date, count in all_dates.items()]
+    
+    top_companies = all_applications.values('company').annotate(count=Count('company')).order_by('-count')[:5]
+    
+    # Streak calculation
+    applications_by_date = all_applications.values('date_applied__date').annotate(count=Count('id')).order_by('date_applied__date')
+
     all_dates = {(start_date + timedelta(days=i)).isoformat()
                   : 0 for i in range((timezone.now().date() - start_date).days + 1)}
     for item in trend_data:
@@ -263,6 +299,7 @@ def statistics_view(request):
     # Streak calculation
     applications_by_date = all_applications.values('date_applied__date').annotate(
         count=Count('id')).order_by('date_applied__date')
+
     current_streak = 0
     longest_streak = 0
     streak = 0
@@ -272,8 +309,12 @@ def statistics_view(request):
             streak += 1
         else:
             streak = 1
+
+        current_streak = streak if app['date_applied__date'] == timezone.now().date() else 0
+
         current_streak = streak if app['date_applied__date'] == timezone.now(
         ).date() else 0
+
         longest_streak = max(longest_streak, streak)
         last_date = app['date_applied__date']
 
@@ -407,6 +448,8 @@ def statistics_view(request):
         'success_rate': success_rate,
         'response_rate': response_rate,
         'job_seeker_level': job_seeker_level,
+        'experience_points': experience_points,
+        'next_level_points': next_level_points,
         'job_seeker_level': job_seeker_level,
         'experience_points': experience_points,
         'next_level_points': next_level_points,
@@ -439,6 +482,7 @@ def statistics_view(request):
         'skillsData': skills_data,
         'timelineData': job_search_events,
         'jobLocations': list(job_locations),
+
     }
 
     return render(request, 'statistics.html', context)
